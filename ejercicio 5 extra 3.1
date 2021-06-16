@@ -1,0 +1,62 @@
+subproceso  vocales(cad)
+	
+	definir c Como Caracter
+	definir i, conta, conte, conti, conto, contu como entero
+	c = ''
+	conta = 0
+	conte=0
+	conti=0
+	conto=0
+	conto=0
+
+	
+	para i=0 hasta longitud(cad)-1 hacer
+		Segun subcadena(cad, i, i) Hacer
+			'a' o 'A':
+				conta = conta + 1
+				si conta > 1 Entonces
+					c = concatenar(c, ' ')
+				SiNo
+					c = concatenar(c, subcadena(cad, i, i))
+				FinSi
+			'e' o 'E':
+				conte = conte + 1
+				si conte > 1 Entonces
+					c = concatenar(c, ' ')
+				SiNo
+					c = concatenar(c, subcadena(cad, i, i))
+				FinSi
+			'i' o 'I':
+				conti = conti + 1
+				si conti > 1 Entonces
+					c = concatenar(c, ' ')
+				SiNo
+					c = concatenar(c, subcadena(cad, i, i))
+				FinSi
+			'o' o 'O':
+				conto = conto + 1
+				si conto > 1 Entonces
+					c = concatenar(c, ' ')
+				SiNo
+					c = concatenar(c, subcadena(cad, i, i))
+				FinSi
+			'u' o 'U':
+				contu = contu + 1
+				si contu > 1 Entonces
+					c = concatenar(c, ' ')
+				SiNo
+					c = concatenar(c, subcadena(cad, i, i))
+				FinSi
+			De Otro Modo:
+				c = Concatenar(c, subcadena(cad, i, i))
+		Fin Segun
+	FinPara
+	escribir c
+Finsubproceso
+
+Algoritmo asdad
+	definir cad como caracter
+	escribir 'Ingrese una cadena'
+	leer cad
+	vocales(cad)
+FinAlgoritmo
