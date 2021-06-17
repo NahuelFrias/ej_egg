@@ -1,0 +1,26 @@
+funcion numConvertido <- convertir(n)
+	definir numConvertido como entero
+	numConvertido = ConvertirANumero(n)
+FinFuncion
+
+
+Algoritmo sin_titulo
+	
+	definir num, num_conv como entero
+	definir numCaracter como caracter
+	
+	num_conv = 0
+	numCaracter = ''
+	
+	repetir
+		escribir 'Ingrese un numero entero de hasta 3 digitos'
+		leer num
+		
+	mientras que num > 1000 o num < 0
+	
+	numCaracter = ConvertirATexto(num)
+	num_conv = convertir(numCaracter)
+	
+	escribir num_conv
+	
+FinAlgoritmo
