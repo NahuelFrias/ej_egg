@@ -1,0 +1,51 @@
+funcion total <- sueldo(hr, turn, fest)
+	
+	definir total como real
+	
+	si turn = 'diurno' y fest = 'n'
+		total = hr*90
+	FinSi
+	
+	si turn = 'diurno' y fest = 's'
+		total = hr*90 + (hr*90) * 0.1
+	FinSi
+	
+	si turn = 'nocturno' y fest = 'n'
+		total = hr*125
+	FinSi
+	
+	si turn = 'nocturno' y fest = 's'
+		total = hr*125 + (hr*125) * 0.15
+	FinSi
+	
+FinFuncion
+
+
+Algoritmo sin_titulo
+	
+	definir nombre, dia, turno, festivo como caracter
+	definir horas, sueldoTotal como real
+	
+	escribir 'Ingrese su nombre'
+	leer nombre
+	escribir 'Ingrese el día'
+	leer dia
+	repetir
+		escribir 'Ingrese el turno'
+		leer turno
+		turno = Minusculas(turno)
+	hasta que turno = 'diurno' o turno = 'nocturno'
+	escribir 'Ingrese la cantidad de horas trabajas'
+	leer horas
+	repetir
+		escribir '¿Es dia festivo?: S/N'
+		leer festivo
+		festivo = Minusculas(festivo)
+	hasta que festivo = 's' o festivo = 'n'
+	
+	sueldoTotal = sueldo(horas, turno, festivo)
+	
+	escribir concatenar(mayusculas(subcadena(nombre,0,0)), minusculas(subcadena(nombre,1,longitud(nombre))))
+	escribir 'Su sueldo del dia ' dia ' es ' sueldoTotal
+	
+FinAlgoritmo
