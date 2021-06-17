@@ -1,0 +1,28 @@
+funcion sumatoria <- suma(n)
+	
+	definir sumatoria, i Como Entero
+	
+	i=0
+	sumatoria=0
+	
+	para i=1 hasta n-1
+		si n mod(i) = 0
+			sumatoria = sumatoria + i
+		FinSi
+	FinPara
+	
+FinFuncion
+
+
+Algoritmo sin_titulo
+	
+	definir num, resultado Como Entero
+	
+	escribir 'Ingrese un num'
+	leer num
+	
+	resultado = suma(num)
+	
+	escribir 'El resultado de la suma es: ' resultado
+	
+FinAlgoritmo
