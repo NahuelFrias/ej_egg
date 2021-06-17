@@ -1,0 +1,33 @@
+Funcion var <- login(us, contra)
+	
+	definir var Como Logico
+	definir contador Como Entero
+	
+	contador = 0
+	var = falso
+	
+	si us = 'usuario1' y contra = 'vaca'
+		var = verdadero
+		escribir 'Bienvenido'
+	SiNo
+		escribir 'Usuario o contraseña invalidos'
+		var = falso
+	FinSi
+FinFuncion
+
+Algoritmo sin_titulo
+	
+	definir usuario, contrasenia como caracter
+	definir variable como logico
+	definir contador Como Entero
+	
+	contador = 0
+	
+	repetir
+		escribir 'Ingrese usuario y contraseña'
+		leer usuario, contrasenia
+		contador = contador + 1
+		variable = login(usuario, contrasenia)
+	mientras que contador < 3
+	
+FinAlgoritmo
