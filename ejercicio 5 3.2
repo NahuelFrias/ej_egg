@@ -1,0 +1,34 @@
+funcion cont <- esPrimo(a)
+	
+	definir i, cont Como Entero
+	
+	cont=0
+	i=0
+	
+	para i=1 hasta a Hacer
+		si a%i=0 Entonces
+			cont = cont + 1
+		FinSi
+	FinPara
+	
+	
+FinFuncion
+
+
+Algoritmo sin_titulo
+	
+	definir contador, num como entero
+	contador=0
+	
+	escribir 'Ingrese un numero'
+	leer num
+	
+	contador = esPrimo(num)
+	
+	si contador > 2 Entonces
+		escribir 'El numero no es primo'
+	sino 
+		escribir 'El numero es primo'
+	FinSi
+	
+FinAlgoritmo
