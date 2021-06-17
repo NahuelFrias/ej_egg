@@ -1,0 +1,32 @@
+funcion var<- siespar(a)
+	
+	definir var Como Logico
+	
+	var = Verdadero
+	
+	si a mod(2) = 0 Entonces
+		var = Verdadero
+	SiNo
+		var = Falso
+	FinSi
+	
+FinFuncion
+
+
+Algoritmo sin_titulo
+	
+	definir num como entero
+	definir variable como logico
+	
+	Escribir 'Ingrese un numero'
+	leer num
+	
+	variable = siespar(num)
+	
+	si variable Entonces
+		Escribir 'El numero es par'
+	SiNo
+		escribir 'El numero es impar'
+	FinSi
+	
+FinAlgoritmo
