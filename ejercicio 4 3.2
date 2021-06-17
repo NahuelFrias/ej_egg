@@ -1,0 +1,29 @@
+funcion contador <- cuentaCaracter(f, c)
+	
+	definir contador, i Como Entero
+	
+	contador=0
+	i=0
+	
+	para i=0 hasta (longitud(f)-1)
+		si c = subcadena(f,i,i)
+			contador = contador +1
+		FinSi
+	FinPara
+	
+FinFuncion
+
+
+Algoritmo sin_titulo
+	definir frase, caract Como Caracter
+	definir veces como entero
+	
+	escribir 'Ingrese una frase'
+	leer frase
+	escribir 'Ingrese un caracter'
+	leer caract
+	
+	veces = cuentaCaracter(frase, caract)
+	
+	escribir 'El caracter se repite ' veces ' veces'
+FinAlgoritmo
