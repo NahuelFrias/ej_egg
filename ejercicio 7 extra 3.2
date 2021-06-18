@@ -1,0 +1,23 @@
+funcion termino<-fibonacci(n)
+	
+	definir termino Como Entero
+	termino=0
+	
+	si n <=1
+		termino = 1
+	SiNo
+		termino = fibonacci(n-1) + fibonacci(n-2)
+	FinSi
+	
+	
+FinFuncion
+
+Algoritmo sin_titulo
+	definir num, termi Como Entero
+	escribir 'Ingrese un numero'
+	leer num
+	termi = 0
+	num = num-2
+	termi = fibonacci(num)
+	escribir 'El ' num+2 '° termino de la sucesion de Fibonacci es: ' termi
+FinAlgoritmo
