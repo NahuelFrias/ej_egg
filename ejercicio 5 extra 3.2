@@ -1,0 +1,28 @@
+Funcion sumaTotal <- sumaDigitos(n)
+	
+	definir truncado, sumaTotal como entero
+	sumaTotal = 0
+	truncado = 0
+	
+	repetir
+		truncado = n mod(10)
+		sumaTotal = sumaTotal + truncado
+		n = trunc(n/10)
+		si n < 10
+			sumaTotal = sumaTotal + n
+		finsi
+	hasta que n < 10
+	
+FinFuncion
+
+Algoritmo sin_titulo
+	
+	definir num, suma como real
+	
+	escribir 'Ingrese un numero'
+	leer num
+	
+	suma = 0
+	escribir 'La suma total de los dijitos de ' num ' es: ' sumaDigitos(num)
+	
+FinAlgoritmo
