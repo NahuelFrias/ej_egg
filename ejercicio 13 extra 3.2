@@ -1,0 +1,33 @@
+Funcion mcDivisor<-MCD(may, men)
+	
+	definir resto, mcDivisor Como Real
+	resto = 0
+	mcDivisor = 0
+	
+	resto = may mod(men)
+	
+	si resto = 0
+		mcDivisor = men
+	SiNo
+		mcDivisor = MCD(men, resto)
+	FinSi
+	
+FinFuncion
+
+//MCD con Algoritmo de Euclides
+Algoritmo Euclides
+	
+	definir mayor, menor, maxCD como entero
+	maxCD = 0
+	
+	escribir 'Ingrese un numero'
+	leer mayor
+	repetir
+		escribir 'Ingrese un numero menor que ' mayor
+		leer menor
+	hasta que mayor > menor
+	
+	maxCD = MCD(mayor, menor)
+	
+	escribir 'El MCD es ' maxCD
+FinAlgoritmo
