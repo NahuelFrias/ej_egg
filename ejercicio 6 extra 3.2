@@ -1,0 +1,50 @@
+Funcion sumaImpar<-impares(n)
+	
+	definir truncado, sumaImpar, sumaTotal como entero
+	truncado=0
+	sumaImpar=0
+	sumaTotal=0
+	
+	repetir
+		truncado = n mod(10)
+		n = trunc(n/10)
+		si truncado mod(2) <> 0
+			sumaImpar = sumaImpar + 1
+		FinSi
+		si n < 10 y n mod(2) <> 0
+			sumaImpar = sumaImpar + 1
+		finsi
+	hasta que n < 10
+	
+FinFuncion
+
+Algoritmo sin_titulo
+	
+	definir num ,truncado, sumar, sumaTotal Como Entero
+	
+	escribir 'Ingrese un numero'
+	leer num
+	
+	sumar=0
+	sumar = impares(num)
+	
+	truncado=0
+	sumaTotal=0
+	
+	repetir
+		truncado = num mod(10)
+		sumaTotal = sumaTotal + 1
+		num = trunc(num/10)
+		si num < 10
+			sumaTotal = sumaTotal + 1
+		finsi
+	hasta que num < 10
+	
+	si sumar = sumaTotal
+		escribir 'Todos los digitos del numero son impares,'
+	SiNo
+		escribir 'Los digitos no son impares'
+	FinSi
+	
+	
+FinAlgoritmo
