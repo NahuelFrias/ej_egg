@@ -1,0 +1,70 @@
+Algoritmo sin_titulo
+	
+	definir vectorA, vectorB, vectorC, i Como Entero
+	definir option, ver Como Caracter
+	dimension vectorA(10), vectorB(10), vectorC(10)
+	
+	escribir 'BIENVENIDO! QUE DESEA HACER?:'
+	escribir 'A: llenar vector A'
+	escribir 'B: llenar vector B'
+	escribir 'C: llenar vector C con suma de vectores A y B'
+	escribir 'D: llenar vector C con resta de vectores A y B'
+	escribir 'E: mostrar vector'
+	escribir 'F: salir'
+	escribir ''
+	
+	i=0
+	
+	repetir
+		escribir 'Ingrese su opcion deseada'
+		leer option
+		option = minusculas(option)
+		
+		segun option Hacer
+			'a':
+				para i=0 hasta 9
+					vectorA(i) = Aleatorio(-100, 100)
+				FinPara
+			'b':
+				para i=0 hasta 9
+					vectorB(i) = aleatorio(-100, 100)
+				FinPara
+			'c':
+				para i=0 hasta 9
+					vectorC(i) = vectorA(i) + vectorB(i)
+				FinPara
+			'd':
+				para i=0 hasta 9
+					vectorC(i) = vectorA(i) - vectorB(i)
+				FinPara
+			'e':
+				escribir 'Que vector desea ver?'
+				leer ver 
+				ver = Minusculas(ver)
+				segun ver hacer
+					'a':
+						para i=0 hasta 9
+							escribir '[' vectorA(i) '] ' sin saltar
+						FinPara
+						escribir ''
+					'b':
+						para i=0 hasta 9
+							escribir '[' vectorB(i) '] ' sin saltar
+						FinPara
+						escribir ''
+					'c':
+						para i=0 hasta 9
+							escribir '[' vectorC(i) '] ' sin saltar
+						FinPara
+						escribir ''
+				FinSegun
+			De Otro Modo:
+				si option <> 'f'
+					escribir 'Error de opcion'
+				FinSi
+		FinSegun
+	hasta que option = 'f'
+	
+	escribir 'Adios!'
+	
+FinAlgoritmo
