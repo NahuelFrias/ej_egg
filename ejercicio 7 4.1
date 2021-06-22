@@ -1,0 +1,59 @@
+funcion booleano <- comparador(arrayA, arrayB, tam)
+	
+	definir booleano Como Logico
+	definir i, j, contador Como Entero
+	
+	booleano = Falso
+	i=0
+	j=0
+	contador = 0
+	
+	para i=0 hasta tam-1
+		para j=0 hasta tam-1
+			si arrayA(i) = arrayB(j) Entonces
+				contador = contador + 1
+			FinSi
+		FinPara
+	FinPara
+	
+	si contador = tam Entonces
+		booleano = Verdadero
+	SiNo
+		booleano = Falso
+	FinSi
+FinFuncion
+
+
+Algoritmo sin_titulo
+	
+	definir i, vectorA, vectorB, tamano como entero
+	definir bool como logico
+	
+	escribir 'Ingrese el tamaño de los vectores'
+	leer tamano
+	
+	dimension vectorA(tamano), vectorB(tamano)
+	
+	para i=0 hasta tamano-1
+		vectorA(i) = azar(11)
+		vectorB(i) = azar(11)
+	FinPara
+	
+	para i=0 hasta tamano-1
+		escribir vectorA(i) ' ' sin saltar
+	FinPara
+	escribir''
+	para i=0 hasta tamano-1
+		escribir vectorB(i) ' ' sin saltar
+	FinPara
+	escribir ''
+	
+	bool = comparador(vectorA, vectorB, tamano)
+	
+	si bool Entonces
+		escribir 'Todos los elementos de los dos vectores son iguales'
+	SiNo
+		escribir 'Los elementos de los dos vectores son distintos'
+	FinSi
+	
+FinAlgoritmo
