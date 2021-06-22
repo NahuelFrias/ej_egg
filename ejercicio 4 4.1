@@ -1,0 +1,29 @@
+funcion elemento<-mayor(vec)
+	
+	definir elemento, i Como Entero
+	elemento = -9999999
+	
+	para i=0 hasta 4
+		si vec(i) > elemento
+			elemento = vec(i)
+		FinSi
+	FinPara
+	
+FinFuncion
+
+Algoritmo sin_titulo
+	
+	definir vector, i, elem como entero
+	dimension vector(5)
+	
+	elem=0
+	
+	escribir 'Ingrese los elementos del vector'
+	para i=0 hasta 4
+		leer vector(i)
+	FinPara
+	
+	elem = mayor(vector)
+	escribir 'El mayor elemento ingresado es: ' elem
+	
+FinAlgoritmo
