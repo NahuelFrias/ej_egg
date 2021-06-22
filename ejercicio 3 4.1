@@ -1,0 +1,30 @@
+Algoritmo sin_titulo
+	
+	definir vector, i, num, suma como entero
+	dimension vector(10)
+	
+	suma = 0
+	
+	escribir 'Ingrese los elementos del vector'
+	
+	para i=0 hasta 9
+		leer vector(i)
+	FinPara
+	
+	escribir 'Ingrese el numero que desea buscar'
+	leer num
+	
+	para i=0 hasta 9
+		si num = vector(i)
+			suma = suma + 1
+			escribir 'El numero que busca se encuentra en la posicion: ' i
+		FinSi
+	FinPara
+	
+	si suma >= 1
+		escribir 'El numero que busca se encuentra ' suma ' veces.'
+	SiNo
+		escribir 'El numero que busca no se encuentra'
+	FinSi
+	
+FinAlgoritmo
