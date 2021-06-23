@@ -1,0 +1,31 @@
+Algoritmo sin_titulo
+	definir vectorA, vectorB, letra, frase como caracter
+	definir posicion, i como entero
+	dimension vectorA(30), vectorB(30)
+	
+	escribir 'Ingrese una frase'
+	leer frase
+	
+	i=0
+	
+	para i=0 hasta 29
+		vectorA(i) = subcadena(frase,i,i)
+	FinPara
+	
+	escribir 'Ingrese el caracter'
+	leer letra
+	escribir 'Ingrese la posicion donde desea ingresar el caracter'
+	leer posicion 
+	
+	
+	vectorA(posicion) = letra
+	para i=posicion+1 hasta 29
+		vectorA(i) = subcadena(frase, i-1,i-1) 
+	FinPara
+	
+	
+	para i=0 hasta 29
+		escribir vectorA(i) ' ' Sin Saltar
+	FinPara
+	
+FinAlgoritmo
