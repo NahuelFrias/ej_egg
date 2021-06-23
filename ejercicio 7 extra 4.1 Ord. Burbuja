@@ -1,0 +1,27 @@
+Algoritmo sin_titulo
+	definir i, j, temp, vector Como Entero
+	dimension vector(20)
+	para i=0 hasta 19
+		vector(i) = azar(19)
+	FinPara
+	
+	para i=0 hasta 19
+		escribir vector(i) ' ' Sin Saltar
+	FinPara
+	escribir ''
+	
+	para i=0 hasta 18
+		para j=0 hasta 18
+			si vector(j) > vector(j+1)
+				temp = vector(j)
+				vector(j) = vector(j+1)
+				vector(j+1) = temp
+			FinSi
+		FinPara
+	FinPara
+	
+	para i=0 hasta 19
+		escribir vector(i) ' ' Sin Saltar
+	FinPara
+	
+FinAlgoritmo
