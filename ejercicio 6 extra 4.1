@@ -1,0 +1,32 @@
+Algoritmo sin_titulo
+	
+	definir vector, i, min, max, dif como entero
+	dimension vector(20)
+	
+	i=0
+	min = 20
+	max = 0
+	dif = 0
+	
+	para i=0 hasta 19
+		vector(i) = azar(21)
+	FinPara
+	
+	para i=0 hasta 19
+		si vector(i) < min
+			min = vector(i)
+		FinSi
+		si vector(i) > max
+			max = vector(i)
+		FinSi
+	FinPara
+	
+	dif = max - min
+	
+	para i=0 hasta 19
+		escribir '[' vector(i) '] ' sin saltar
+	FinPara
+	
+	escribir 'minimo: ' min ', maximo: ' max ', diferencia: ' dif
+	
+FinAlgoritmo
