@@ -1,0 +1,41 @@
+Algoritmo sin_titulo
+	
+	definir vector, i, deficientes, regulares, buenos, excelentes Como Entero
+	dimension vector(100)
+	
+	i=0
+	deficientes=0
+	regulares=0
+	buenos=0
+	excelentes=0
+	
+	para i=0 hasta 99
+		vector(i) = aleatorio(0,21)
+	FinPara
+	
+	para i=0 hasta 99
+		escribir '[' vector(i) '] ' sin saltar
+	FinPara
+	
+	para i=0 hasta 99
+		si vector(i)>0 y vector(i)<=5 Entonces
+			deficientes = deficientes + 1
+		SiNo
+			si vector(i)>5 y vector(i)<=10 Entonces
+				regulares = regulares + 1
+			SiNo
+				si vector(i)>10 y vector(i)<=15 Entonces
+					buenos = buenos + 1
+				SiNo
+					excelentes = excelentes + 1
+				FinSi
+			FinSi
+		FinSi
+	FinPara
+	
+	escribir 'Los estudiantes deficientes son: ' deficientes
+	escribir 'Los estudiantes regulares son: ' regulares
+	escribir 'Los estudiantes buenos son: ' buenos
+	escribir 'Los estudiantes excelentes son: ' excelentes
+	
+FinAlgoritmo
