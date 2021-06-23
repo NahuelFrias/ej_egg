@@ -1,0 +1,24 @@
+Algoritmo sin_titulo
+	
+	definir vector, i, suma Como Entero
+	definir promedio como real
+	dimension vector(5)
+	
+	i=0
+	suma=0
+	promedio=0
+	
+	para i=0 hasta 4
+		escribir 'Ingrese un elemento al vector en la posicion ' i
+		leer vector(i)
+	FinPara
+	
+	para i=0 hasta 4
+		suma = suma + vector(i)
+	FinPara
+	
+	promedio = suma/5
+	
+	escribir 'El promedio de la suma de todos los valores del vector es ' promedio
+	
+FinAlgoritmo
