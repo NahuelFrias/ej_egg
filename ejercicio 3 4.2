@@ -1,0 +1,52 @@
+subproceso llenarMatriz(array,f,c)
+	definir i, j Como Entero
+	i=0
+	j=0
+	
+	para i=0 hasta f-1
+		para j=0 hasta c-1
+			array(i,j) = aleatorio(1,11)
+		FinPara
+	finpara
+FinSubProceso
+
+funcion sumatoria <- sumaMatriz(array,f,c)
+	definir i, j, sumatoria Como Entero
+	i=0
+	j=0
+	sumatoria = 0
+	
+	para i=0 hasta f-1
+		para j=0 hasta c-1
+			sumatoria = sumatoria + array(i,j)
+		FinPara
+	finpara	
+FinFuncion
+
+Algoritmo sin_titulo
+	
+	definir matriz, i, j, n, m, sumaTotal Como Entero
+	
+	escribir 'Ingrese la cantidad de filas y columnas de la matriz'
+	leer n, m
+	
+	dimension matriz(n,m)
+	
+	llenarMatriz(matriz, n, m)
+	
+	sumaTotal=0	
+	sumaTotal = sumaMatriz(matriz,n,m)
+	
+	i=0
+	j=0
+	
+	para i=0 hasta n-1
+		para j=0 hasta m-1
+			escribir '[' matriz(i,j) ']' sin saltar
+		FinPara
+		escribir ''
+	finpara
+	
+	escribir 'La suma de todos los elementos de la matriz es: ' sumaTotal
+	
+FinAlgoritmo
