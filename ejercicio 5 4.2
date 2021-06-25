@@ -1,0 +1,34 @@
+SubProceso rellenar(word)
+	definir i, j, k Como Entero
+	definir matriz Como Caracter
+	dimension matriz(3,3)
+	
+	k=0
+	
+	para i=0 hasta 2
+		para j=0 hasta 2
+			matriz(i,j) = Subcadena(word,k,k)
+			k = k+1
+		FinPara
+	finpara
+	
+	para i=0 hasta 2
+		para j=0 hasta 2
+			escribir matriz(i,j) ' ' sin saltar
+		FinPara
+		escribir ''
+	finpara
+FinSubProceso
+
+
+Algoritmo sin_titulo
+	definir palabra Como Caracter
+	
+	repetir
+		escribir 'Ingrese una palabra'
+		leer palabra
+	hasta que longitud(palabra) <10
+	
+	rellenar(palabra)
+	
+FinAlgoritmo
