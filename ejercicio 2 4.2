@@ -1,0 +1,43 @@
+subproceso buscador(array, n)
+	
+	definir i,j, contador Como Entero
+	i=0
+	j=0
+	contador=0
+	
+	para i=0 hasta 4
+		para j=0 hasta 4
+			si n = array(i,j)
+				escribir 'El numero ' n ' esta en la posicion (' i ',' j ')'
+			SiNo
+				contador = contador +1
+			FinSi
+		FinPara
+	finpara
+	
+	si contador = 25
+		escribir 'El numero ' n ' no se ha encontrado'
+	FinSi
+	
+FinSubProceso
+
+Algoritmo sin_titulo
+	
+	definir matriz, i, j, num Como Entero
+	dimension matriz(5,5)
+	
+	i=0
+	j=0
+	
+	para i=0 hasta 4
+		para j=0 hasta 4
+			matriz(i,j) = aleatorio(1,11)
+		FinPara
+	finpara
+	
+	escribir 'Ingrese el numero ha buscar'
+	leer num
+	
+	buscador(matriz, num)
+	
+FinAlgoritmo
