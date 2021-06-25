@@ -1,0 +1,44 @@
+subproceso generador(n)
+	definir i, j, array Como Entero
+	dimension array(n,n)
+	i=0
+	j=0
+	
+	para i=0 hasta n-1
+		para j=0 hasta n-1
+			array(i,j) = aleatorio(1,9)
+			si i=j
+				array(i,j) = 0
+			SiNo
+				array(i,j) = aleatorio(1,9)
+			FinSi
+		FinPara
+	finpara
+	
+	imprime(array, n)
+	
+FinSubProceso
+
+subproceso imprime(arreglo, m)
+	
+	definir i, j como entero
+	
+	para i=0 hasta m-1
+		para j=0 hasta m-1
+			escribir arreglo(i,j) ' ' sin saltar
+		FinPara
+		escribir ''
+	finpara
+	
+FinSubProceso
+
+Algoritmo sin_titulo
+	
+	definir tam como entero
+	
+	escribir 'Ingrese el tamaño de filas y columnas para la matriz'
+	leer tam
+	
+	generador(tam)
+	
+FinAlgoritmo
