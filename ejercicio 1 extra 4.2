@@ -1,0 +1,38 @@
+subproceso rellenador(array)
+	
+	definir i,j Como Entero
+	i=0
+	j=0
+	
+	para i=0 hasta 2
+		para j=0 hasta 2
+			array(i,j)=azar(11)
+		FinPara
+	FinPara
+	
+FinSubProceso 
+
+subproceso mostrador(arreglo)
+
+	definir i,j Como Entero
+	i=0
+	j=0
+
+	para i=0 hasta 2
+		para j=0 hasta 2
+			escribir '[' arreglo(i,j) ']' sin saltar
+		FinPara
+		escribir ''
+	FinPara
+
+finsubproceso
+
+Algoritmo sin_titulo
+	
+	definir matriz Como Entero
+	dimension matriz(3,3)
+	
+	rellenador(matriz)
+	mostrador(matriz)
+	
+FinAlgoritmo
