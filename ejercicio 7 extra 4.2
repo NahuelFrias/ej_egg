@@ -1,0 +1,161 @@
+subproceso ventaXDia(array)
+	
+	definir lunes, martes, miercoles, jueves, viernes como entero
+	definir i, j Como Entero
+	
+	lunes=0
+	martes=0
+	miercoles=0
+	jueves=0
+	viernes=0
+	
+	para i=1 hasta 7 Hacer
+		para j=0 hasta 6 hacer
+			Segun j Hacer
+				1:
+					lunes = lunes + array(i,j)
+				2:
+					martes = martes + array(i,j)
+				3:
+					miercoles = miercoles + array(i,j)
+				4:
+					jueves = jueves + array(i,j)
+				5:
+					viernes = viernes + array(i,j)
+			Fin Segun
+		finpara
+	FinPara
+	
+	escribir lunes ' ' martes ' ' miercoles ' ' jueves ' ' viernes
+	
+FinSubProceso
+
+
+subproceso totalProducto(array)
+	
+	definir prod1, prod2, prod3, prod4, prod5 como entero
+	definir i, j como entero
+	prod1=0
+	prod2=0
+	prod3=0
+	prod4=0
+	prod5=0
+	
+	para i=0 hasta 7 Hacer
+		para j=1 hasta 6 hacer
+			Segun i Hacer
+				1:
+					prod1 = prod1 + array(i,j)
+				2:
+					prod2 = prod2 + array(i,j)
+				3:
+					prod3 = prod3 + array(i,j)
+				4:
+					prod4 = prod4 + array(i,j)
+				5:
+					prod5 = prod5 + array(i,j)
+			Fin Segun
+		finpara
+	FinPara
+	
+	escribir prod1 ' ' prod2 ' ' prod3 ' ' prod4 ' ' prod5
+	masVendidoXsemana(prod1,prod2,prod3,prod4,prod5)
+	
+FinSubProceso
+
+
+subproceso masVendidoXsemana(prod1, prod2, prod3, prod4, prod5)
+	
+	definir vector,mayor,i como entero
+	dimension vector(5)
+	mayor=0
+	vector(0) = prod1
+	vector(1) = prod2
+	vector(2) = prod3
+	vector(3) = prod4
+	vector(4) = prod5
+	
+	para i = 0 hasta 4
+		si vector(i)>mayor
+			mayor = vector(i)
+		FinSi
+	FinPara
+	
+	escribir mayor
+	
+FinSubProceso
+
+
+subproceso masVendido(array)
+	
+	definir i,j,mayor, dia, prod Como Entero
+	definir p, d Como Caracter
+	p = ''
+	d = ''
+	mayor=0
+	
+	para i=1 hasta 5
+		para j=1 hasta 5
+			si mayor < array(i,j)
+				mayor = array(i,j)
+				dia = j
+				prod = i				
+			FinSi
+		FinPara
+	FinPara
+	
+	Segun dia Hacer
+		1:
+			d = 'Lunes'
+		2:
+			d = 'Martes'
+		3:
+			d = 'Miercoles'
+		4:
+			d = 'Jueves'
+		5:
+			d = 'Viernes'
+	Fin Segun
+	Segun prod Hacer
+		1:
+			p = 'Producto 1'
+		2:
+			p = 'Producto 2'
+		3:
+			p = 'Producto 3'
+		4:
+			p = 'Producto 4'
+		5:
+			p = 'Producto 5'
+	Fin Segun
+	escribir 'El ' p ' fue el producto mas vendido, el dia ' d ' y la cantidad fue ' mayor
+	
+FinSubProceso
+
+Algoritmo sin_titulo
+	
+	definir matriz, i, j Como Entero
+	dimension matriz(8,7)
+	
+	para i=0 hasta 7
+		para j=0 hasta 6
+			si i=0 o j=0 
+				matriz(0,j) = j
+				matriz(i,0) = i
+			SiNo
+				matriz(i,j)=azar(100)
+			finsi
+		FinPara
+	FinPara
+	
+	para i=0 hasta 7
+		para j=0 hasta 6
+			escribir '[' matriz(i,j) ']' sin saltar
+		FinPara
+		escribir ''
+	FinPara
+	
+	ventaXDia(matriz)
+	totalProducto(matriz)
+	masVendido(matriz)
+FinAlgoritmo
