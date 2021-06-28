@@ -1,0 +1,65 @@
+subproceso multiplicador(array1, array2)
+	definir array, i, j como entero
+	dimension array(3,3)
+	i=0
+	j=0
+	
+	para i=0 hasta 2
+		para j=0 hasta 2
+			array(i,j) = array1(i,j) * array2(i,j)
+		FinPara
+	FinPara
+	
+	escribir '----------------------------------------------------'
+	escribir 'Matriz multiplicada:'
+	escribir '----------------------------------------------------'
+	para i=0 hasta 2
+		para j=0 hasta 2
+			escribir '[' array(i,j) ']' sin saltar
+		FinPara
+		escribir ''
+	FinPara
+	escribir '----------------------------------------------------'
+	
+FinSubProceso
+
+Algoritmo sin_titulo
+	definir matriz1, matriz2, i, j Como Entero
+	dimension matriz1(3,3), matriz2(3,3)
+	
+	i=0
+	j=0
+	
+	para i=0 hasta 2
+		para j=0 hasta 2
+			matriz1(i,j)=azar(11)
+		FinPara
+	FinPara
+	para i=0 hasta 2
+		para j=0 hasta 2
+			matriz2(i,j)=azar(11)
+		FinPara
+	FinPara
+	
+	escribir '----------------------------------------------------'
+	escribir 'Matriz 1:'
+	escribir '----------------------------------------------------'
+	para i=0 hasta 2
+		para j=0 hasta 2
+			escribir '[' matriz1(i,j) ']' sin saltar
+		FinPara
+		escribir ''
+	FinPara
+	
+	escribir '----------------------------------------------------'
+	escribir 'matriz 2:'
+	escribir '----------------------------------------------------'
+	para i=0 hasta 2
+		para j=0 hasta 2
+			escribir '[' matriz2(i,j) ']' sin saltar
+		FinPara
+		escribir ''
+	FinPara
+	
+	multiplicador(matriz1, matriz2)
+FinAlgoritmo
