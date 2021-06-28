@@ -1,0 +1,49 @@
+subproceso multiplicador(array, list)
+	
+	definir multiplicado, i, j Como Entero
+	dimension multiplicado(3,3)
+	
+	para i=0 hasta 2
+		para j=0 hasta 2
+			multiplicado(i,j) = array(i,j) * list(j)
+		FinPara
+	FinPara
+	
+	para i=0 hasta 2
+		para j=0 hasta 2
+			escribir '[' multiplicado(i,j) ']' sin saltar
+		FinPara
+		escribir ''
+	FinPara
+	
+FinSubProceso
+
+Algoritmo sin_titulo
+	
+	definir matriz, vector, i, j Como Entero
+	dimension matriz(3,3), vector(3)
+	
+	para i=0 hasta 2
+		para j=0 hasta 2
+			matriz(i,j)=azar(11)
+		FinPara
+	FinPara
+	para i=0 hasta 2
+		vector(i)=azar(6)
+	FinPara
+	
+	para i=0 hasta 2
+		para j=0 hasta 2
+			escribir '[' matriz(i,j) ']' sin saltar
+		FinPara
+		escribir ''
+	FinPara
+	
+	para j=0 hasta 2
+		escribir '[' vector(j) ']' sin saltar
+	FinPara
+	escribir ''
+	
+	multiplicador(matriz,vector)
+	
+FinAlgoritmo
