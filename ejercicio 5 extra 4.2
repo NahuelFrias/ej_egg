@@ -1,0 +1,33 @@
+SubProceso sumador(array,f,c)
+	definir i,j, val Como Entero
+	
+	para i=0 hasta f-1
+		para j=0 hasta c-1
+			si j=0 o j=1 entonces
+				escribir 'Ingrese el valor de la fila ' i ' y la columna ' j
+				leer val
+				array(i,j) = val
+			sino
+				si j=2
+					array(i,j)= array(i,j-1) + array(i,j-2)
+				finsi
+			FinSi
+		FinPara
+	FinPara
+	
+	escribir 'La matriz obtenida es:'
+	para i=0 hasta f-1
+		escribir array(i,0) '+' array(i,1) '=' array(i,2) sin saltar
+		escribir ''
+	FinPara
+	
+FinSubProceso
+
+Algoritmo sin_titulo
+	definir matriz, n Como Entero
+	escribir 'Ingrese la cantidad de filas'
+	leer n
+	dimension matriz(n,3)
+	
+	sumador(matriz,n,3)
+FinAlgoritmo
