@@ -1,0 +1,144 @@
+Algoritmo ejercicio6
+    
+    
+    Definir vec_nums, var_size, i,j, var_suma, var_aux Como Entero
+    Definir vec_sumas_lateral, vec_sumas_vertical, vec_sumas_diagonal, var_contador Como Entero
+    Definir es_magico Como Logico
+    
+    var_size = 0
+    var_aux = 0
+    es_magico = Verdadero //si no lo es, luego cambiará
+    var_contador = 0
+    vec_sumas_diagonal = 0
+    
+    Mientras var_size < 3 o var_size  > 9
+        Escribir "[   Ingrese el tamaño de la matriz, de 3 a 9 ]"
+        Leer var_size
+    FinMientras
+    
+    //Creamos las dimensiones
+    
+    Dimension vec_nums[ var_size, var_size ]
+    Dimension vec_sumas_vertical[ var_size ]
+    Dimension vec_sumas_lateral[ var_size ]
+    
+    //Rellenamos la matriz de las sumas con 0, para que no de error a la hora de sumar    
+    
+    VaciarVectores(vec_sumas_lateral,var_size)
+    VaciarVectores(vec_sumas_vertical,var_size)
+    
+    //Solicitamos los númros
+    
+    Escribir "( A continuación, introduzca valores del 1 al 9 )"
+    
+    //Llenamos los vectores con los números escritos por el usuario
+    
+    Para i=0 Hasta var_size -1 Hacer
+        Para j=0 Hasta var_size -1 Hacer
+            Repetir
+                Escribir "[ * ]Ingrese un valor para la fila nro [ ", i+1, " ] , columna nro [  ", j+1, " ]"
+                Leer vec_nums[i, j]
+            Hasta Que  vec_nums[i, j] > 0 & vec_nums[i, j] < 10
+        FinPara
+    FinPara
+    
+    
+    // ======Comenzamos el largo proceso de las sumas=========
+    
+    //SUMA LATERAL
+    
+    Para i=0 Hasta var_size - 1 Hacer
+        
+        Para j=0 Hasta var_size -1 Hacer
+            var_aux = var_aux + vec_nums[ i ,j ] //toda la hilera
+        FinPara
+        
+        vec_sumas_lateral[ i ] = var_aux
+        var_aux = 0
+    FinPara
+    
+    
+    //SUMA VERTICAL
+    
+    Para i=0 Hasta var_size - 1 Hacer
+        
+        Para j = 0 Hasta var_size -1
+            var_aux = var_aux + vec_nums[ j ,i ]
+        Fin Para
+        
+        vec_sumas_vertical[ i ] = var_aux
+        var_aux = 0
+    FinPara
+    
+    // SUMA DIAGONAL
+    
+    Para i=0 Hasta var_size - 1 Hacer
+        
+        Para j = 0 Hasta var_size -1 con paso var_size
+            vec_sumas_diagonal = vec_sumas_diagonal + vec_nums[ i ,i ]
+            
+			Escribir vec_nums[ i ,i ]
+            
+        Fin Para
+    FinPara
+    
+	
+    //=============== Mostramos el gráfico ===================
+    
+    Borrar Pantalla; Escribir ""
+    
+    // los laterales
+    Para i=0 Hasta var_size -1 Hacer
+        
+        Para j = 0  Hasta var_size -1 Hacer
+            
+            Escribir Sin Saltar"[ ", vec_nums[i,j], " ]"
+            
+        FinPara
+        
+        Escribir Sin Saltar " = ", vec_sumas_lateral[ i ]
+        Escribir ""
+    FinPara
+    
+    Para j = 0  Hasta var_size -1 Hacer
+        Escribir Sin Saltar "  |  "
+    FinPara
+    
+    Escribir Sin Saltar "\"
+    Escribir ""
+    
+    // de forma vertical
+    
+    Para i = 0  Hasta var_size -1 Hacer
+        Escribir Sin Saltar " ", vec_sumas_vertical[ i ], "  "
+    FinPara
+    
+    Escribir Sin Saltar "  ", vec_sumas_diagonal
+    
+    //Verificamos que todas las sumas sean iguales
+    
+    Para i = 0 Hasta var_size -1
+        
+        si vec_sumas_lateral[ i ] <> vec_sumas_vertical[ i ] o vec_sumas_lateral[i] <> vec_sumas_diagonal
+            es_magico = Falso
+        FinSi
+    FinPara
+    
+    
+    //es mágica?  verificamos el valor lógico
+    
+    Escribir ""
+    Escribir ""
+    
+    Si es_magico = Falso entonces Escribir "[ ! ] La matriz no es mágica"
+    Sino Escribir "[ ! ] La matriz es mágica, todos lus lados dan la misma suma" ; FinSi
+    
+FinAlgoritmo
+
+SubProceso VaciarVectores(vec Por Referencia,size)
+    Definir i Como Entero
+    
+    Para i = 0 Hasta size -1
+        vec[i] = 0
+    FinPara
+FinSubProceso
