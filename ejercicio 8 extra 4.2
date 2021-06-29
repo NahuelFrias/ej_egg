@@ -1,0 +1,171 @@
+subproceso ventasDeTodos(array)
+	
+	definir i,j,sumaDeTodos Como Entero
+	sumaDeTodos=0
+	
+	para i=1 hasta 4
+		para j=1 hasta 5
+			sumaDeTodos = sumaDeTodos + array(i,j)
+		FinPara
+	FinPara
+	
+	escribir 'La venta total de todos los vendedores fue: ' sumaDeTodos
+	
+FinSubProceso
+
+subproceso ventasXvendedor(array)
+	
+	definir option,i,j,sumaXvendedor Como Entero
+	sumaXvendedor=0
+	
+	repetir
+		escribir 'Elija un vendedor:'
+		escribir 'Opcion 1: Vendedor1'
+		escribir 'Opcion 2: Vendedor2'
+		escribir 'Opcion 3: Vendedor3'
+		escribir 'Opcion 4: Vendedor4'
+		leer option
+		si option<>1 y option<>2 y option<>3 y option<>4
+			escribir 'OPCION INVALIDA, INTENTE DE NUEVO'
+		FinSi
+	hasta que option=1 o option=2 o option=3 o option=4
+	
+	Segun option Hacer
+		1:
+			para i=1 hasta 1
+				para j=1 hasta 5
+					sumaXvendedor = sumaXvendedor + array(i,j)
+				FinPara
+			FinPara
+		2:
+			para i=2 hasta 2
+				para j=1 hasta 5
+					sumaXvendedor = sumaXvendedor + array(i,j)
+				FinPara
+			FinPara
+		3:
+			para i=3 hasta 3
+				para j=1 hasta 5
+					sumaXvendedor = sumaXvendedor + array(i,j)
+				FinPara
+			FinPara
+		4:
+			para i=4 hasta 4
+				para j=1 hasta 5
+					sumaXvendedor = sumaXvendedor + array(i,j)
+				FinPara
+			FinPara
+	Fin Segun
+	
+	escribir 'El vendedor hizo ' sumaXvendedor ' ventas.'
+FinSubProceso
+
+subproceso ventaXzona(array)
+	
+	definir option,i,j,sumaXzona Como Entero
+	sumaXzona=0
+	
+	repetir
+		escribir 'Elija una zona:'
+		escribir 'Opcion 1: zona Norte'
+		escribir 'Opcion 2: zona Sur'
+		escribir 'Opcion 3: zona Este'
+		escribir 'Opcion 4: zona Oeste'
+		escribir 'Opcion 5: zona Centro'
+		leer option
+		si option<>1 y option<>2 y option<>3 y option<>4 y option<>5
+			escribir 'OPCION INVALIDA, INTENTE DE NUEVO'
+		FinSi
+	hasta que option=1 o option=2 o option=3 o option=4 o option=5
+	
+	Segun option Hacer
+		1:
+			para i=1 hasta 4
+				para j=1 hasta 1
+					sumaXzona = sumaXzona + array(i,j)
+				FinPara
+			FinPara
+		2:
+			para i=1 hasta 4
+				para j=2 hasta 2
+					sumaXzona = sumaXzona + array(i,j)
+				FinPara
+			FinPara
+		3:
+			para i=1 hasta 4
+				para j=3 hasta 3
+					sumaXzona = sumaXzona + array(i,j)
+				FinPara
+			FinPara
+		4:
+			para i=1 hasta 4
+				para j=4 hasta 4
+					sumaXzona = sumaXzona + array(i,j)
+				FinPara
+			FinPara
+		5:
+			para i=1 hasta 4
+				para j=5 hasta 5
+					sumaXzona = sumaXzona + array(i,j)
+				FinPara
+			FinPara
+	Fin Segun
+	
+	escribir 'Se hicieron ' sumaXzona ' ventas en total en la zona.'
+	
+FinSubProceso
+
+subproceso menu(array)
+	
+	definir option Como Caracter
+	
+	repetir
+		escribir 'Bienvenido! que desea hacer?'
+		escribir 'Opcion A: total de ventas de una zona'
+		escribir 'Opcion B: total de ventas de un vendedor'
+		escribir 'Opcion C: total de ventas de todos los representantes'
+		leer option
+		option = Minusculas(option)
+		si option<>'a' y option<>'b' y option<>'c'
+			escribir 'OPCION INVALIDA, INTENTE DE NUEVO'
+		FinSi
+	hasta que option = 'a' o option='b' o option='c'
+	
+	Segun option Hacer
+		'a':
+			ventaXzona(array)
+		'b':
+			ventasXvendedor(array)
+		'c':
+			ventasDeTodos(array)
+	FinSegun
+		
+FinSubProceso
+
+Algoritmo sin_titulo
+	//creamos la matriz
+	definir matriz, i, j Como Entero
+	dimension matriz(5,6)
+	
+	para i=0 hasta 4
+		para j=0 hasta 5
+			si i=0 o j=0 
+				matriz(0,j) = j
+				matriz(i,0) = i
+			SiNo
+				matriz(i,j)=azar(100)
+			finsi
+		FinPara
+	FinPara
+	
+	para i=0 hasta 4
+		para j=0 hasta 5
+			escribir '[' matriz(i,j) ']' sin saltar
+		FinPara
+		escribir ''
+	FinPara
+	
+	//llamamos al subproceso menu y le pasamos la matriz
+	menu(matriz)
+	
+FinAlgoritmo
