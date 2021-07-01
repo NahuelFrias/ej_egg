@@ -1,0 +1,179 @@
+subproceso creadorMatriz(genZ)
+	
+	definir orden,i,j,k Como Entero
+	definir matriz Como Caracter
+	
+	orden = rc(Longitud(genZ))
+	dimension matriz(orden,orden)
+	
+	k=0
+	para i=0 hasta orden-1
+		para j=0 hasta orden-1
+			matriz(i,j)=subcadena(genZ,k,k)
+			k=k+1
+		FinPara
+	FinPara
+	
+	escribir '--------------------------------'
+	escribir 'Muestra ingresada:'
+	para i=0 hasta orden-1
+		para j=0 hasta orden-1
+			escribir '[' matriz(i,j) ']' sin saltar
+		FinPara
+		escribir ''
+	FinPara
+	
+	aislador(matriz, orden)
+	
+FinSubProceso
+
+
+subproceso aislador(matrizMuestra, tamanio)
+	
+	definir gen1, gen2 Como Caracter
+	definir i,j,k,tam como entero
+	dimension gen1(tamanio), gen2(tamanio)
+	k=0
+	
+	para i=0 hasta tamanio-1
+		para j=0 hasta tamanio-1
+			si i=j
+				gen1(k) = matrizMuestra(i,j)
+				k=k+1
+			FinSi
+		FinPara
+	FinPara
+	
+	escribir '-------------------------------'
+	escribir 'Muestra del primer gen:'
+	para i=0 hasta tamanio-1
+		escribir '[' gen1(i) ']' sin saltar
+	FinPara
+	
+	k=0
+	tam=tamanio-1
+	para i=0 hasta tamanio-1
+		para j=tamanio-1 hasta 0 Con Paso -1
+			si i=j
+				gen2(k) = matrizMuestra(i,tam)
+				k=k+1
+				tam=tam-1
+			FinSi
+		FinPara
+	FinPara
+	
+	escribir ''
+	escribir '-------------------------------'
+	escribir 'Muestra del primer gen:'
+	para i=0 hasta tamanio-1
+		escribir '[' gen2(i) ']' sin saltar
+	FinPara
+	escribir ''
+	analizador(gen1, gen2, tamanio)
+	
+FinSubProceso
+
+
+subproceso analizador(genA, genB, medida)
+	
+	definir letra Como Caracter
+	definir comparador1, comparador2 como logico
+	definir i, sumaA, sumaB, sumaC, sumaD Como Entero
+	
+	comparador1=Falso
+	comparador2=falso
+	sumaA=0
+	sumaB=0
+	sumaC=0
+	sumaD=0
+	
+	para i=0 hasta medida-1
+		letra = genA(i)
+		Segun letra Hacer
+			'a':
+				sumaA = sumaA + 1
+			'b':
+				sumaB = sumaB + 1
+			'c':
+				sumaC = sumaC + 1
+			'd':
+				sumaD = sumaD + 1
+		Fin Segun
+	FinPara
+	
+	si sumaA=medida o sumaC=medida o sumaB=medida o sumaD=medida
+		comparador1 = verdadero
+	finsi
+	
+	sumaA=0
+	sumaB=0
+	sumaC=0
+	sumaD=0
+	
+	para i=0 hasta medida-1
+		letra = genB(i)
+		Segun letra Hacer
+			'a':
+				sumaA = sumaA + 1
+			'b':
+				sumaB = sumaB + 1
+			'c':
+				sumaC = sumaC + 1
+			'd':
+				sumaD = sumaD + 1
+		Fin Segun
+	FinPara
+	
+	si sumaA=medida o sumaC=medida o sumaB=medida o sumaD=medida
+		comparador2 = verdadero
+	finsi
+	
+	comparador(comparador1,comparador2)
+	
+FinSubProceso
+
+
+subproceso comparador(log1,log2)
+	
+	escribir ''
+	si log1 y log1
+		escribir 'Hemos hallado el gen Z!!!'
+	SiNo
+		escribir 'No hemos encontrado el gen Z'
+	FinSi
+	
+FinSubProceso
+
+
+Algoritmo sin_titulo
+	
+	definir gen,letra como caracter
+	definir i,contador Como Entero
+	i=0
+	
+	escribir 'BIENVENIDOS AL ANALIZADOR DEL GEN Z!'
+	escribir '-------------------------------------'
+	repetir
+		escribir 'Ingrese una muestra completa del gen a analizar'
+		escribir '(recuerde que el gen debe tener 9, 16 o 1369 caracteres'
+		escribir 'y debe contener solo las letras A,B,C y D)'
+		leer gen
+		gen = minusculas(gen)
+		si rc(longitud(gen))<>3 y rc(longitud(gen))<>4 y rc(longitud(gen))<>37
+			escribir 'ERROR: longitud incorrecta!'
+		FinSi
+		contador=0
+		para i=0 hasta Longitud(gen)-1
+			letra = subcadena(gen,i,i)
+			si letra<>'a' y letra<>'b' y letra<>'c' y letra<>'d'
+				contador=contador+1
+			FinSi
+		FinPara
+		si contador <> 0
+			escribir 'ERROR: caracteres inválidos!'
+		FinSi
+	hasta que (rc(longitud(gen))=3 o rc(longitud(gen))=4 o rc(longitud(gen))=37) y (contador=0)
+	
+	creadorMatriz(gen)
+	
+FinAlgoritmo
