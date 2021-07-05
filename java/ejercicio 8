@@ -1,3 +1,5 @@
+package javaprueba;
+
 import java.util.Scanner;
 
 public class JavaPrueba {
