@@ -1,0 +1,25 @@
+package javaprueba;
+
+import java.util.Scanner;
+
+public class JavaPrueba {
+
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Ingrese un limite positivo: ");
+        int limit = sc.nextInt();
+        System.out.print("Ingrese un numero: ");
+        int suma = sc.nextInt();
+        
+        do{
+            System.out.print("Ingrese un numero sumar: ");
+            int num2 = sc.nextInt();
+            suma += num2;
+        } while(suma <= limit);
+        
+        System.out.println("La suma supero el limite: " + suma);
+        
+    }
+}
+  
