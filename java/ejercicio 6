@@ -1,0 +1,20 @@
+package javaprueba;
+
+import static java.lang.Math.sqrt;
+import java.util.Scanner;
+
+public class JavaPrueba {
+
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingrese un numero:");
+        int numb = sc.nextInt();
+        
+        int doble = numb*2;
+        int triple = numb*3;
+        double raiz = sqrt(numb);
+        
+        System.out.println("El doble de " + numb + " es: " + doble);
+        System.out.println("El triple de " + numb + " es: " + triple);
+        System.out.println("La raiz de " + numb + " es: " + raiz);
