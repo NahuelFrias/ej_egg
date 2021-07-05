@@ -1,0 +1,25 @@
+package javaprueba;
+
+import java.util.Scanner;
+
+public class JavaPrueba {
+
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingrese dos numeros:");
+        int num1 = sc.nextInt();
+        int num2 = sc.nextInt();
+        
+        if (num1>num2){
+            System.out.println("El nuḿero " +num1+ " es mayor que " +num2);
+        } else if (num1<num2){
+            System.out.println("El nuḿero " +num2+ " es mayor que " +num1);
+        } else {
+            System.out.println("Los numeros son iguales"
+            );
+        }              
+        
+    }
+    
+}
