@@ -1,0 +1,33 @@
+package javaprueba;
+
+import java.util.Scanner;
+
+public class JavaPrueba {
+
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Ingrese un tipo de bomba del 1 al 4: ");
+        int tipo = sc.nextInt();
+       
+        switch(tipo){
+            case 1:
+                System.out.println("La bomba es de agua");
+                break;
+            case 2:
+                System.out.println("La bomba es de gasolina");
+                break;
+            case 3:
+                System.out.println("La bomba es de hormigón");
+                break;
+            case 4:
+                System.out.println("La bomba es de pasta alimenticia");
+                break;
+            default:
+                System.out.println("Tipo inválido");
+                break;
+        
+        }
+    }
+    
+}
