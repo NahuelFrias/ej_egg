@@ -1,0 +1,25 @@
+package javaprueba;
+
+import java.util.Scanner;
+
+public class JavaPrueba {
+
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Ingrese una frase: ");
+        String frase = sc.nextLine();
+        
+        String caracter = frase.substring(0,1);
+        
+        if(caracter.equals("a")){
+            System.out.println("Correcto");
+        } else {
+            System.out.println("Incorrecto");
+        }
+        
+        
+        
+    }
+    
+}
