@@ -1,0 +1,53 @@
+package javaprueba;
+
+
+import java.util.Scanner;
+
+public class JavaPrueba {
+
+    public static void main(String[] args) {
+        
+        System.out.print("Ingrese dos números: ");
+        Scanner sc = new Scanner(System.in);
+        int num1 = sc.nextInt();
+        int num2 = sc.nextInt();
+        String letra = "n";
+        
+        do{
+            System.out.println("Ingrese la opción deseada:");
+            System.out.println("MENU:");
+            System.out.println("1. Sumar");
+            System.out.println("2. Restar");
+            System.out.println("3. Multiplicar");
+            System.out.println("4. Dividir");
+            System.out.println("5. Salir");
+
+            int option = sc.nextInt();
+            double result;
+
+            switch (option){
+                case 1:
+                    result = num1 + num2;
+                    System.out.println("El resultado de la suma es: " +result);
+                    break;
+                case 2:
+                    result = num1 - num2;
+                    System.out.println("El resultado de la resta es: " +result);
+                    break;
+                case 3:
+                    result = num1 * num2;
+                    System.out.println("el resultado de la multiplicación es: " +result);
+                    break;
+                case 4:
+                    result = num1 / num2;
+                    System.out.println("El resultado de la division es: " +result);
+                    break;
+                case 5:
+                    System.out.println("Está seguro de que desea salir?: s/n");
+                    letra = sc.next();
+                    break;
+                    }
+        } while (letra.equals("n"));
+    }
+}
+  
