@@ -1,0 +1,29 @@
+package javaprueba;
+
+import java.util.Scanner;
+
+public class JavaPrueba {
+
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingrese un numero a sumar: ");
+        int suma = sc.nextInt();
+        int contador = 0;
+        
+        do{
+            System.out.println("Ingrese otro numero a sumar");
+            int num = sc.nextInt();
+            contador ++;
+            
+            if(num>0){
+                suma += num;
+            } else if(num==0){
+                System.out.println("Hemos capturado el numero cero!");
+                break;
+            }
+        } while (contador<20);
+        
+        System.out.println("La suma es de: " +suma);
+    }
+}
