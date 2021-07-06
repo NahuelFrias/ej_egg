@@ -1,0 +1,48 @@
+package javaprueba;
+
+import java.util.Scanner;
+
+public class JavaPrueba {
+
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        int n;
+        String primer;
+        String ultimo;
+        String cadena;
+        int correcto = 0;
+        int incorrecto = 0;
+        
+        do{
+            do{
+                System.out.println("Ingrese una cadena de 5 caracteres:");
+                cadena = sc.nextLine();
+                n = cadena.length();
+                if (cadena.length() != 5){
+                    System.out.println("ERROR: la cadena no tiene 5 caracteres");
+                    System.out.println("Intente de nuevo");
+                }
+            } while(cadena.length() !=5 );
+            if(n == 5){
+                if (!"&&&&&".equals(cadena)){
+                    primer = cadena.substring(0,1).toLowerCase();
+                    ultimo = cadena.substring(4,5).toLowerCase();
+                    if(primer.equals("x") && ultimo.equals("o")){
+                        correcto ++;
+                    } else {
+                        incorrecto ++;
+                    }
+                } else {
+                    break;
+                }
+            } 
+            
+        }while(cadena.length() == 5);
+        
+        System.out.println("La cantidad de cadenas correctas son: "+correcto);
+        System.out.println("La cantidad de cadenas incorrectas son: "+incorrecto);
+        
+    }
+}
+  
