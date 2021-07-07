@@ -23,15 +23,14 @@ public class JavaPrueba {
         System.out.println("La cantidad de " +m+ " " +total);
     }
 
-    @SuppressWarnings("ResultOfMethodCallIgnored")
     public static void main(String[] args) {
         
         Scanner sc = new Scanner(System.in);
         String money;
         do{
             System.out.print("Ingrese el tipo de moneda: ");
-            money = sc.next();
-            money.toLowerCase();
+            String tipeMoney = sc.next();
+            money = tipeMoney.toLowerCase();
         } while(!"yenes".equals(money) && !"libras".equals(money) && !"dolares".equals(money) );
         System.out.println("Ingrese la cantidad a cambiar");
         double cantidad = sc.nextDouble();
