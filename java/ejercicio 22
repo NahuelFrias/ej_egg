@@ -1,0 +1,20 @@
+package javaprueba;
+
+import java.util.Scanner;
+
+public class JavaPrueba {
+
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        
+        int aux = 100;
+        int[] vector = new int[100];
+        for (int element: vector){
+            vector[element] = aux;
+            aux --;
+            System.out.print("["+vector[element]+"]");
+        }
+    }
+}
+  
