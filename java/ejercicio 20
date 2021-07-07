@@ -1,0 +1,39 @@
+package javaprueba;
+
+import java.util.Scanner;
+
+public class JavaPrueba {
+
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        int i;
+        System.out.println("Ingrese los 4 numeros: ");
+        int num1 = sc.nextInt();
+        int num2 = sc.nextInt();
+        int num3 = sc.nextInt();
+        int num4 = sc.nextInt();
+        
+        System.out.print(num1);
+        for (i=1;i<=num1;i++){
+            System.out.print("*");
+        }
+        System.out.println("");
+        System.out.print(num2);
+        for (i=1;i<=num2;i++){
+            System.out.print("*");
+        }
+        System.out.println("");
+        System.out.print(num3);
+        for (i=1;i<=num3;i++){
+            System.out.print("*");
+        }
+        System.out.println("");
+        System.out.print(num4);
+        for (i=1;i<=num4;i++){
+            System.out.print("*");
+        }
+        
+    }
+}
+  
