@@ -1,0 +1,42 @@
+package javaprueba;
+
+import java.util.Scanner;
+
+public class JavaPrueba {
+    
+    public static void cambio(String m, double c){
+    
+        double total=0;
+        
+        switch(m){
+            case "libras":
+                total = c*0.86;
+                break;
+            case "dolares":
+                total = c*1.28611;
+                break;
+            case "yenes":
+                total = c*129.852;
+                break;
+        }
+        
+        System.out.println("La cantidad de " +m+ " " +total);
+    }
+
+    @SuppressWarnings("ResultOfMethodCallIgnored")
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        String money;
+        do{
+            System.out.print("Ingrese el tipo de moneda: ");
+            money = sc.next();
+            money.toLowerCase();
+        } while(!"yenes".equals(money) && !"libras".equals(money) && !"dolares".equals(money) );
+        System.out.println("Ingrese la cantidad a cambiar");
+        double cantidad = sc.nextDouble();
+        
+        cambio(money,cantidad);
+        
+    }
+}
