@@ -1,0 +1,36 @@
+package javaprueba;
+
+import java.util.Scanner;
+
+public class JavaPrueba {
+    
+
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Ingrese el tamaño del vector: ");
+        int n = sc.nextInt();
+        System.out.print("Ingrese el numero a buscar: ");
+        int num = sc.nextInt();
+        
+        int contador=0;
+        int pos = -1;
+        
+        int[] vector = new int[n];
+        for(int element: vector){
+            vector[element] = (int) (Math.random()*10);
+            System.out.print("[" +vector[element]+ "]");
+            }
+        
+        for(int i: vector){
+            if (vector[i]==num){
+                contador ++;
+                pos = i;
+                System.out.println("\nEl numero " +num+ " se encuentra en la posicion: " +pos);
+            }
+        }
+        System.out.println("\nEl numero " +num+ " esta repetido " +contador+ " veces.");
+        
+    
+    }   
+}
