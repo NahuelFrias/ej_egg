@@ -1,0 +1,39 @@
+package javaprueba;
+
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class JavaPrueba {
+    
+    public static void mostrador(int[][] array){
+        
+        for (int i=0 ;i<array.length; i++){
+            for (int[] array1 : array) {
+                System.out.print("[" + array1[i] + "]");
+            }
+            System.out.println("\n");
+        } 
+    }
+    
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        Random random = new Random();
+        int[][] matriz = new int [4][4];
+        //esto me lo recomendo NetBeans
+        for (int[] matriz1 : matriz) {
+        //    
+            for (int j = 0; j<matriz.length; j++) {
+                matriz1[j] = random.nextInt(99);
+            }
+        }
+        for (int[] matriz1 : matriz) {
+            for (int j = 0; j<matriz.length; j++) {
+                System.out.print("[" + matriz1[j] + "]");
+            }
+            System.out.println("\n");
+        }
+        mostrador(matriz);
+    }
+}
