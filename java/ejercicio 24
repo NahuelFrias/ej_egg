@@ -1,0 +1,52 @@
+package javaprueba;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class JavaPrueba {
+    
+    public static void main(String[] args) {
+// TODO code application logic here
+Scanner sc = new Scanner(System.in);
+System.out.println("Ingrese dimensión del vector:");
+int n = sc.nextInt();
+int[] vector = new int[n];
+rellenarYmostrar(vector,n);
+int[] cantidad = cantidadDigitos(vector, n);
+
+System.out.println("El vector tiene [1 Digitos][2 Digitos][3 Digitos][4 Digitos]: "+Arrays.toString(cantidad));
+}
+
+static void rellenarYmostrar(int[] vector, int n) {
+for(int i = 0; i < n; i++) {
+vector[i] = (int)(Math.random()*999);
+}
+for(int i = 0; i < n; i++){
+System.out.print("["+vector[i]+"]");
+}
+System.out.println("");
+}
+
+public static int[] cantidadDigitos(int[] vector, int n) {
+int[] aux =new int[4];
+int contador1 = 0;
+int contador2 = 0;
+int contador3 = 0;
+int contador4 = 0;
+for(int i = 0; i < n; i++) {
+if(vector[i] >= 0 && vector[i] < 10) {
+contador1++;
+} else if(vector[i] >= 10 && vector[i] < 100) {
+contador2++;
+} else if(vector[i] >= 100 && vector[i] < 1000) {
+contador3++;
+} else contador4++;
+
+}
+aux[0] = contador1;
+aux[1] = contador2;
+aux[2] = contador3;
+aux[3] = contador4;
+return aux;
+}
+}
