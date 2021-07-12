@@ -1,0 +1,28 @@
+package javaprueba;
+
+import java.util.Scanner;
+
+public class JavaPrueba {
+
+    public static void main(String args[]) {
+        
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingrese una letra");
+        /*leo un caracter
+        no hay una funcion específica
+        podria ser: .next().charAt(0)*/
+        String letra = sc.next();
+        
+        switch (letra) {
+            case "a":
+            case "e":
+            case "i":
+            case "o":
+            case "u":
+                System.out.println("La letra ingresada es una vocal");
+                break;
+            default:
+                System.out.println("La letra ingresada NO es una vocal");;
+        }
+    }
+}
