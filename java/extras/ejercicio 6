@@ -1,0 +1,45 @@
+package javaprueba;
+
+import java.util.Scanner;
+
+public class JavaPrueba {
+    
+    public static void promedio(int l, int cl, int t, int ct){
+    
+            float promLow = l/cl;
+            float promGral = t/ct;
+            
+            System.out.println("El promedio de estatura por debajo de 160 es: " +promLow);
+            System.out.println("El promedio de estatura general es: " +promGral);
+    
+    }
+
+    public static void main(String args[]) {
+        
+        Scanner sc = new Scanner(System.in);
+        int altura;
+        int low = 0;
+        int contaLow = 0;
+        int gral=0;
+        int contaGral=0;
+        char option;
+        
+        do{
+            do{
+                System.out.print("Ingrese la altura de una persona en cm: ");
+                altura = sc.nextInt();
+            } while (altura < 100);
+            
+            if (altura <= 160){
+                low = low + altura;
+                contaLow ++;
+            }
+            gral = gral + altura;
+            contaGral ++;
+            System.out.println("Desea agregar otra persona?: s/n");
+            option = sc.next().charAt(0);
+        } while (option != 'n');
+        
+        promedio(low, contaLow, gral, contaGral);
+    }
+}
