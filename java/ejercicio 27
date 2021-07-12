@@ -1,0 +1,122 @@
+package javaprueba;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+//import java.util.Random;
+//import java.util.Scanner;
+
+public class JavaPrueba {
+
+    public static void main(String args[]) throws IOException {
+		BufferedReader bufEntrada = new BufferedReader(new InputStreamReader(System.in));
+		boolean es_magico;
+		int i;
+		int j;
+		int var_aux;
+		int var_contador;
+		int var_size;
+		int var_suma;
+		int vec_nums[][];
+		int vec_sumas_diagonal;
+		int vec_sumas_lateral[];
+		int vec_sumas_vertical[];
+		var_size = 0;
+		var_aux = 0;
+		// si no lo es, luego cambiar�
+		es_magico = true;
+		var_contador = 0;
+		vec_sumas_diagonal = 0;
+		while (var_size<3 || var_size>9) {
+			System.out.println("[   Ingrese el tama�o de la matriz, de 3 a 9 ]");
+			var_size = Integer.parseInt(bufEntrada.readLine());
+		}
+		// Creamos las dimensiones
+		vec_nums = new int[var_size][var_size];
+		vec_sumas_vertical = new int[var_size];
+		vec_sumas_lateral = new int[var_size];
+		// Rellenamos la matriz de las sumas con 0, para que no de error a la hora de sumar    
+		vaciarvectores(vec_sumas_lateral, var_size);
+		vaciarvectores(vec_sumas_vertical, var_size);
+		// Solicitamos los n�mros
+		System.out.println("( A continuaci�n, introduzca valores del 1 al 9 )");
+		// Llenamos los vectores con los n�meros escritos por el usuario
+		for (i=0;i<=var_size-1;i++) {
+			for (j=0;j<=var_size-1;j++) {
+				do {
+					System.out.println("[ * ]Ingrese un valor para la fila nro [ "+i+1+" ] , columna nro [  "+j+1+" ]");
+					vec_nums[i][j] = Integer.parseInt(bufEntrada.readLine());
+				} while (!(vec_nums[i][j]>0 && vec_nums[i][j]<10));
+			}
+		}
+		// ======Comenzamos el largo proceso de las sumas=========
+		// SUMA LATERAL
+		for (i=0;i<=var_size-1;i++) {
+			for (j=0;j<=var_size-1;j++) {
+				// toda la hilera
+				var_aux = var_aux+vec_nums[i][j];
+			}
+			vec_sumas_lateral[i] = var_aux;
+			var_aux = 0;
+		}
+		// SUMA VERTICAL
+		for (i=0;i<=var_size-1;i++) {
+			for (j=0;j<=var_size-1;j++) {
+				var_aux = var_aux+vec_nums[j][i];
+			}
+			vec_sumas_vertical[i] = var_aux;
+			var_aux = 0;
+		}
+		// SUMA DIAGONAL
+		for (i=0;i<=var_size-1;i++) {
+			for (j=0;j<=var_size-1;j+=var_size) {
+				vec_sumas_diagonal = vec_sumas_diagonal+vec_nums[i][i];
+				System.out.println(vec_nums[i][i]);
+			}
+		}
+		// =============== Mostramos el gr�fico ===================
+		System.out.println(""); // no hay forma directa de borrar la consola en Java
+		System.out.println("");
+		// los laterales
+		for (i=0;i<=var_size-1;i++) {
+			for (j=0;j<=var_size-1;j++) {
+				System.out.print("[ "+vec_nums[i][j]+" ]");
+			}
+			System.out.print(" = "+vec_sumas_lateral[i]);
+			System.out.println("");
+		}
+		for (j=0;j<=var_size-1;j++) {
+			System.out.print("  |  ");
+		}
+		System.out.print("\\");
+		System.out.println("");
+		// de forma vertical
+		for (i=0;i<=var_size-1;i++) {
+			System.out.print(" "+vec_sumas_vertical[i]+"  ");
+		}
+		System.out.print("  "+vec_sumas_diagonal);
+		// Verificamos que todas las sumas sean iguales
+		for (i=0;i<=var_size-1;i++) {
+			if (vec_sumas_lateral[i]!=vec_sumas_vertical[i] || vec_sumas_lateral[i]!=vec_sumas_diagonal) {
+				es_magico = false;
+			}
+		}
+		// es m�gica?  verificamos el valor l�gico
+		System.out.println("");
+		System.out.println("");
+		if (es_magico==false) {
+			System.out.println("[ ! ] La matriz no es m�gica");
+		} else {
+			System.out.println("[ ! ] La matriz es m�gica, todos lus lados dan la misma suma");
+		}
+	}
+
+	public static void vaciarvectores(int vec[], int size) {
+		int i;
+		for (i=0;i<=size-1;i++) {
+			vec[i] = 0;
+		}
+	}
+
+
+}
