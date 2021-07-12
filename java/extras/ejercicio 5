@@ -1,0 +1,45 @@
+package javaprueba;
+
+import static java.lang.Character.toUpperCase;
+import java.util.Scanner;
+
+public class JavaPrueba {
+
+    public static void main(String args[]) {
+        
+        Scanner sc = new Scanner(System.in);
+        char socio;
+        char option;
+        do {
+            System.out.println("Ingrese su tipo de socio: A, B o C");
+            socio = sc.next().charAt(0);
+            option = toUpperCase(socio);
+            
+        } while (option != 'A' && option != 'B' && option != 'C' );
+        
+        double monto, total;
+        switch (option) {
+            case 'A':
+                System.out.println("Usted tiene un descuento del 50%");
+                System.out.println("Ingrese el monto del tratamiento");
+                monto = sc.nextDouble();
+                total = monto-(monto*0.5);
+                System.out.println("El monto total a pagar es: " +total);
+                break;
+            case 'B':
+                System.out.println("Usted tiene un descuento del 35%");
+                System.out.println("Ingrese el monto del tratamiento");
+                monto = sc.nextDouble();
+                total = monto-(monto*0.35);
+                System.out.println("El monto total a pagar es: " +total);
+                break;
+            case 'C':
+                System.out.println("Usted tiene no tiene descuento");
+                System.out.println("Ingrese el monto del tratamiento");
+                monto = sc.nextDouble();
+                System.out.println("El monto total a pagar es: " +monto);
+                break;
+            
+        }
+    }
+}
