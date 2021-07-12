@@ -1,0 +1,30 @@
+package javaprueba;
+
+import java.util.Scanner;
+
+public class JavaPrueba {
+
+    public static void main(String args[]) {
+        
+        Scanner sc = new Scanner(System.in);
+        int A,B,C,D, aux;
+        do {
+            System.out.println("Ingrese el valor de A,B,C y D");
+            A = sc.nextInt();
+            B = sc.nextInt();
+            C = sc.nextInt();
+            D = sc.nextInt();
+        } while (A==B || A==C || A==D || B==C || B==D || D==C);
+        
+        System.out.println(A+" "+B+" "+C+" "+D);
+        
+        aux=B;
+        B=C;
+        C=A;
+        A=D;
+        D=aux;
+        
+        System.out.println(A+" "+B+" "+C+" "+D);
+        
+    }
+}
