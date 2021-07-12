@@ -1,0 +1,42 @@
+package javaprueba;
+
+import java.util.Scanner;
+
+
+public class JavaPrueba {
+    
+    public static void visualizador(int total, int par, int impar){
+        
+        System.out.println("El total de numeros leidos es: " +total);
+        System.out.println("El total de numeros impares es: " +impar);
+        System.out.println("El total de numeros pares es: " +par);
+    
+    }
+
+    public static void main(String args[]) {
+        
+        Scanner sc = new Scanner(System.in);
+        int num;
+        int contaPar=0,contaImpar=0, contaNum=0;
+        boolean var=true;
+        
+        do {
+            System.out.println("Ingrese un número entero:");
+            num = sc.nextInt();
+            if (num <0) {
+                System.out.println("ERROR: numero no entero");                
+            }
+            if (num%5==0) {
+                break;
+            }else if(num%2==0){
+                contaPar ++;
+            }else{
+                contaImpar++;
+            }
+            contaNum ++;
+        } while (var);
+        
+        
+        visualizador(contaNum, contaPar, contaImpar);
+    }
+}
