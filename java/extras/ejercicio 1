@@ -1,0 +1,26 @@
+package javaprueba;
+
+import static java.lang.Math.round;
+import java.util.Scanner;
+
+public class JavaPrueba {
+
+    public static void main(String args[]) {
+        
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingrese la cantidad de minutos");
+        int minutes = sc.nextInt();
+        
+        int days=0, hs, rest=0;
+        
+        if (minutes >= 60){
+            hs = minutes/60;
+            rest = hs%24;
+            if (hs>=24) {
+                days = round(hs/24);
+            }
+        }
+        
+        System.out.println(minutes+" son: " +days+ " dias y " +rest+ " horas");
+    }
+}
