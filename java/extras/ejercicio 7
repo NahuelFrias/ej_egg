@@ -1,0 +1,46 @@
+package javaprueba;
+
+import java.util.Scanner;
+
+
+public class JavaPrueba {
+    
+    public static void visualizador(double s, int ma, int mi, double c){
+        
+        System.out.println("El valor máximo es: " +ma);
+        System.out.println("El valor mínimo es: " +mi);
+        double prom = s/c;
+        System.out.println("El promedio total es de: " +prom);
+    
+    }
+
+    public static void main(String args[]) {
+        
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingrese la cantidad de numeros a ingresar");
+        double cant = sc.nextDouble();
+        double contador = cant;
+        double suma=0;
+        Integer max = -999;
+        Integer min = 9999999;
+        
+        
+        do {
+            System.out.println("Ingrese un número:");
+            int num = sc.nextInt();
+            
+            suma += num;
+            
+            if (num > max){
+                max = num;
+            }
+            if (num < min){
+                min = num;
+            }
+            contador --;
+        } while (contador>0);
+        
+        
+        visualizador(suma,max,min,cant);
+    }
+}
