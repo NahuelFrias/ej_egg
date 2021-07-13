@@ -1,0 +1,37 @@
+package javaprueba;
+
+import static java.lang.Math.round;
+import java.util.Scanner;
+
+
+public class JavaPrueba {
+
+    public static void adivinador(int multi){
+        
+        Scanner sc = new Scanner(System.in);
+        System.out.println("=====================================");
+        System.out.println("BIENVENIDO AL ADIVINADOR");
+        System.out.println("=====================================");
+        System.out.println("Intente adivinar el número entre 0 y 10!");
+        int adivinado = sc.nextInt();
+        while(adivinado != multi){
+            System.out.println("Lo siento, no adivinó el número");
+            System.out.println("Desea intentarlo de nuevo? s/n");
+            String option = sc.next();
+            if(!option.equals("s")) {
+                break;
+            }else { System.out.println("Intente nuevamente!");}
+            adivinado = sc.nextInt();
+        }
+        System.out.println("Haz adivinado!");
+    }
+    
+    public static void main(String args[]) {
+        
+        Scanner sc = new Scanner(System.in);
+        double num1 = round(Math.random()*10);
+        double num2 = round(Math.random()*10);
+        int multiplicacion = (int) (num1*num2);
+        adivinador(multiplicacion);
+    }
+}
