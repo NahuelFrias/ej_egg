@@ -1,0 +1,33 @@
+package javaprueba;
+
+import java.util.Scanner;
+
+
+public class JavaPrueba {
+    
+    public static void calculadora(int dendo, int sor){
+        
+        int cociente = 1;
+        int resto = dendo - sor;
+        while (resto>sor){
+            resto -= sor;
+            cociente ++;
+        }
+        System.out.println("El cociente de la division es: " +cociente);
+        System.out.println("El resto de la división es: " +resto);
+    }
+
+    public static void main(String args[]) {
+        
+        Scanner sc = new Scanner(System.in);
+        int divisor;
+        System.out.print("Ingrese el dividendo:");
+        int dividendo = sc.nextInt();
+        do {
+            System.out.print("Ingrese el divisor: ");
+            divisor = sc.nextInt();
+        } while(divisor > dividendo);
+        
+        calculadora(dividendo, divisor);
+    }
+}
