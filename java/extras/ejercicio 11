@@ -1,0 +1,24 @@
+package javaprueba;
+
+import static java.lang.Math.round;
+import java.util.Scanner;
+
+
+public class JavaPrueba {
+
+    public static void main(String args[]) {
+        
+        Scanner sc = new Scanner(System.in);
+        double num = round(Math.random()*10000);
+        //puede ingresarse el numero por el usuario
+        int contador = 1;
+        System.out.println(num);
+        
+        while(num > 10){
+            contador ++;
+            num = num/10;
+        }
+        System.out.println("El numero tiene " +contador+ " cifras.");
+        
+    }
+}
