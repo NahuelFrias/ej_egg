@@ -1,0 +1,40 @@
+package javaprueba;
+
+import java.util.Scanner;
+
+public class JavaPrueba {
+
+    public static boolean primos(int a) {
+        int i;
+        boolean bool = true;
+        if (a == 0 || a == 1) {
+            bool = false;
+        } else {
+            for (i = 2; i < a; i++) {
+                if (a % i == 0) {
+                    bool = true;
+                    break;
+                } else {
+                    bool = false;
+                }
+            }
+        }
+        return bool;
+    }
+
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        int num;
+        do {
+            System.out.println("Ingrese un número:");
+            num = sc.nextInt();
+        } while (num < 0);
+        boolean var = primos(num);
+
+        if (!var) {
+            System.out.println("El número es primo");
+        } else {
+            System.out.println("El número no es primo");
+        }
+    }
+}
