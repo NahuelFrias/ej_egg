@@ -1,0 +1,35 @@
+package javaprueba;
+
+import java.util.Scanner;
+
+public class JavaPrueba {
+
+    public static void imprime(String n, int a) {
+        System.out.println("Hola " +n+ " tu edad es: " +a);
+        if(a>=18){
+            System.out.println("Eres mayor de edad!");
+        }else{System.out.println("Eres menor de edad");}
+    }
+
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        String option;
+        do{
+            System.out.println("Ingrese su nombre y edad:");
+            String name = sc.next();
+            int age = sc.nextInt();
+
+            imprime(name, age);
+            
+            do{
+                System.out.println("\nQuieres seguir mostrando personas:");
+                System.out.println("si/no");
+                option = sc.next();
+                option.toLowerCase();
+                if(!option.equals("si") && !option.equals("no")){
+                    System.out.println("Opcion inválida, intente de nuevo!");
+                }
+            }while(!option.equals("si") && !option.equals("no"));
+        } while (!option.equals("no"));
+    }
+}
