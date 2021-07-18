@@ -1,0 +1,17 @@
+package javaprueba;
+import javax.swing.*;
+public class JavaPrueba {
+    
+    public static void main(String args[]) {
+        Coche miCoche = new Coche();
+        miCoche.establece_color(JOptionPane.showInputDialog("Introduce el color del auto"));
+        System.out.println(miCoche.datos_generales());
+        System.out.println(miCoche.dime_color());
+        miCoche.configura_asientos(JOptionPane.showInputDialog("Tiene asientos de cuero?: "));
+        System.out.println(miCoche.dime_asientos());
+        miCoche.configura_climatizador(JOptionPane.showInputDialog("Tiene climatizador?: "));
+        System.out.println(miCoche.dime_climatizador());
+        System.out.println(miCoche.dime_peso_coche());
+        System.out.println("El precio final del coche es: " +miCoche.precio_coche());
+    }
+}
