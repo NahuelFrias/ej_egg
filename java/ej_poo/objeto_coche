@@ -1,0 +1,87 @@
+package javaprueba;
+
+public class Coche { //propiedades, solo se modifican con metodos Getter y Setter
+    private int ruedas;
+    private int largo;
+    private int ancho;
+    private int motor;
+    private int peso_plataforma;
+    private String color;
+    private int peso_total;
+    private boolean asientos_cuero, climatizador;
+    
+    public Coche(){ //metodo constructor, establece un estado inicial
+        ruedas=4;
+        largo=2000;
+        ancho=300;
+        motor=1600;
+        peso_plataforma=500;
+    }
+    
+    public String datos_generales(){ // GETTER
+        return "la plataforma del vehiculo tiene " +ruedas+ " ruedas. Mide " +largo+ " de largo, " +ancho+
+                " de ancho y tiene un peso de " +peso_plataforma;
+    }
+    
+    public void establece_color(String color_coche){ //SETTER
+        color = color_coche;
+    }
+    
+    public String dime_color(){
+        return "El color del coche es " +color;
+    }
+    
+    public void configura_asientos(String asientos_cuero){ //GETTER
+        if(asientos_cuero.equalsIgnoreCase("si")){ //ignora si es mayusculas o minusculas
+            this.asientos_cuero=true;
+        }else{
+            this.asientos_cuero=false;
+        }
+    }
+    
+    public String dime_asientos(){ //SETTER
+        if(asientos_cuero){
+            return "El coche tiene asientos de cuero";
+        }else{
+            return "El coche tiene asientos de serie";
+        }
+    }
+    
+    public void configura_climatizador(String climatizador){
+        if(climatizador.equalsIgnoreCase("si")){
+            this.climatizador=true;
+        }else{
+            this.climatizador=false;
+        }
+    }
+    public String dime_climatizador(){
+        if(climatizador){
+            return "El coche tiene climatizador";
+        }else{
+            return "El coche tiene aire acondicionado";
+        }
+    }
+    
+    public String dime_peso_coche(){ //SETTER + GETTER
+        int peso_carroceria=500;
+        peso_total=peso_plataforma+peso_carroceria;
+        if(asientos_cuero){
+            peso_total+=50;
+        }
+        if(climatizador){
+            peso_total+=20;
+        }
+        return "El peso total es " +peso_total;
+    }
+    
+    public int precio_coche(){ //GETTER
+        int precio_final=10000;
+        if(asientos_cuero){
+            precio_final+=2000;
+        }
+        if(climatizador){
+            precio_final+=1500;
+        }
+        return precio_final;
+    }
+}
