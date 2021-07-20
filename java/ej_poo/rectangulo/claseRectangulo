@@ -1,0 +1,65 @@
+package app;
+
+public class Rectangulo{
+    
+    private int base;
+    private int altura;
+
+    public Rectangulo(int base, int altura) {
+        this.base = base;
+        this.altura = altura;
+    }
+
+    public Rectangulo() {
+    }
+
+    public void creaRectangulo(int base,int altura){
+        this.base=base;
+        this.altura=altura;
+        
+        System.out.println("El rectángulo ha sido creado!");
+    }
+    
+    public int superficie(){
+        int s = base*altura;
+        return s;
+    }
+    
+    public int perimetro(){
+        int p = (base+altura)*2;
+        return p;
+    }
+    
+    public void dibujaRectangulo(){
+        
+        int i,j;
+        
+        for(i=1;i<=altura;i++){
+            for (j=1;j<=base;j++){
+                if ((i>1 && i<altura) && (j>1 && j<base)){
+                    System.out.print(" ");
+                } else {
+                    System.out.print("*");
+                }
+            }System.out.println("");
+        } 
+    }
+
+    public void setBase(int base) {
+        this.base = base;
+    }
+
+    public void setAltura(int altura) {
+        this.altura = altura;
+    }
+
+    public int getBase() {
+        return base;
+    }
+
+    public int getAltura() {
+        return altura;
+    }
+    
+    
+}
