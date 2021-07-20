@@ -1,0 +1,25 @@
+package app;
+
+import java.util.Scanner;
+
+public class App {
+
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in).useDelimiter("\n");
+        
+        Rectangulo r1 = new Rectangulo();
+        r1.creaRectangulo(3, 4);
+        r1.dibujaRectangulo();
+        
+        System.out.println("");
+        
+        Rectangulo r2 = new Rectangulo();
+        System.out.println("Ingrese la base y la altura");
+        r2.creaRectangulo(sc.nextInt(), sc.nextInt());
+        System.out.println("La superficie del cuadrado es: "+r2.superficie());
+        System.out.println("El perimetro del cuadrado es: "+r2.perimetro());
+        r2.dibujaRectangulo();
+        
+    }
+}
