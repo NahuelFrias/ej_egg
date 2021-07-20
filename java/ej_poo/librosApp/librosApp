@@ -1,0 +1,24 @@
+package librosapp;
+
+import java.util.Scanner;
+
+public class LibrosApp {
+
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in).useDelimiter("\n");
+        Usuario u1 = new Usuario("Nahuel", "Frias");
+        Usuario u2 = new Usuario();
+        System.out.println("Ingrese su nombre");
+        u2.setNombre(sc.next());
+        System.out.println("Ingrese su apellido");
+        String varApellido = sc.next();
+        u2.setApellido(varApellido);
+        Libro l1 = new Libro(1893, "El principito", "Anotoine", 300);
+        System.out.println(u1);
+        System.out.println(u2.getNombre());
+        System.out.println(u2);
+        System.out.println(l1);
+    }
+    
+}
