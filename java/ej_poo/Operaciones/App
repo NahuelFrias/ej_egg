@@ -1,0 +1,27 @@
+package app;
+
+import java.util.Scanner;
+
+public class App {
+
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in).useDelimiter("\n");
+        
+        Operacion op1 = new Operacion();
+        op1.crearOperacion(1, 0);
+        System.out.println("El resultado de la suma es: "+op1.sumar());
+        System.out.println("El resultado de la division es: "+op1.dividir());
+        
+        System.out.println("");
+        
+        Operacion op2 = new Operacion(12,4);
+        System.out.println("El resultado de la resta es: "+op2.restar());
+        System.out.println("El resultado de la multiplicacion es: "+op2.multiplicar());
+        
+        Operacion op3 = new Operacion();
+        System.out.println("\nIngrese los dos numeros:");
+        op3.crearOperacion(sc.nextInt(), sc.nextInt());
+        System.out.println("El resultado de la division es: " +op3.dividir());
+    }
+}
