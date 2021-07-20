@@ -1,0 +1,36 @@
+package app;
+
+import java.util.Scanner;
+
+public class App {
+
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in).useDelimiter("\n");
+        
+        /*
+        Circunferencia c1 = new Circunferencia(7);
+        Funciona de las dos maneras
+        Por tener dos constructores
+        */
+        
+        Circunferencia c1 = new Circunferencia();
+        System.out.println("Introduce el radio");
+        double radio = sc.nextDouble();
+        c1.setRadio(radio);
+        System.out.println("El radio de c1 es: " +c1.getRadio());
+        System.out.println("El area de c1 es: "+c1.area());
+        System.out.println("El perimetro de c1 es: "+c1.perimetro());
+        System.out.println(c1.crearCircunferencia());
+        
+        Circunferencia c2 = new Circunferencia(7);
+        System.out.println("\nEl radio de c2 es: " +c2.getRadio());
+        System.out.println("El area de c2 es: "+c2.area());
+        System.out.println("El perimetro de c2 es: "+c2.perimetro());
+        System.out.println(c2.crearCircunferencia());
+        
+        System.out.println("");
+        System.out.println(c1);
+        System.out.println(c2);
+    }
+}
