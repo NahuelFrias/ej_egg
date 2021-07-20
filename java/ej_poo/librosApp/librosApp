@@ -1,6 +1,7 @@
 package librosapp;
 
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class LibrosApp {
 
@@ -14,11 +15,15 @@ public class LibrosApp {
         System.out.println("Ingrese su apellido");
         String varApellido = sc.next();
         u2.setApellido(varApellido);
+        Libro l2 = new Libro();
+        
+        l2.setTitulo(JOptionPane.showInputDialog("Introduce el titulo"));
         Libro l1 = new Libro(1893, "El principito", "Anotoine", 300);
         System.out.println(u1);
         System.out.println(u2.getNombre());
         System.out.println(u2);
         System.out.println(l1);
+        System.out.println(l2);
     }
     
 }
