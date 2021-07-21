@@ -1,0 +1,92 @@
+package app;
+
+import app.entidades.Cuenta;
+import app.entidades.Usuarios;
+import app.services.Services;
+import java.util.Scanner;
+
+public class App {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in).useDelimiter("\n");
+
+        String option;
+        int retiro;
+        int saldo;
+
+        System.out.println("BIENVENIDO!");
+        System.out.println("Cree su usuario");
+    
+        Services s1 = new Services();
+
+        Usuarios usuario1 = s1.crearUsuario();
+        Cuenta cuenta1 = s1.crearCuenta();
+
+        System.out.println("Usuario creado: " + usuario1.getNombre() + " " + usuario1.getApellido());
+        System.out.println("Cuenta creada: " + cuenta1.getNumeroCuenta() + ". Saldo actual: " + cuenta1.getSaldoActual());
+
+        do {
+            System.out.println("Desea realizar alguna operacion?: s/n");
+            option = sc.next();
+
+            if (option.equalsIgnoreCase("s")) {
+                System.out.println("Que operación desea realizar?: ");
+                System.out.println("1.Ingreso");
+                System.out.println("2.Retiro");
+                System.out.println("3.Extraccion rapida");
+                System.out.println("4.Consulta saldo");
+                System.out.println("5.Consulta datos");
+
+                int num = sc.nextInt();
+
+                switch (num) {
+                    case 1:
+                        System.out.println("Ingrese la cantidad: ");
+                        int cant = sc.nextInt();
+                        saldo = cuenta1.getSaldoActual();
+                        saldo += cant;
+                        cuenta1.setSaldoActual(saldo);
+
+                        System.out.println("Saldo actual: " + cuenta1.getSaldoActual());
+                        break;
+                    case 2:
+                        System.out.println("Cuanto desea retirar?");
+                        retiro = sc.nextInt();
+                        if (retiro > cuenta1.getSaldoActual()) {
+                            System.out.println("No cuenta con el saldo a retirar");
+                            break;
+                        } else {
+                            saldo = cuenta1.getSaldoActual();
+                            saldo -= retiro;
+                            cuenta1.setSaldoActual(saldo);
+                            System.out.println("Su saldo actual es de: " + saldo);
+                        }
+                        break;
+                    case 3:
+                        if (cuenta1.getSaldoActual() > 0) {
+                            saldo = cuenta1.getSaldoActual();
+                            saldo -= ((saldo * 20) / 100);
+                            cuenta1.setSaldoActual(saldo);
+                            System.out.println("Su saldo es: " + saldo);
+                        } else {
+                            System.out.println("No tiene saldo discponible");
+                        }
+                        break;
+                    case 4:
+                        System.out.println("Su saldo actual es: " + cuenta1.getSaldoActual());
+                        break;
+                    case 5:
+                        System.out.println("Los datos de la cuenta son: " + usuario1.toString());
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
+            } else {
+                System.out.println("ADIOS!");
+                break;
+            }
+        } while (option.equals("s"));
+
+    }
+}
