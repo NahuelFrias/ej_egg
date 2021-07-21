@@ -23,9 +23,6 @@ public class App {
         Usuarios usuario1 = s1.crearUsuario();
         Cuenta cuenta1 = s1.crearCuenta();
 
-        System.out.println("Usuario creado: " + usuario1.getNombre() + " " + usuario1.getApellido());
-        System.out.println("Cuenta creada: " + cuenta1.getNumeroCuenta() + ". Saldo actual: " + cuenta1.getSaldoActual());
-
         do {
             System.out.println("Desea realizar alguna operacion?: s/n");
             option = sc.next();
