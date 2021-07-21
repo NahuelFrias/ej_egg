@@ -12,15 +12,6 @@ public class Services {
 
     public Services() {
     }
-
-    public Services(int numeroCuenta) {
-        this.numeroCuenta = numeroCuenta;
-    }
-    
-    public Services(int numeroCuenta, int saldoActual) {
-        this.numeroCuenta = numeroCuenta;
-        this.saldoActual = saldoActual;
-    }
     
     private final Scanner sc = new Scanner(System.in).useDelimiter("\n");
     
