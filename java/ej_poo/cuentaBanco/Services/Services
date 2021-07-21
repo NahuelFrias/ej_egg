@@ -28,12 +28,6 @@ public class Services {
         
         return new Usuarios(nombre,apellido,dni);
     }
-    public Cuenta cargarSaldo(){
-        
-        System.out.println("Ingrese su saldo");
-        saldoActual = sc.nextInt();
-        return new Cuenta(saldoActual);
-    }
     
     public Cuenta crearCuenta(){
         
