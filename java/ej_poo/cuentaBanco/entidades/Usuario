@@ -41,7 +41,7 @@ public class Usuarios {
     
     @Override
     public String toString() {
-        return "Entidades{" + "nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + '}';
+        return "Usuario{" + "nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + '}';
     }
     
     
