@@ -1,0 +1,49 @@
+package app.entidades;
+
+public class Usuarios {
+    
+    private String nombre;
+    private String apellido;
+    private long dni;
+
+    public Usuarios(String nombre, String apellido, long dni) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+    }
+
+    public Usuarios() {
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public void setDni(long dni) {
+        this.dni = dni;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public long getDni() {
+        return dni;
+    }
+    
+    @Override
+    public String toString() {
+        return "Entidades{" + "nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + '}';
+    }
+    
+    
+   
+}
