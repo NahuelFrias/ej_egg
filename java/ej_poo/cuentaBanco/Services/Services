@@ -8,7 +8,6 @@ import java.util.Scanner;
 public class Services {
     
     private int numeroCuenta;
-    private int saldoActual;
 
     public Services() {
     }
