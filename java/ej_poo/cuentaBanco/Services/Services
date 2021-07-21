@@ -1,0 +1,57 @@
+package app.services;
+
+import app.entidades.Cuenta;
+import app.entidades.Usuarios;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Services {
+    
+    private int numeroCuenta;
+    private int saldoActual;
+
+    public Services() {
+    }
+
+    public Services(int numeroCuenta) {
+        this.numeroCuenta = numeroCuenta;
+    }
+    
+    public Services(int numeroCuenta, int saldoActual) {
+        this.numeroCuenta = numeroCuenta;
+        this.saldoActual = saldoActual;
+    }
+    
+    private final Scanner sc = new Scanner(System.in).useDelimiter("\n");
+    
+    public Usuarios crearUsuario(){
+        
+        System.out.println("Ingrese su nombre");
+        String nombre = sc.next();
+        
+        System.out.println("Ingrese su apellido");
+        String apellido = sc.next();
+        
+        System.out.println("Ingrese su DNI");
+        long dni = sc.nextLong();
+        
+        return new Usuarios(nombre,apellido,dni);
+    }
+    public Cuenta cargarSaldo(){
+        
+        System.out.println("Ingrese su saldo");
+        saldoActual = sc.nextInt();
+        return new Cuenta(saldoActual);
+    }
+    
+    public Cuenta crearCuenta(){
+        
+        Random random = new Random();
+        
+        numeroCuenta = random.nextInt(999);
+        
+        return new Cuenta(numeroCuenta);
+        
+    }
+    
+}
