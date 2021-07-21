@@ -1,0 +1,43 @@
+package app.entidades;
+
+public class Cuenta {
+    
+    private int numeroCuenta;
+    private int saldoActual;
+
+    public Cuenta() {
+    }
+
+    public Cuenta(int numeroCuenta) {
+        this.numeroCuenta = numeroCuenta;
+    }
+
+    public Cuenta(int numeroCuenta, int saldoActual) {
+        this.numeroCuenta = numeroCuenta;
+        this.saldoActual = saldoActual;
+    }
+
+    public void setNumeroCuenta(int numeroCuenta) {
+        this.numeroCuenta = numeroCuenta;
+    }
+
+    public void setSaldoActual(int saldoActual) {
+        this.saldoActual = saldoActual;
+    }
+
+    public int getNumeroCuenta() {
+        return numeroCuenta;
+    }
+
+    public int getSaldoActual() {
+        return saldoActual;
+    }
+
+    @Override
+    public String toString() {
+        return "Cuenta{" + "numeroCuenta=" + numeroCuenta + ", saldoActual=" + saldoActual + '}';
+    }
+    
+    
+    
+}
