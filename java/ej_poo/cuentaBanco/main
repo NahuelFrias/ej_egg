@@ -22,6 +22,9 @@ public class App {
 
         Usuarios usuario1 = s1.crearUsuario();
         Cuenta cuenta1 = s1.crearCuenta();
+        
+        System.out.println("Su cuenta ha sido creada con exito!");
+        System.out.println("Numero de cuenta: "+cuenta1.getNumeroCuenta());
 
         do {
             System.out.println("Desea realizar alguna operacion?: s/n");
@@ -75,6 +78,7 @@ public class App {
                         break;
                     case 5:
                         System.out.println("Los datos de la cuenta son: " + usuario1.toString());
+                        System.out.println(cuenta1.toString());
                         break;
                     default:
                         throw new AssertionError();
