@@ -1,0 +1,68 @@
+package app;
+
+import app.entidades.Cafetera;
+import app.services.Services;
+import java.util.Scanner;
+
+public class App {
+
+    public static void menu(Cafetera c1, Services s1) {
+
+        Scanner sc = new Scanner(System.in).useDelimiter("\n");
+        int cant;
+        String option;
+
+        do {
+            System.out.println("Qué operación desea realizar");
+            System.out.println("1.Llenar Cafetera");
+            System.out.println("2.Servir taza");
+            System.out.println("3.Vaciar cafetera");
+            System.out.println("4.Agregar cafe");
+            int num = sc.nextInt();
+
+            switch (num) {
+                case 1:
+                    s1.llenarCafetera(c1);
+                    System.out.println("\nDesea realizar otra operacion?: s/n");
+                    option = sc.next();
+                    break;
+                case 2:
+                    System.out.println("Cuanto desea servir?");
+                    cant = sc.nextInt();
+                    s1.servirTaza(c1, cant);
+                    System.out.println("\nDesea realizar otra operacion?: s/n");
+                    option = sc.next();
+                    break;
+                case 3:
+                    s1.vaciarCafetera(c1);
+                    System.out.println("\nDesea realizar otra operacion?: s/n");
+                    option = sc.next();
+                    break;
+                case 4:
+                    System.out.println("Cuanto cafe desea agregar?: ");
+                    cant = sc.nextInt();
+                    s1.agregarCafe(c1, cant);
+                    System.out.println("\nDesea realizar otra operacion?: s/n");
+                    option = sc.next();
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+
+        } while (option.equals("s"));
+
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in).useDelimiter("\n");
+
+        Cafetera c1 = new Cafetera();
+        Services s1 = new Services();
+        
+        System.out.println("BIENVENIDO!\n");
+        menu(c1, s1);
+        System.out.println("\nADIOS!");
+
+    }
+}
