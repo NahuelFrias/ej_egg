@@ -1,0 +1,70 @@
+package app.services;
+
+import app.entidades.Cafetera;
+
+public class Services {
+
+    public void llenarCafetera(Cafetera c1) {
+
+        int capMax;
+        int capAct;
+
+        capMax = c1.getCapacidadMaxima();
+        capAct = capMax;
+        c1.setCantidadActual(capAct);
+        System.out.println("Hemos llenado la cafetera!");
+        System.out.println("Capacidad actual al máximo: " + c1.getCantidadActual()+"ml");
+
+    }
+
+    public void servirTaza(Cafetera c1, int cant) {
+        int capAct = c1.getCantidadActual();
+        int canTaza;
+        if (capAct == 0) {
+            System.out.println("La cafetera esta vacia!");
+            canTaza = 0;
+            System.out.println("La taza ha quedado vacia: " + canTaza);
+        } else if (cant > capAct) {
+            canTaza = capAct;
+            System.out.println("La cantidad actual no alcanza para cubrir la taza!");
+            System.out.println("Hemos servido: " + canTaza+"ml");
+        } else if (cant < capAct) {
+            capAct -= cant;
+            c1.setCantidadActual(capAct);
+            canTaza = cant;
+            System.out.println("La taza se ha servido con: " + canTaza+"ml");
+            System.out.println("La cafetera quedo con " + c1.getCantidadActual() + "ml de cafe.");
+        }
+    }
+
+    public void vaciarCafetera(Cafetera c1) {
+        int capAct = c1.getCantidadActual();
+        if (capAct == 0) {
+            System.out.println("La cafetera ya esta vacia");
+        } else {
+            capAct = 0;
+            c1.setCantidadActual(capAct);
+            System.out.println("La cafetera ha sido vaciada!");
+        }
+    }
+
+    public void agregarCafe(Cafetera c1, int cant) {
+
+        int capAct = c1.getCantidadActual();
+        int capMax = c1.getCapacidadMaxima();
+        if (capAct == capMax) {
+            System.out.println("La cafetera está en su capacidad máxima");
+        } else {
+//            capAct += cant;
+            if ((cant+capAct) > capMax) {
+                System.out.println("La cafetera desbordara!");
+            } else if ((cant+capAct)< capMax){
+                capAct += cant;
+                c1.setCantidadActual(capAct);
+                System.out.println("El cafe ha sido agreado con exito!");
+                System.out.println("La cantidad de cafe actual es: "+c1.getCantidadActual()+"ml");
+            }
+        }
+    }
+
+}
