@@ -1,0 +1,42 @@
+package app;
+
+import app.entidades.Cadena;
+import app.services.Services;
+import java.util.Scanner;
+
+public class App {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in).useDelimiter("\n");
+        Cadena c = new Cadena();
+        Services s = new Services();
+        
+        System.out.println("Ingrese una palabra o frase");
+        String frase = sc.nextLine();
+        System.out.println("Ingrese el caracter repetido a buscar en la frase");
+        String car = sc.next();
+        
+        c.setFrase(frase);
+        c.setLongitud(frase.length());
+        
+        s.vecesRepetido(c.getFrase(), car);
+        
+        s.mostrarVocales(c.getFrase());
+        s.invertirFrase(c.getFrase());
+        
+        System.out.println("Ingrese la frase a comparar");
+        s.comparador(c.getFrase(), sc.next());
+        System.out.println("Ingrese la frase a comparar su longitud");
+        s.comparaLong(c.getFrase(), sc.next().length());
+        
+        System.out.println("Ingrese el caracter a remplazar");
+        s.remplazaCaracter(c.getFrase(), sc.next());
+        
+        System.out.println("Ingrese el caracter a buscar en la frase");
+        s.contiene(c.getFrase(), sc.next());
+        
+        System.out.println("Ingrese la frase a unir:");
+        s.unir(c.getFrase(), sc.next());
+    }
+}
