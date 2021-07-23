@@ -1,0 +1,115 @@
+package app.services;
+
+import app.entidades.Cadena;
+import java.util.Scanner;
+
+public class Services {
+
+    Scanner sc = new Scanner(System.in).useDelimiter("\n");
+    Cadena c = new Cadena();
+
+    public Services() {
+    }
+
+    public void contiene(String fCadena, String a) {
+
+        if (fCadena.contains(a)) {
+            System.out.println("La cadena "+fCadena+ " contiene el caracter " +a);
+        } else {
+            System.out.println("La cadena "+fCadena+" no contiene el caracter "+a);
+        }
+    }
+
+    public void remplazaCaracter(String fCadena, String a) {
+
+        String nueva = fCadena.replace("a", a);
+
+        System.out.println("La nueva frase es: " + nueva);
+
+    }
+
+    public void unir(String fCadena, String f) {
+
+        String fUnida = fCadena + f;
+
+        System.out.println("La cadena unida es: " + fUnida);
+
+    }
+
+    public void comparador(String fCadena, String f) {
+
+        if (f.equals(fCadena)) {
+            System.out.println("Las cadenas tienen el mismo contenido");
+        } else {
+            System.out.println("Las cadenas tienen distinto contenido");
+        }
+
+    }
+
+    public void comparaLong(String fCadena, int b) {
+
+        int a = fCadena.length();
+
+        if (a == b) {
+            System.out.println("Las longitudes son iguales");
+        } else {
+            System.out.println("Las longitudes son distintas");
+        }
+    }
+
+    public void vecesRepetido(String fCadena, String car) {
+
+        int posicion, contador = 0;
+        //se busca la primera vez que aparece
+        posicion = fCadena.indexOf(car);
+        while (posicion != -1) { //mientras se encuentre el caracter
+            contador++;           //se cuenta
+            //se sigue buscando a partir de la posición siguiente a la encontrada                                 
+            posicion = fCadena.indexOf(car, posicion + 1);
+        }
+        System.out.println("La letra " + car + " se repite " + contador + " veces en la frase " + fCadena);
+    }
+
+    public void invertirFrase(String f) {
+
+        String cadInvertida = "";
+
+        for (int x = f.length() - 1; x >= 0; x--) {
+            cadInvertida = cadInvertida + f.charAt(x);
+        }
+        System.out.println("La frase invertida es: "+cadInvertida);
+
+    }
+
+    public void mostrarVocales(String f) {
+
+        int contador= 0;
+
+        for (int x = 0; x < f.length(); x++) {
+            char actual = f.toLowerCase().charAt(x);
+
+            switch (actual) {
+                case 'a':
+                    contador++;
+                    break;
+                case 'e':
+                    contador++;
+                    break;
+                case 'i':
+                    contador++;
+                    break;
+                case 'o':
+                    contador++;
+                    break;
+                case 'u':
+                    contador++;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        System.out.println("Total de vocales de la frase "+f+ " es :" + contador);
+    }
+
+}
