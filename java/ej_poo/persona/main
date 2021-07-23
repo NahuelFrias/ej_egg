@@ -1,0 +1,60 @@
+package app;
+
+import app.entidades.Persona;
+import app.services.Services;
+import java.util.Scanner;
+
+public class App {
+    
+    public static void masaCorporal(int mc){
+        switch (mc) {
+            case 1:
+                System.out.println("La persona tiene sobre peso");
+                break;
+            case 0:
+                System.out.println("La persona está por debajo de peso ideal");
+                break;
+            case -1:
+                System.out.println("La persona está en su peso ideal");
+                break;
+            default:
+                break;
+        }
+    }
+    
+    public static void legal(boolean var){
+        int i;
+        if (var){
+            System.out.println("La persona es mayor de edad");
+        } else {
+            System.out.println("La persona es menor de edad");
+        }
+        
+        boolean [] arrayEdad = new boolean[4];
+        for(i=0;i==3;i++){
+            arrayEdad[i] = var;
+            System.out.println(arrayEdad[i]);
+        }System.out.println("");
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in).useDelimiter("\n");
+        
+        Services s1 = new Services();
+
+        System.out.println("BIENVENIDO!");
+        System.out.println("Desea crear una persona?: s/n");
+        String option = sc.next();
+        while(option.equalsIgnoreCase("s")){
+            Persona p1;
+            p1 = s1.crearPersona();
+            System.out.println("Desea crear otra persona?: s/n");
+            option = sc.next();
+            int mc = s1.calcularMC(p1);
+            masaCorporal(mc);
+            boolean var = s1.mayorEdad(p1);
+            legal(var);
+        }
+    }
+}
