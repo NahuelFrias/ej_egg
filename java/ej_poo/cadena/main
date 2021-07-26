@@ -34,7 +34,11 @@ public class App {
         s.remplazaCaracter(c.getFrase(), sc.next());
         
         System.out.println("Ingrese el caracter a buscar en la frase");
-        s.contiene(c.getFrase(), sc.next());
+        /*
+        Accedo al metodo con el nombre de la clase
+        ya que es un metodo estatico
+        */
+        Services.contiene(c.getFrase(), sc.next());
         
         System.out.println("Ingrese la frase a unir:");
         s.unir(c.getFrase(), sc.next());
