@@ -1,0 +1,48 @@
+package app.services;
+
+import java.util.Scanner;
+
+public class Services {
+
+    Scanner sc = new Scanner(System.in).useDelimiter("\n");
+
+    public static void devolverMayor(double n1, double n2) {
+
+        double mayor = 0;
+        double menor = 0;
+
+        if (n1 > n2) {
+            mayor = n1;
+            menor = n2;
+            System.out.println("El número mayor es: " + n1);
+        } else if (n1 < n2) {
+            mayor = n2;
+            menor = n1;
+            System.out.println("El numero mayor es: " + n2);
+        } else {
+            System.out.println("Los numeros son iguales");
+        }
+
+        calcularPotencia(mayor, menor);
+        calcularRaiz(menor);
+    }
+
+    public static void calcularPotencia(double may, double men) {
+
+        double mayor = Math.round(may);
+        double menor = Math.round(men);
+        System.out.println("Los numeros han sido redondeados");
+        double potencia = Math.pow(mayor, menor);
+        System.out.println("La potencia de " + mayor + " elevado a " + menor + " es: " + potencia);
+
+    }
+
+    public static void calcularRaiz(double men) {
+
+        double menorAbsoluto = Math.abs(men);
+        double raiz = Math.sqrt(menorAbsoluto);
+        System.out.println("La raiz cuadrada de " + menorAbsoluto + " es :" + raiz);
+
+    }
+
+}
