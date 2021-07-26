@@ -10,8 +10,13 @@ public class Services {
 
     public Services() {
     }
-
-    public void contiene(String fCadena, String a) {
+    
+    /*
+    metodo estático
+    no debo crear un objeto de tipo servicio para acceder a el
+    accedo al metodo con el nombre de la clase
+    */
+    public static void contiene(String fCadena, String a) {
 
         if (fCadena.contains(a)) {
             System.out.println("La cadena "+fCadena+ " contiene el caracter " +a);
