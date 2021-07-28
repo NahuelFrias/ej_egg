@@ -1,0 +1,29 @@
+package app;
+
+import java.util.Date;
+import java.util.Scanner;
+
+public class App {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in).useDelimiter("\n");
+        
+        int anio, mes, dia;
+        System.out.println("Ingrese la fehca de su nacimiento:");
+        System.out.print("Año: ");
+        anio = sc.nextInt()-1900;
+        System.out.print("Mes: ");
+        mes = sc.nextInt()-1;
+        System.out.print("Dia: ");
+        dia = sc.nextInt();
+
+        Date fechaActual = new Date();
+        Date fecha = new Date(anio, mes, dia);
+       
+        System.out.println(fecha);
+        int diferencia = (int) (fechaActual.getYear()- fecha.getYear());
+        System.out.println(fechaActual);
+        System.out.println("La diferencia con la fecha actual es: "+diferencia+" años.");
+    }
+}
