@@ -1,0 +1,19 @@
+package app;
+
+import app.services.Services;
+import java.util.Scanner;
+
+public class App {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in).useDelimiter("\n");
+
+        double[] arrayA = new double[50];
+        double[] arrayB = new double[20];
+
+        Services.rellenaYmuestra(arrayA);
+        Services.ordenaYcopia(arrayA, arrayB);
+
+    }
+}
