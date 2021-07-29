@@ -1,0 +1,105 @@
+package app.services;
+
+import app.entidades.Operacion;
+import app.entidades.Raices;
+import java.util.Scanner;
+
+public class Services {
+
+    Scanner sc = new Scanner(System.in).useDelimiter("\n");
+    String option;
+
+    public Operacion crearPuntos() {
+
+        System.out.print("Ingrese el valor de a: ");
+        double a = sc.nextInt();
+        System.out.print("Ingrese el valor de b: ");
+        double b = sc.nextInt();
+        System.out.print("Ingrese el valor de c: ");
+        double c = sc.nextInt();
+
+        return new Operacion(a, b, c);
+    }
+
+    public double getDiscriminante(Operacion o) {
+
+        double a = o.getA();
+        double b = o.getB();
+        double c = o.getC();
+
+        double discriminante = ((Math.pow(b, 2)) - (4 * a * c));
+        return discriminante;
+
+    }
+
+    public boolean tieneRaices(double discriminante) {
+
+//        if(discriminante>=0){
+//            return true;
+//        }else{
+//            return false;
+//        }
+        return discriminante > 0;
+
+    }
+
+    public boolean tieneRaiz(double discriminante) {
+
+        return discriminante == 0;
+
+    }
+
+    public boolean noTieneRaiz(double discriminante) {
+
+        return discriminante < 0;
+
+    }
+
+    public Raices obtenerRaices(Operacion o) {
+
+        Raices raices;
+
+        double a = o.getA();
+        double b = o.getB();
+        double c = o.getC();
+        double raiz1;
+        double raiz2;
+
+        raiz1 = (-b + (Math.sqrt((Math.pow(b, 2) - 4 * a * c)))) / 2 * a;
+        raiz2 = (-b - (Math.sqrt((Math.pow(b, 2) - 4 * a * c)))) / 2 * a;
+
+        return new Raices(raiz1, raiz2);
+
+    }
+
+    public Raices obtenerRaiz(Operacion o) {
+
+        Raices raices;
+
+        double a = o.getA();
+        double b = o.getB();
+        double c = o.getC();
+        double raiz1;
+
+        raiz1 = (-b) / 2 * a;
+
+        return new Raices(raiz1, 0);
+
+    }
+
+    public void calcular(Operacion o) {
+
+        double discriminante = getDiscriminante(o);
+        if (tieneRaices(discriminante)) {
+            Raices r = obtenerRaices(o);
+            System.out.println("Las raices son " + r.getRaiz1() + " y " + r.getRaiz2());
+        } else if (tieneRaiz(discriminante)) {
+            Raices r = obtenerRaiz(o);
+            System.out.println("La raiz es: " + r.getRaiz1());
+        } else if (noTieneRaiz(discriminante)) {
+            System.out.println("La ecuacion tiene raices complejas conjugadas!");
+        }
+
+    }
+
+}
