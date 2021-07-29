@@ -1,0 +1,32 @@
+package app.entidades;
+
+public class Raices {
+
+    private double raiz1;
+    private double raiz2;
+
+    public Raices(double raiz1, double raiz2) {
+        this.raiz1 = raiz1;
+        this.raiz2 = raiz2;
+    }
+
+    public Raices() {
+    }
+
+    public void setRaiz1(double raiz1) {
+        this.raiz1 = raiz1;
+    }
+
+    public void setRaiz2(double raiz2) {
+        this.raiz2 = raiz2;
+    }
+
+    public double getRaiz1() {
+        return raiz1;
+    }
+
+    public double getRaiz2() {
+        return raiz2;
+    }
+
+}
