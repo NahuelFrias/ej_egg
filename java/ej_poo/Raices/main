@@ -1,0 +1,28 @@
+package app;
+
+import app.entidades.Operacion;
+import app.services.Services;
+import java.util.Scanner;
+
+public class App {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        Services s = new Services();
+        String option;
+        do {
+            System.out.println("Desea crear un nueva operacion?: s/n");
+            option = sc.next();
+            if (option.equals("s")) {
+                Operacion o = s.crearPuntos();
+                s.calcular(o);
+            } else {
+                System.out.println("Adios!");
+                break;
+            }
+        } while (option.equals("s"));
+
+    }
+}
