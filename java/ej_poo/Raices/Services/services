@@ -65,8 +65,8 @@ public class Services {
         double raiz1;
         double raiz2;
 
-        raiz1 = (-b + (Math.sqrt((Math.pow(b, 2) - 4 * a * c)))) / 2 * a;
-        raiz2 = (-b - (Math.sqrt((Math.pow(b, 2) - 4 * a * c)))) / 2 * a;
+        raiz1 = (-b + (Math.sqrt((Math.pow(b, 2) - 4 * a * c)))) / (2 * a);
+        raiz2 = (-b - (Math.sqrt((Math.pow(b, 2) - 4 * a * c)))) / (2 * a);
 
         return new Raices(raiz1, raiz2);
 
