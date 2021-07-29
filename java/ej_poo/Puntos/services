@@ -1,0 +1,60 @@
+package app.services;
+
+import app.entidades.Puntos;
+import java.text.DecimalFormat;
+import java.util.Scanner;
+
+public class Services {
+
+    Scanner sc = new Scanner(System.in).useDelimiter("\n");
+    String option;
+
+    public Puntos crearPuntos() {
+
+        System.out.print("Ingrese la coordenada x1: ");
+        double x1 = sc.nextInt();
+        System.out.print("Ingrese la coordenada x2: ");
+        double x2 = sc.nextInt();
+        System.out.print("Ingrese la coordenada y1: ");
+        double y1 = sc.nextInt();
+        System.out.print("Ingrese la coordenada y2: ");
+        double y2 = sc.nextInt();
+
+        return new Puntos(x1, x2, y1, y2);
+    }
+
+    public void calcularDistancia(Puntos p) {
+
+        double x1 = p.getX1();
+        double x2 = p.getX2();
+        double y1 = p.getY1();
+        double y2 = p.getY2();
+
+        double distancia = Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));
+
+        /*
+        Maneras de cortar decimales:
+        
+        DecimalFormat df = new DecimalFormat("#.00");
+        System.out.println(df.format(number));
+        
+        System.out.println(String.format("%.2f", number));
+        
+        System.out.printf("Valor: %.2f", number );
+        
+        System.out.println((double)Math.round(number * 100d) / 100d);
+        
+        BigDecimal bd = new BigDecimal(number);
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        System.out.println(bd.doubleValue());
+        
+        Salida : 1.42
+         */
+        DecimalFormat formato = new DecimalFormat("#.00");
+        System.out.println("La distancia entre el punto A("
+                + x1 + "," + x2 + ") y B(" + y1 + "," + y2
+                + ") es: " + formato.format(distancia));
+
+    }
+
+}
