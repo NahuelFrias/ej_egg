@@ -1,0 +1,38 @@
+package app.services;
+
+import app.entidades.Array;
+import java.util.Scanner;
+
+public class Services {
+
+    Scanner sc = new Scanner(System.in).useDelimiter("\n");
+    Array a = new Array();
+
+    public void adivina() {
+        
+        int intentos = 1;
+        String option;
+        String mesSecret = a.getMesSecreto();
+        System.out.println("------ADIVINA EL MES------");
+
+        do {
+            System.out.print("Ingresa algun mes del año: ");
+            String mes = sc.next();
+            if (mes.equalsIgnoreCase(mesSecret)) {
+                System.out.println("Has adivinado! cantidad de intentos: "+intentos);
+                System.out.println("Nos vemos la proxima!");
+                break;
+            } else {
+                System.out.println("No adivinaste!");
+                intentos ++;
+                System.out.println("Desea intentar de nuevo?: s/n");
+                option = sc.next();
+                if (option.equalsIgnoreCase("s")) {
+                    System.out.println("Vamos de nuevo! intento numero: " + intentos);
+                }
+            }
+        } while (option.equals("s"));
+
+    }
+
+}
