@@ -1,0 +1,29 @@
+package app;
+
+import app.services.Services;
+import java.util.Scanner;
+
+public class App {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        Services s = new Services();
+        
+        System.out.println("Desea introducir su DNI?: s/n");
+        String option = sc.next();
+        if(option.equals("s")){
+            while(option.equals("s")){
+                s.crearNif();
+                System.out.println("Desea introducir un nuevo DNI?: s/n ");
+                option = sc.next();
+                if(!option.equals("s")){
+                    System.out.println("Adios!");
+                    break;
+                }
+            }
+        } else {
+            System.out.println("Adios!");
+        }
+    }
+}
