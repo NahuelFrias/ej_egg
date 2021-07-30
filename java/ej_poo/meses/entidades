@@ -1,0 +1,25 @@
+package app.entidades;
+
+public class Array {
+
+    private final String[] array = {"enero","febrero","marzo","abril","mayo","junio",
+        "julio","agosto","septiembre","octubre","noviembre","diciembre"};
+
+    private String mesSecreto = array[(int) (Math.random() * 11)];
+
+    public Array() {
+    }
+
+    public void setMesSecreto(String mesSecreto) {
+        this.mesSecreto = mesSecreto;
+    }
+
+    public String[] getArray() {
+        return array;
+    }
+
+    public String getMesSecreto() {
+        return mesSecreto;
+    }
+
+}
