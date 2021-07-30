@@ -1,0 +1,59 @@
+package app.services;
+
+import java.util.Scanner;
+
+public class Services {
+
+    public void crearNif() {
+
+        Scanner lector = new Scanner(System.in);
+
+        String[] letras
+                = {"T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X",
+                    "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E"};
+        //Creamos el array con longitud 0 para ir ampliandolo.
+        int[] valors = new int[0];
+        int i = 0;
+        boolean fi = false;
+
+        System.out.println("Introduce numeros de DNI");
+        System.out.println("Al terminar presiona 'f'");
+        do {
+            if (lector.hasNextInt()) {
+                int[] arrayAmpliado = new int[valors.length + 1];
+
+                if (i > 0) {
+//                    for (int j = 0; j < valors.length; j++) {
+//                        arrayAmpliado[j] = valors[j];
+//                    }
+                    System.arraycopy(valors, 0, arrayAmpliado, 0, valors.length);
+                }
+
+                valors = arrayAmpliado;
+                valors[i] = lector.nextInt();
+
+            } else if (lector.hasNext()) {
+                String s = lector.next();
+
+                if ("f".equals(s) || "F".equals(s)) {
+                    fi = true;
+                }
+            } else {
+
+                System.out.println("Dada Incorrecta");
+                lector.nextLine();
+                i--;
+            }
+
+            i++;
+        } while (!fi);
+
+        for (int valor : valors) {
+            String letra = letras[valor % 23];
+
+            System.out.println(valor +"-"+ letra);
+        }
+
+    }
+
+}
