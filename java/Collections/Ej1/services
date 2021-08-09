@@ -1,0 +1,44 @@
+package app.services;
+
+import app.entidades.Perro;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Services {
+
+    Scanner sc = new Scanner(System.in).useDelimiter("\n");
+    ArrayList<Perro> listaPerros = new ArrayList<>();
+
+    public void crearPerro() {
+
+        System.out.print("Ingrese el nombre: ");
+        String nombre = sc.next();
+        System.out.print("Ingrese la raza: ");
+        String raza = sc.next();
+        Perro p = new Perro(nombre, raza);
+        agregarPerro(p);
+
+    }
+
+    public void agregarPerro(Perro p) {
+
+        listaPerros.add(p);
+        System.out.println("Desea agregar otro perro?: s/n");
+        String option = sc.next();
+        if (option.equals("s")) {
+            crearPerro();
+        } else {
+            mostrarPerros();
+        }
+
+    }
+
+    public void mostrarPerros() {
+
+        listaPerros.forEach((perro) -> {
+            System.out.println(perro.toString());
+        });
+
+    }
+
+}
