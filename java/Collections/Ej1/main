@@ -1,0 +1,19 @@
+package app;
+
+import app.services.Services;
+import java.util.Scanner;
+
+public class App {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        Services s = new Services();
+
+        System.out.println("Desea crear un perro: s/n");
+        String option = sc.next();
+        if (option.equals("s")) {
+            s.crearPerro();
+        }
+    }
+}
