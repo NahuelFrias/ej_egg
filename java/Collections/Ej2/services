@@ -1,0 +1,84 @@
+package app.services;
+
+import app.entidades.Perro;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.Scanner;
+
+public class Services {
+
+    Scanner sc = new Scanner(System.in).useDelimiter("\n");
+    ArrayList<Perro> listaPerros = new ArrayList<>();
+
+    public void crearPerro() {
+
+        System.out.print("Ingrese el nombre: ");
+        String nombre = sc.next();
+        System.out.print("Ingrese la raza: ");
+        String raza = sc.next();
+        Perro p = new Perro(nombre, raza);
+        agregarPerro(p);
+
+    }
+
+    public void agregarPerro(Perro p) {
+
+        listaPerros.add(p);
+        System.out.println("Desea agregar otro perro?: s/n");
+        String option = sc.next();
+        if (option.equals("s")) {
+            crearPerro();
+        } else {
+            mostrarPerros();
+        }
+
+    }
+
+    public void mostrarPerros() {
+
+        //muestro por pantalla
+        //listaPerros.forEach((perro) -> {
+        //System.out.println(perro.toString());
+        //});  
+        /*
+        Ordeno por nombre los perros
+         */
+        Collections.sort(listaPerros, new Comparator<Perro>() {
+            @Override
+            public int compare(Perro p1, Perro p2) {
+                return p1.getNombre().compareTo(p2.getNombre());
+            }
+        });
+
+        /*
+        Otra manera de mostrar por pantalla
+         */
+        listaPerros.forEach((e) -> System.out.println(e));
+
+    }
+
+    public void eliminarPerro(String nombrePerro) {
+
+        Iterator<Perro> it = listaPerros.iterator();
+        Perro p = new Perro();
+        int contador = 0;
+
+        while (it.hasNext()) {
+
+            String nom = it.next().getNombre();
+            if (nom.equalsIgnoreCase(nombrePerro)) {
+                it.remove();
+                break;
+            } else {
+                contador++;
+                if (contador == listaPerros.size()) {
+                    System.out.println("El perro no existe");
+                }
+
+                mostrarPerros();
+            }
+        }
+    }
+}
