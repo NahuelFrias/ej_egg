@@ -1,0 +1,23 @@
+package app;
+
+import app.services.Services;
+import java.util.Scanner;
+
+public class App {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        Services s = new Services();
+        String option;
+
+        System.out.println("Desea crear una pelicula?: s/n");
+        option = sc.next();
+        if(option.equalsIgnoreCase("s")){
+            s.crearPelicula();
+        } else {
+            System.out.println("Adios!");
+        }
+
+    }
+}
