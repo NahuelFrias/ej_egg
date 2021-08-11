@@ -1,0 +1,102 @@
+package app.services;
+
+import Utilidades.Comparadores;
+import app.entidades.Pelicula;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class Services {
+
+    Scanner sc = new Scanner(System.in).useDelimiter("\n");
+    ArrayList<Pelicula> listaPeliculas = new ArrayList<>();
+    Set<Pelicula> listaMayorDuracion = new HashSet<>();
+
+    public void crearPelicula() {
+
+        System.out.println("Ingrese el titulo de la pelicula: ");
+        String titulo = sc.next();
+        System.out.println("Ingrese el director de la pelicula: ");
+        String director = sc.next();
+        System.out.println("Ingrese el duracion de la pelicula: ");
+        Integer duracion = sc.nextInt();
+
+        Pelicula p = new Pelicula(titulo, director, duracion);
+        agregarPelicula(p);
+
+    }
+
+    private void agregarPelicula(Pelicula p) {
+
+        listaPeliculas.add(p);
+        System.out.println("Desea crear otra pelicula? s/n");
+        String option = sc.next();
+        if (option.equalsIgnoreCase("s")) {
+            crearPelicula();
+        } else {
+            mostrarPeliculas(listaPeliculas);
+            mostrarMayorDeUnaHora(listaPeliculas);
+            ordenarMayor(listaPeliculas);
+            ordenarMenor(listaPeliculas);
+            ordenarTitulo(listaPeliculas);
+            ordenarDirector(listaPeliculas);
+        }
+    }
+
+    private void mostrarPeliculas(ArrayList<Pelicula> listaPeliculas) {
+
+        listaPeliculas.forEach((e) -> System.out.println(e));
+
+    }
+
+    private void mostrarMayorDeUnaHora(ArrayList<Pelicula> listaPeliculas) {
+
+        /*
+        filtro las peliculas con duracion mayor
+        a una hora
+        */
+        listaPeliculas.stream().filter((pelicula) -> (pelicula.getDuracion()>=1)).forEachOrdered((pelicula) -> {
+            listaMayorDuracion.add(pelicula);
+        });
+        
+        System.out.println("\nLista de peliculas con duracion mayor a 1 hora:");
+        listaMayorDuracion.forEach((e) -> System.out.println(e));
+
+    }
+
+    private void ordenarMayor(ArrayList<Pelicula> listaPeliculas) {
+        
+        Collections.sort(listaPeliculas, Comparadores.ordenarPorDuracionAscendente);
+        System.out.println("\nLista peliculas ordenadas por duracion (Mayor a menor)");
+        listaPeliculas.forEach((e) -> System.out.println(e));
+        
+    }
+
+    private void ordenarMenor(ArrayList<Pelicula> listaPeliculas) {
+        
+        Collections.sort(listaPeliculas, Comparadores.ordenarPorDuracionDescendente);
+        System.out.println("\nLista peliculas ordenadas por duracion (Menor a mayor)");
+        listaPeliculas.forEach((e) -> System.out.println(e));
+        
+    }
+    
+    private void ordenarTitulo(ArrayList<Pelicula> listaPeliculas) {
+        
+        Collections.sort(listaPeliculas, Comparadores.ordenarPorTitulo);
+        System.out.println("\nLista peliculas ordenadas por titulo");
+        listaPeliculas.forEach((e) -> System.out.println(e));
+        
+    }
+    
+    private void ordenarDirector(ArrayList<Pelicula> listaPeliculas) {
+        
+        Collections.sort(listaPeliculas, Comparadores.ordenarPorDirector);
+        System.out.println("\nLista peliculas ordenadas por director");
+        listaPeliculas.forEach((e) -> System.out.println(e));
+        
+    }
+    
+    
+}
