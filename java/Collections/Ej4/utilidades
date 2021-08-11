@@ -1,0 +1,26 @@
+package Utilidades;
+
+import app.entidades.Pelicula;
+import java.util.Comparator;
+
+public class Comparadores {
+
+    public static Comparator<Pelicula> ordenarPorDuracionDescendente = new Comparator<Pelicula>() {
+        @Override
+        public int compare(Pelicula p1, Pelicula p2) {
+            return p2.getDuracion().compareTo(p1.getDuracion());
+        }
+    };
+
+    /*
+    Misma funcion que arriba
+    pero Descendente
+     */
+    public static Comparator<Pelicula> ordenarPorDuracionAscendente
+            = (Pelicula p1, Pelicula p2) -> p1.getDuracion().compareTo(p2.getDuracion());
+    
+    public static Comparator<Pelicula> ordenarPorTitulo = (Pelicula p1, Pelicula p2) -> p1.getTitulo().compareTo(p2.getTitulo());
+    
+    public static Comparator<Pelicula> ordenarPorDirector = (Pelicula p1, Pelicula p2) -> p1.getDirector().compareTo(p2.getDirector());
+    
+}
