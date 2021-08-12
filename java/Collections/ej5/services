@@ -1,0 +1,68 @@
+package app.services;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Services {
+
+    Scanner sc = new Scanner(System.in).useDelimiter("\n");
+    HashMap<String, Integer> productos = new HashMap<>();
+
+    public void agregarProducto() {
+
+        System.out.print("Introduzca el producto: ");
+        String prod = sc.next();
+        System.out.print("Introduzca el valor: $");
+        Integer val = sc.nextInt();
+
+        productos.put(prod, val);
+
+    }
+
+    public void modificarPrecio() {
+
+        System.out.print("Ingrese el producto al que desea modificar su precio: ");
+        String prod = sc.next();
+        Integer nuevoVal;
+
+        for (Map.Entry<String, Integer> entry : productos.entrySet()) {
+            String key = entry.getKey();
+            Integer value = entry.getValue();
+
+            if (prod.equalsIgnoreCase(key)) {
+                System.out.print("Ingrese el nuevo valor: $");
+                nuevoVal = sc.nextInt();
+                productos.replace(key, value, nuevoVal);
+            }
+        }
+        System.out.println("Precio modificado");
+    }
+
+    public void eliminarProducto() {
+
+        System.out.print("Ingrese el producto a eliminar: ");
+        String prod = sc.next();
+
+        /*
+        for each
+        mismo que arriba
+        lo sugirio NetBeans
+         */
+        productos.entrySet().forEach((entry) -> {
+            String key = entry.getKey();
+            Integer value = entry.getValue();
+            if (prod.equalsIgnoreCase(key)) {
+                productos.remove(key);
+            }
+        });
+    }
+
+    public void mostrarProductos() {
+
+        productos.entrySet().forEach((entry) -> {
+            System.out.println("Producto = " + entry.getKey() + ", valor = $" + entry.getValue());
+        });
+
+    }
+}
