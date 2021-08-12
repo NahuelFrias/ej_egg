@@ -1,0 +1,62 @@
+package app.services;
+
+import app.entidades.Pais;
+import java.util.Iterator;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeSet;
+
+public class Services {
+
+    Scanner sc = new Scanner(System.in).useDelimiter("\n");
+    Set<Pais> listaPaises = new TreeSet();
+
+    public void crearPais() {
+
+        Pais pais = new Pais();
+        String nombre;
+
+        System.out.print("Ingrese el nombre del pais: ");
+        pais.setNombre(nombre = sc.next());
+
+        agregarPais(pais);
+
+        System.out.print("\nDesea ingresar otro pais? s/n: ");
+        String option = sc.next();
+
+        if (option.equalsIgnoreCase("s")) {
+            crearPais();
+        } else {
+            mostrarPaises();
+        }
+
+    }
+
+    public void agregarPais(Pais p) {
+
+        listaPaises.add(p);
+    }
+
+    public void mostrarPaises() {
+        
+        System.out.println("\nPaises ordenados alfabeticamente:");
+
+        listaPaises.forEach((pais) -> {
+            System.out.println(pais);
+        });
+    }
+
+    public void eliminarPais(String p) {
+
+        Iterator<Pais> it = listaPaises.iterator();
+
+        while (it.hasNext()) {
+            if (it.next().getNombre().equalsIgnoreCase(p)) {
+                it.remove();
+            }
+        }
+        System.out.println("Pais eliminado!!");
+        mostrarPaises();
+    }
+
+}
