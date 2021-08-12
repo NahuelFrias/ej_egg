@@ -1,0 +1,25 @@
+package app;
+
+import app.services.Services;
+import java.util.Scanner;
+
+public class App {
+
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        Services s = new Services();
+        
+        System.out.print("Bienvenidos!\n"
+                + "Desea ingresar un pais? s/n: ");
+        String option = sc.next();
+        
+        if(option.equalsIgnoreCase("s")){
+            s.crearPais();
+        }
+        
+        System.out.print("\nIngrese un pais a eliminar: ");
+        String pais = sc.next();
+        s.eliminarPais(pais);
+    }
+}
