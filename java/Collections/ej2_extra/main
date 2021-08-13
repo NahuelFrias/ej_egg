@@ -1,0 +1,30 @@
+package app;
+
+import app.entidades.CantanteFamoso;
+import app.services.Services;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class App {
+
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        Services s = new Services();
+        int cont = 0;
+        
+        ArrayList <CantanteFamoso> listaCantantes = new ArrayList();
+        
+        do{
+            System.out.println("Ingrese un cantante famoso y su disco más vendido:");
+            String cantante = sc.nextLine();
+            String disco = sc.nextLine();
+            CantanteFamoso cf = new CantanteFamoso(cantante, disco);
+            listaCantantes.add(cf);
+            cont++;
+        }while(cont<5);
+        
+        s.mostrarCantantes(listaCantantes);
+        s.menu(listaCantantes);
+    }
+}
