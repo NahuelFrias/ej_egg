@@ -1,0 +1,55 @@
+package app.services;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Services {
+
+    Scanner sc = new Scanner(System.in).useDelimiter("\n");
+    ArrayList<Integer> array = new ArrayList();
+
+    public void crearLista() {
+
+        System.out.print("Ingrese un numero entero: ");
+        int num = sc.nextInt();
+        if(num!= -99){
+            array.add(num);
+            crearLista();
+        } else {
+            mostrarArray();
+            mostrarSuma();
+        }
+    }
+
+    private void mostrarArray() {
+        
+        System.out.println("\nEl array formado es:");
+        
+        array.forEach((integer) -> {
+            System.out.print("["+integer+"]");
+        });
+System.out.println("");
+        
+    }
+
+    private void mostrarSuma() {
+        
+        int suma = 0;
+        int cant = 0;
+        
+        for (Integer integer : array) {
+            suma += integer;
+            cant ++;
+        }
+        System.out.println("\nLa suma de los enteros ingresados es: "+suma);
+        mostrarPromedio(suma,cant);
+        
+    }
+
+    private void mostrarPromedio(int suma, int cant) {
+        
+        int promedio = suma / cant;
+        System.out.println("\nEl promedio de la suma anterior es: "+promedio);
+        
+    }
+}
