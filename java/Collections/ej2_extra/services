@@ -1,0 +1,78 @@
+package app.services;
+
+import app.entidades.CantanteFamoso;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Scanner;
+
+public class Services {
+
+    Scanner sc = new Scanner(System.in).useDelimiter("\n");
+
+    public void menu(ArrayList<CantanteFamoso> lista) {
+
+        int option;
+
+        do {
+            System.out.println("\nIngrese la opcion deseada:"
+                    + "\n1.Agregar un cantante mas"
+                    + "\n2.Mostrar lista de cantantes"
+                    + "\n3.Eliminar un cantante"
+                    + "\n4.Salir");
+            option = sc.nextInt();
+            switch (option) {
+                case 1:
+                    agregarUnoMas(lista);
+                    break;
+                case 2:
+                    mostrarCantantes(lista);
+                    break;
+                case 3:
+                    eliminarCantante(lista);
+                    break;
+                case 4:
+                    System.out.println("Adios!");
+            }
+        } while (option < 4);
+
+    }
+
+    public void mostrarCantantes(ArrayList<CantanteFamoso> lista) {
+
+        lista.forEach((cantanteFamoso) -> {
+            System.out.println("[" + cantanteFamoso + "]");
+        });
+    }
+
+    public void agregarUnoMas(ArrayList<CantanteFamoso> lista) {
+        
+        String cantante;
+        String disco;
+        System.out.println("Ingrese el cantante con el disco mas vendido");
+        cantante = sc.next();
+        disco = sc.next();
+        CantanteFamoso cf = new CantanteFamoso(cantante, disco);
+            lista.add(cf);
+        System.out.println("El cantante fue asignado");
+        mostrarCantantes(lista);
+
+    }
+
+    private void eliminarCantante(ArrayList<CantanteFamoso> lista) {
+
+        System.out.println("Ingrese el cantante a eliminar");
+        String nombre = sc.nextLine();
+
+        Iterator<CantanteFamoso> it = lista.iterator();
+
+        while (it.hasNext()) {
+            if (it.next().getNombre().equals(nombre)) {
+                it.remove();
+            }
+        }
+        System.out.println("El cantante fue eliminado");
+
+        mostrarCantantes(lista);
+    }
+
+}
