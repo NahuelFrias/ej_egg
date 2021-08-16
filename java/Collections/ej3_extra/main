@@ -1,14 +1,50 @@
 package app;
 
 import app.services.Services;
+import java.util.Scanner;
 
 public class App {
 
-    public static void main(String[] args) {
+    public static void menu() {
 
+        Scanner sc = new Scanner(System.in).useDelimiter("\n");
         Services s = new Services();
 
-        s.crearLibro();
+        System.out.println("Bienvenido!");
+        int option;
+
+        do {
+            System.out.println("\nQue desea hacer?:");
+            System.out.println("1.Crear un libro");
+            System.out.println("2.Prestar un libro");
+            System.out.println("3.Devolver un libro");
+            System.out.println("4.Mostrar lista de libros");
+            System.out.println("5.Salir");
+            option = sc.nextInt();
+            switch (option) {
+                case 1:
+                    s.crearLibro();
+                    break;
+                case 2:
+                    s.prestamo();
+                    break;
+                case 3:
+                    s.devolver();
+                    break;
+                case 4:
+                    s.mostrarLibros();
+                    break;
+                case 5:
+                    System.out.println("\nADIOS!");
+                    break;
+            }
+        } while (option != 5);
+
+    }
+
+    public static void main(String[] args) {
+
+        menu();
 
     }
 }
