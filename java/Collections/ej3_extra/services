@@ -1,0 +1,81 @@
+package app.services;
+
+import app.entidades.Libro;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Scanner;
+
+public class Services {
+
+    Scanner sc = new Scanner(System.in).useDelimiter("\n");
+    HashSet<Libro> listaLibros = new HashSet();
+    Libro l = new Libro();
+
+    public void crearLibro(){
+        
+        String option, titulo, autor, presta;
+        int ejemplares;
+
+        do {
+            System.out.print("Desea crear un nuevo libro? s/n: ");
+            option = sc.next();
+            if (option.equalsIgnoreCase("s")) {
+                System.out.println("Ingrese el titulo:");
+                titulo = sc.next();
+                System.out.println("Ingrese el autor:");
+                autor = sc.next();
+                System.out.println("Ingrese la cantidad de ejemplares:");
+                ejemplares = sc.nextInt();
+                Libro l = new Libro(titulo, autor, ejemplares);
+                listaLibros.add(l);
+            }else{
+                System.out.print("Desea prestar un libro? s/n: ");
+                presta = sc.next();
+                if(presta.equalsIgnoreCase("s")){
+                    prestamo();
+                }
+            }
+        } while (option.equalsIgnoreCase("s"));
+        
+    }
+
+    public void mostrarLibros(HashSet<Libro> lista) {
+        
+        System.out.println("\nLista de libros creados:");
+
+        lista.forEach((libro) -> {
+            System.out.println(libro);
+        });
+    }
+
+    private void prestamo() {
+        
+        Iterator <Libro> it = listaLibros.iterator();
+        String libro;
+        System.out.println("Ingrese el titulo del libro a prestar:");
+        libro = sc.next();
+        
+        /*
+        Busco el titulo del libro
+        decremento la cantidad de ejemplares
+        incremento la cantidad de prestados
+        */
+        listaLibros.stream().filter((libros) -> (libros.getTitulo().equalsIgnoreCase(libro))).map((libros) -> {
+            int numEj = libros.getNumEjemplares();
+            numEj--;
+            libros.setNumEjemplares(numEj);
+            return libros;
+        }).map((libros) -> {
+            int numPr = libros.getNumPrestados();
+            numPr++;
+            libros.setNumPrestados(numPr);
+            return libros;
+        }).forEachOrdered((_item) -> {
+            System.out.println("Libro prestado con exito!");         
+        });
+        
+        mostrarLibros(listaLibros);
+        crearLibro();
+    }
+
+}
