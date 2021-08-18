@@ -1,0 +1,33 @@
+package app;
+
+import app.entidades.Perro;
+import app.entidades.Persona;
+import app.services.Services;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class App {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in).useDelimiter("\n");
+        Services s = new Services();
+        
+        List<Perro>perros = new ArrayList();
+ 
+        Perro perro1 = new Perro("Zumo","Pitbull","Mediano", 3);
+        Perro perro2 = new Perro("Loco","Callejero","Mediano", 2);
+        perros.add(perro1);
+        perros.add(perro2);
+        Persona p1 = new Persona("Nahuel", "Frias", 364177884, 29, perro1, perros);
+        Persona p2 = new Persona();
+        p2.setNombre("Alvaro");
+        p2.setApellido("Morata");
+        p2.setPerro(perro2);
+        
+        System.out.println(p1);
+        System.out.println(p2);
+
+    }
+}
