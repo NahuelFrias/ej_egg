@@ -1,0 +1,92 @@
+package app.services;
+
+import app.entidades.Juego;
+import app.entidades.Jugador;
+import app.entidades.Revolver;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Services {
+
+    Scanner sc = new Scanner(System.in).useDelimiter("\n");
+    ArrayList<Jugador> jugadores = new ArrayList();
+
+    public void crearJugador() {
+
+        int contador = 0;
+
+        do {
+            Jugador j1 = new Jugador();
+            System.out.print("Ingrese id: ");
+            int id = sc.nextInt();
+            System.out.print("Ingrese nombre: ");
+            String nombre = sc.next();
+            j1.setId(id);
+            j1.setNombre(nombre);
+
+            jugadores.add(j1);
+            contador++;
+
+        } while (contador < 6);
+    }
+
+    public void llenarRevolver() {
+
+        Revolver r = new Revolver();
+
+        int posAc = (int) (Math.random() * 6) + 1;
+        int posAg = (int) (Math.random() * 6) + 1;
+
+        r.setPosActual(posAc);
+        r.setPosAgua(posAg);
+
+        crearJuego(r);
+
+    }
+
+    public void crearJuego(Revolver r) {
+
+        Juego juego = new Juego();
+        boolean var = false;
+
+        juego.setJugadores(jugadores);
+        juego.setRevolver(r);
+
+        for (Jugador jugador : jugadores) {
+            if (var = mojar(r)) {
+                System.out.println("El jugador " + jugador.getNombre()+jugador.getId() + " fue mojado!");
+                break;
+            } else {
+                System.out.println("El jugador " + jugador.getNombre()+jugador.getId() + " se salvo del agua!");
+                System.out.println("Posicion actual del tambor: "+r.getPosActual());
+                System.out.println("Posicion actual del agua: "+r.getPosAgua());
+                siguienteChorro(r);
+            }
+
+        }
+
+    }
+
+    public boolean mojar(Revolver r) {
+
+        int posAc = r.getPosActual();
+        int posAg = r.getPosAgua();
+
+        return posAc == posAg;
+        
+    }
+
+    private void siguienteChorro(Revolver r) {
+
+        int posAc = r.getPosActual();
+        if (posAc == 6) {
+            posAc = 1;
+            r.setPosActual(posAc);
+        } else {
+            posAc += 1;
+            r.setPosActual(posAc);
+        }
+
+    }
+
+}
