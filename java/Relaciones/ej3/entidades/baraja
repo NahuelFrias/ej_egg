@@ -1,0 +1,41 @@
+package app.entidades;
+
+import java.util.ArrayList;
+
+public class Baraja {
+
+    private ArrayList<Carta> baraja;
+    private ArrayList<Carta> barajaAux = new ArrayList();
+
+    public Baraja() {
+    }
+
+    public Baraja(ArrayList<Carta> baraja, ArrayList<Carta> barajaAux) {
+        this.baraja = baraja;
+        this.barajaAux = barajaAux;
+    }
+
+    public ArrayList<Carta> getBarajaAux() {
+        return barajaAux;
+    }
+
+    public void setBarajaAux(ArrayList<Carta> barajaAux) {
+        this.barajaAux = barajaAux;
+    }
+
+    public ArrayList<Carta> getBaraja() {
+        return baraja;
+    }
+
+    public void setBaraja(ArrayList<Carta> baraja) {
+        this.baraja = baraja;
+    }
+
+    public String toStringBaraja() {
+        return "Baraja{" + "baraja=" + baraja + '}';
+    }
+
+    public String toStringBarajaAux() {
+        return "Baraja{" + "baraja=" + barajaAux + '}';
+    }
+}
