@@ -1,0 +1,62 @@
+package app;
+
+import app.entidades.Baraja;
+import app.entidades.Carta;
+import app.services.Services;
+import java.util.Scanner;
+
+public class App {
+    
+    public static void menu(){
+        Scanner sc = new Scanner(System.in).useDelimiter("\n");
+        Services s = new Services();
+        Carta c = new Carta();
+        Baraja b = new Baraja();
+
+        int option;
+
+        do {
+            System.out.println("\nQue desea hacer?:\n"
+                    + "1.Crear una baraja\n"
+                    + "2.Barajar\n"
+                    + "3.Dar cartas\n"
+                    + "4.Ver la siguiente carta\n"
+                    + "5.Ver cartas disponibles\n"
+                    + "6.Ver cartas sacadas\n"
+                    + "7. Mostrar baraja entera\n"
+                    + "8.Salir");
+            option = sc.nextInt();
+            switch (option) {
+                case 1:
+                    b.setBaraja(c.crearCarta());
+                    break;
+                case 2:
+                    s.barajar(b.getBaraja());
+                    break;
+                case 3:
+                    s.darCartas(b.getBaraja(), b.getBarajaAux());
+                    break;
+                case 4:
+                    s.siguienteCarta(b.getBaraja());
+                    break;
+                case 5:
+                    s.cartasDisponibles(b.getBaraja());
+                    break;
+                case 6:
+                    s.cartasMonton(b.getBarajaAux());
+                    break;
+                case 7:
+                    s.mostrarBaraja(b.getBaraja());
+                    break;
+                case 8:
+                    System.out.println("Adios!");
+            }
+        } while (option != 8);
+    }
+
+    public static void main(String[] args) {
+
+        menu();
+    }
+
+}
