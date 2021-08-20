@@ -1,0 +1,59 @@
+package app.entidades;
+
+import Enum.Numeros;
+import Enum.Pintas;
+import java.util.ArrayList;
+
+public class Carta {
+
+    private Numeros numero;
+    private Pintas pinta;
+
+    public Carta() {
+    }
+
+    public Carta(Numeros numero, Pintas pinta) {
+        this.numero = numero;
+        this.pinta = pinta;
+    }
+
+    public ArrayList<Carta> crearCarta() {
+
+        Baraja baraja = new Baraja();
+        ArrayList<Carta> barajaCartas = new ArrayList();
+        int index = 0;
+
+        for (Pintas pin : Pintas.values()) {
+            for (Numeros num : Numeros.values()) {
+                Carta c = new Carta(num, pin);
+                barajaCartas.add(c);
+            }
+        }
+
+        System.out.println("\nBaraja creada con exito!");
+
+        return barajaCartas;
+
+    }
+
+    public Numeros getNumero() {
+        return numero;
+    }
+
+    public void setNumero(Numeros numero) {
+        this.numero = numero;
+    }
+
+    public Pintas getPinta() {
+        return pinta;
+    }
+
+    public void setPinta(Pintas pinta) {
+        this.pinta = pinta;
+    }
+
+    @Override
+    public String toString() {
+        return "Carta{" + "numero=" + numero + ", pinta=" + pinta + '}';
+    }
+}
