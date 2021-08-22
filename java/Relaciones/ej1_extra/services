@@ -1,0 +1,125 @@
+package app.services;
+
+import app.entidades.Perro;
+import app.entidades.Persona;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Scanner;
+
+public class Services {
+
+    private final Scanner sc = new Scanner(System.in).useDelimiter("\n");
+    ArrayList<Perro> perrosList = new ArrayList();
+    ArrayList<Perro> perrosAdopt = new ArrayList();
+    ArrayList<Persona> personaList = new ArrayList();
+
+    public void crearPerro() {
+
+        Perro p1 = new Perro("Coki");
+        Perro p2 = new Perro("Mara");
+        Perro p3 = new Perro("Toto");
+        Perro p4 = new Perro("Loco");
+        Perro p5 = new Perro("Yumi");
+
+        perrosList.add(p1);
+        perrosList.add(p2);
+        perrosList.add(p3);
+        perrosList.add(p4);
+        perrosList.add(p5);
+
+    }
+
+    public void registro() {
+
+        System.out.println("Ingrese su nombre y apellido:");
+        String nombre = sc.next();
+        String apellido = sc.next();
+        System.out.println("Ingrese su edad:");
+        int edad = sc.nextInt();
+        System.out.println("Ingrese su numero de DNI:");
+        int dni = sc.nextInt();
+
+        Persona p = new Persona();
+
+        p.setNombre(nombre);
+        p.setApellido(apellido);
+        p.setEdad(edad);
+        p.setDni(dni);
+
+        personaList.add(p);
+
+    }
+
+    public void adoptarPerro() {
+
+        int contador = 0;
+
+        System.out.println("Ingrese nombre y dni:");
+        String nombre = sc.next();
+        int dni = sc.nextInt();
+
+        for (Persona persona : personaList) {
+            if (persona.getNombre().equalsIgnoreCase(nombre) && persona.getDni().equals(dni)) {
+                asignarPerro(persona);
+            } else {
+                contador++;
+            }
+        }
+        if (contador == personaList.size()) {
+            System.out.println("Persona no registrada. Intente de nuevo");
+        }
+    }
+
+    public void asignarPerro(Persona p) {
+
+        int contador = 0;
+
+        System.out.print("\nQue perro desea adoptar?: ");
+        String nomPerro = sc.next();
+
+        Iterator<Perro> it = perrosList.iterator();
+
+        for (Perro perro : perrosList) {
+            if (perro.getNombre().equalsIgnoreCase(nomPerro)) {
+                p.setPerro(perro);
+                while (it.hasNext()) {
+                    if (it.next().getNombre().equalsIgnoreCase(nomPerro)) {
+                        it.remove();
+                    }
+                }
+            } else {
+                contador++;
+            }
+        }
+        if (contador == perrosList.size()) {
+            System.out.println("El perro no existe o fue adoptado");
+        }
+
+    }
+
+    public void perrosAdopt() {
+
+        System.out.println("\nEstos son los perros que fueron adoptados:");
+
+        perrosAdopt.forEach((perro) -> {
+            System.out.println(perro);
+        });
+    }
+
+    public void perrosDisponibles() {
+
+        System.out.println("\nPerros disponibles para adopción:");
+
+        perrosList.forEach((perro) -> {
+            System.out.println(perro);
+        });
+    }
+
+    public void perrosYpersonas() {
+
+        personaList.forEach((persona) -> {
+            System.out.println(persona);
+        });
+
+    }
+}
