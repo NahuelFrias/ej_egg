@@ -1,0 +1,61 @@
+package app;
+
+import app.entidades.Perro;
+import app.entidades.Persona;
+import app.services.Services;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class App {
+
+    public static void menu() {
+        Scanner sc = new Scanner(System.in).useDelimiter("\n");
+        Services s = new Services();
+        Persona c = new Persona();
+        Perro b = new Perro();
+
+        ArrayList<Perro> listaPerros;
+
+        int option;
+
+        do {
+            System.out.println("\nQue desea hacer?:\n"
+                    + "1.Cargar todos los perros\n"
+                    + "2.Registrarse\n"
+                    + "3.Adoptar un perro\n"
+                    + "4.Ver perros disponibles\n"
+                    + "5.Ver perros adoptados\n"
+                    + "6.Ver personas con sus perros\n"
+                    + "7.Salir");
+            option = sc.nextInt();
+            switch (option) {
+                case 1:
+                    s.crearPerro();
+                    break;
+                case 2:
+                    s.registro();
+                    break;
+                case 3:
+                    s.adoptarPerro();
+                    break;
+                case 4:
+                    s.perrosDisponibles();
+                    break;
+                case 5:
+                    s.perrosAdopt();
+                    break;
+                case 6:
+                    s.perrosYpersonas();
+                    break;
+                case 7:
+                    System.out.println("Adios!");
+            }
+        } while (option != 7);
+    }
+
+    public static void main(String[] args) {
+
+        menu();
+    }
+
+}
