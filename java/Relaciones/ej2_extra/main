@@ -1,0 +1,24 @@
+package app;
+
+import app.entidades.Cine;
+import app.services.Services;
+import app.services.ServicesEspectador;
+import java.util.Scanner;
+
+public class App {
+
+    public static void main(String[] args) {
+
+        ServicesEspectador sp = new ServicesEspectador();
+        Services s = new Services();
+        Scanner sc = new Scanner(System.in).useDelimiter("\n");
+
+        Cine cine = s.crearCine();
+
+        sp.anadirEspectador(cine);
+
+        s.mostrarSala(cine);
+
+    }
+
+}
