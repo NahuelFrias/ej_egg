@@ -1,0 +1,52 @@
+package app.services;
+
+import app.entidades.Cine;
+import app.entidades.Pelicula;
+import app.entidades.Espectador;
+import java.util.Scanner;
+
+public class Services {
+
+    private final Scanner sc = new Scanner(System.in).useDelimiter("\n");
+    ServicesEspectador sp = new ServicesEspectador();
+    
+    public Pelicula crearPelicula(){
+        
+        System.out.println("Ingrese el titulo:");
+        String titulo = sc.next();
+        System.out.println("Ingrese la duracion:");
+        Double duracion = sc.nextDouble();
+        System.out.println("Ingrese el director:");
+        String director = sc.next();
+        System.out.println("Ingrese la edad minima:");
+        Integer edadMin = sc.nextInt();
+        
+        return new Pelicula(titulo, duracion, edadMin, director);
+        
+    }
+    
+    public Cine crearCine(){
+        
+        Pelicula p1 = crearPelicula();
+        
+        System.out.println("Ingrese el precio:");
+        double precio = sc.nextDouble();
+        
+        return new Cine(p1,precio);
+        
+    }
+    
+    public void mostrarSala(Cine cine){
+        
+        Espectador sala[][] = cine.getSala();
+        
+        for (int i = 0; i < sala.length; i++) {
+            for (int j = 0; j < sala[j].length; j++) {
+                System.out.println("["+sala[i][j]+"]");
+            }
+            System.out.println("");
+        }
+        
+    }
+    
+}
