@@ -1,0 +1,58 @@
+package app.services;
+
+import app.entidades.Cine;
+import app.entidades.Espectador;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Scanner;
+
+public class ServicesEspectador {
+
+    private final Scanner sc = new Scanner(System.in).useDelimiter("\n");
+    ArrayList<Espectador> espectadores = new ArrayList();
+
+    public ArrayList<Espectador> crearEspectador() {
+
+        String option;
+
+        do {
+            System.out.println("Ingrese el nombre:");
+            String nombre = sc.next();
+            System.out.println("Ingrese la edad:");
+            Integer edad = sc.nextInt();
+            System.out.println("Ingrese la cantidad de dinero:");
+            Double dinero = sc.nextDouble();
+
+            Espectador e = new Espectador(nombre, edad, dinero);
+
+            espectadores.add(e);
+
+            System.out.print("Desea crear otro espectador? s/n: ");
+            option = sc.next();
+
+        } while (option.equalsIgnoreCase("s"));
+
+        return espectadores;
+
+    }
+
+    public void anadirEspectador(Cine cine) {
+
+        ArrayList<Espectador> espectadoresCine = crearEspectador();
+        Espectador sala[][] = cine.getSala();
+        
+        Iterator <Espectador> it = espectadoresCine.iterator();
+        
+        while(it.hasNext()){
+            if(it.next().getDinero() >= cine.getPrecio() && it.next().getEdad() >= cine.getPelicula().getEdadMin()){
+                for (int i = 0; i < sala[i].length; i++) {
+                    for (int j = 0; j < sala[j].length; j++) {
+                        if (sala[i][j] == null) {
+                            sala[i][j] = it.next();
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
