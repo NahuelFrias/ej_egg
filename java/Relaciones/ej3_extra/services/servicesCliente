@@ -1,0 +1,86 @@
+package app.services;
+
+import app.entidades.Auto;
+import app.entidades.Cliente;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Scanner;
+
+public class ServicesCliente {
+
+    private final Scanner sc = new Scanner(System.in).useDelimiter("\n");
+    ArrayList<Cliente> clientes = new ArrayList();
+
+    public ArrayList<Cliente> crearCliente() {
+
+        String option;
+
+        do {
+            System.out.println("Ingrese el nombre y apellido:");
+            String nombre = sc.next();
+            System.out.println("Ingrese dni:");
+            Integer dni = sc.nextInt();
+            System.out.println("Ingrese mail:");
+            String mail = sc.next();
+            System.out.println("Ingrese su domicilio:");
+            String domicilio = sc.next();
+            System.out.println("Ingrese su numero de telefono:");
+            Integer telefono = sc.nextInt();
+
+            Cliente c = new Cliente(nombre, dni, mail, domicilio, telefono, new ArrayList<Auto>());
+
+            clientes.add(c);
+
+            System.out.print("Desea crear otro cliente? s/n: ");
+            option = sc.next();
+
+        } while (option.equalsIgnoreCase("s"));
+
+        anadirAuto(clientes);
+
+        return clientes;
+
+    }
+
+    public void anadirAuto(ArrayList<Cliente> clientes) {
+
+        Iterator<Cliente> it = clientes.iterator();
+        ArrayList<Auto> autosCliente;
+        String option;
+        Cliente cliente;
+
+        while (it.hasNext()) {
+           
+            cliente = it.next();
+            
+            autosCliente = cliente.getAutos();
+            
+            System.out.println("Bienvenido "+cliente.getNombre()+", ingrese su auto/s:");
+            
+            do {
+
+                System.out.println("Ingrese marca:");
+                String marca = sc.next();
+                System.out.println("Ingrese modelo:");
+                String modelo = sc.next();
+                System.out.println("Ingrese año de fabricacion:");
+                Integer anio = sc.nextInt();
+                System.out.println("Ingrese numero de motor:");
+                Integer nMotor = sc.nextInt();
+                System.out.println("Ingrese numero de chasis:");
+                Integer nChasis = sc.nextInt();
+                System.out.println("Ingrese color:");
+                String color = sc.next();
+                System.out.println("Ingrese tipo:");
+                String tipo = sc.next();
+
+                Auto a = new Auto(marca, modelo, anio, nMotor, nChasis, color, tipo);
+
+                autosCliente.add(a);
+
+                System.out.print("Desea crear otro auto? s/n: ");
+                option = sc.next();
+            } while (option.equalsIgnoreCase("s"));
+        }
+    }
+}
