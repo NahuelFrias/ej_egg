@@ -1,0 +1,33 @@
+package app;
+
+import app.entidades.Cliente;
+import app.entidades.Poliza;
+
+import app.services.Services;
+import app.services.ServicesCliente;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class App {
+
+    public static void main(String[] args) {
+
+        ServicesCliente sp = new ServicesCliente();
+        Services s = new Services();
+        Scanner sc = new Scanner(System.in).useDelimiter("\n");
+        ArrayList<Cliente> clientes;
+        ArrayList<Poliza> polizas;
+
+        clientes = sp.crearCliente();
+        clientes.forEach((cliente) -> {
+            System.out.println(cliente);
+        });
+
+        polizas = s.crearPoliza(clientes);
+        polizas.forEach((poliza) -> {
+            System.out.println(poliza);
+        });
+
+    }
+
+}
