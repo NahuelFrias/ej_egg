@@ -1,0 +1,129 @@
+package app.entidades;
+
+public class Poliza {
+
+    private Auto auto;
+    private Cliente cliente;
+    private Integer nPoliza;
+    private Integer fInicio;
+    private Integer finPoliza;
+    private Double montoTotal;
+    private Integer cantCuotas;
+//    private Double montoCuotas;
+//    private String formaPago;
+    private Cuotas cuota;
+    private boolean granizo;
+    private Double montoMaxGra;
+    private String tipoCobertura;
+
+    public Poliza() {
+    }
+
+    public Poliza(Auto auto, Cliente cliente, Integer nPoliza, Integer fInicio, Integer finPoliza, Double montoTotal, Integer cantCuotas, Cuotas cuota, boolean granizo, Double montoMaxGra, String tipoCobertura) {
+        this.auto = auto;
+        this.cliente = cliente;
+        this.nPoliza = nPoliza;
+        this.fInicio = fInicio;
+        this.finPoliza = finPoliza;
+        this.montoTotal = montoTotal;
+        this.cantCuotas = cantCuotas;
+        this.cuota = cuota;
+        this.granizo = granizo;
+        this.montoMaxGra = montoMaxGra;
+        this.tipoCobertura = tipoCobertura;
+    }
+
+    public Auto getAuto() {
+        return auto;
+    }
+
+    public void setAuto(Auto auto) {
+        this.auto = auto;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Integer getnPoliza() {
+        return nPoliza;
+    }
+
+    public void setnPoliza(Integer nPoliza) {
+        this.nPoliza = nPoliza;
+    }
+
+    public Integer getfInicio() {
+        return fInicio;
+    }
+
+    public void setfInicio(Integer fInicio) {
+        this.fInicio = fInicio;
+    }
+
+    public Integer getFinPoliza() {
+        return finPoliza;
+    }
+
+    public void setFinPoliza(Integer finPoliza) {
+        this.finPoliza = finPoliza;
+    }
+
+    public Double getMontoTotal() {
+        return montoTotal;
+    }
+
+    public void setMontoTotal(Double montoTotal) {
+        this.montoTotal = montoTotal;
+    }
+
+    public Integer getCantCuotas() {
+        return cantCuotas;
+    }
+
+    public void setCantCuotas(Integer cantCuotas) {
+        this.cantCuotas = cantCuotas;
+    }
+
+    public Cuotas getCuota() {
+        return cuota;
+    }
+
+    public void setCuota(Cuotas cuota) {
+        this.cuota = cuota;
+    }
+
+    public boolean isGranizo() {
+        return granizo;
+    }
+
+    public void setGranizo(boolean granizo) {
+        this.granizo = granizo;
+    }
+
+    public Double getMontoMaxGra() {
+        return montoMaxGra;
+    }
+
+    public void setMontoMaxGra(Double montoMaxGra) {
+        this.montoMaxGra = montoMaxGra;
+    }
+
+    public String getTipoCobertura() {
+        return tipoCobertura;
+    }
+
+    public void setTipoCobertura(String tipoCobertura) {
+        this.tipoCobertura = tipoCobertura;
+    }
+
+    @Override
+    public String toString() {
+        return "Poliza{" + "auto=" + auto + ", cliente=" + cliente + ", nPoliza=" + nPoliza + ", fInicio=" + fInicio + ", finPoliza=" + finPoliza + ", montoTotal=" + montoTotal + ", cantCuotas=" + cantCuotas + ", cuota=" + cuota + ", granizo=" + granizo + ", montoMaxGra=" + montoMaxGra + ", tipoCobertura=" + tipoCobertura + '}';
+    }
+
+}
