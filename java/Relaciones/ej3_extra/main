@@ -1,9 +1,3 @@
-package app;
-
-import app.entidades.Cliente;
-import app.entidades.Poliza;
-
-import app.services.Services;
 import app.services.ServicesCliente;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -24,9 +18,12 @@ public class App {
         });
 
         polizas = s.crearPoliza(clientes);
+
         polizas.forEach((poliza) -> {
             System.out.println(poliza);
         });
+
+        s.pagarCuota(polizas, clientes);
 
     }
 
