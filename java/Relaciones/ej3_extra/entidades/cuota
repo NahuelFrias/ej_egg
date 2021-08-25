@@ -1,0 +1,68 @@
+package app.entidades;
+
+public class Cuotas {
+    
+    private Integer nCuota;
+    private Double montoCuota;
+    private boolean pagada;
+    private Integer fVencimiento;
+    private String formaPago;
+
+    public Cuotas() {
+    }
+
+    public Cuotas(Integer nCuota, Double montoCuota, boolean pagada, Integer fVencimiento, String formaPago) {
+        this.nCuota = nCuota;
+        this.montoCuota = montoCuota;
+        this.pagada = pagada;
+        this.fVencimiento = fVencimiento;
+        this.formaPago = formaPago;
+    }
+
+    public Integer getnCuota() {
+        return nCuota;
+    }
+
+    public void setnCuota(Integer nCuota) {
+        this.nCuota = nCuota;
+    }
+
+    public Double getMontoCuota() {
+        return montoCuota;
+    }
+
+    public void setMontoCuota(Double montoCuota) {
+        this.montoCuota = montoCuota;
+    }
+
+    public boolean isPagada() {
+        return pagada;
+    }
+
+    public void setPagada(boolean pagada) {
+        this.pagada = pagada;
+    }
+
+    public Integer getfVencimiento() {
+        return fVencimiento;
+    }
+
+    public void setfVencimiento(Integer fVencimiento) {
+        this.fVencimiento = fVencimiento;
+    }
+
+    public String getFormaPago() {
+        return formaPago;
+    }
+
+    public void setFormaPago(String formaPago) {
+        this.formaPago = formaPago;
+    }
+
+    @Override
+    public String toString() {
+        return "Cuotas{" + "nCuota=" + nCuota + ", montoCuota=" + montoCuota + ", pagada=" + pagada + ", fVencimiento=" + fVencimiento + ", formaPago=" + formaPago + '}';
+    }
+    
+    
+}
