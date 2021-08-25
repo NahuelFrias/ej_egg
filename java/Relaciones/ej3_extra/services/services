@@ -1,0 +1,180 @@
+package app.services;
+
+import app.entidades.Poliza;
+import app.entidades.Auto;
+import app.entidades.Cliente;
+import app.entidades.Cuotas;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Services {
+
+    private final Scanner sc = new Scanner(System.in).useDelimiter("\n");
+    ServicesCliente sp = new ServicesCliente();
+    ArrayList<Auto> autos = new ArrayList();
+
+    public ArrayList<Poliza> crearPoliza(ArrayList<Cliente> clientes) {
+
+        Iterator<Cliente> it = clientes.iterator();
+        ArrayList<Poliza> polizas = new ArrayList();
+
+        String poliza;
+        String polizaAuto;
+        double montoTotal;
+        double cuotas;
+        double montoParcial = 0;
+        boolean cobGranizo;
+        double montoMaxGra;
+        Auto auto;
+        Cliente cliente;
+//        Cuotas cuota;
+        int canCuotas;
+
+//        Cuotas cuota = new Cuotas();
+        while (it.hasNext()) {
+
+            cliente = it.next();
+            System.out.println(cliente.getNombre() + " desea una poliza?");
+            poliza = sc.next();
+
+            if (poliza.equalsIgnoreCase("s")) {
+
+                autos = cliente.getAutos();
+
+                Iterator<Auto> itA = autos.iterator();
+
+                while (itA.hasNext()) {
+
+                    auto = itA.next();
+                    System.out.println("Desea poliza en este auto?: " + auto);
+                    polizaAuto = sc.next();
+
+                    if (polizaAuto.equalsIgnoreCase("s")) {
+
+                        Random aleatorio = new Random(System.currentTimeMillis());
+
+                        int nPoliza = aleatorio.nextInt(1000);
+
+                        System.out.println("Elija el tipo de cobertura:\n"
+                                + "Total\n"
+                                + "Contra terceros");
+                        String cobertura = sc.next();
+
+                        if (cobertura.equalsIgnoreCase("Total")) {
+                            montoParcial = 1500;
+                            System.out.println("Su monto parcial es: " + montoParcial);
+                        } else if (cobertura.equalsIgnoreCase("contra terceros")) {
+                            montoParcial = 1000;
+                            System.out.println("Su monto parcial es: " + montoParcial);
+                        }
+
+                        System.out.println("Elija forma de pago");
+                        String formaPago = sc.next();
+
+                        if (formaPago.equalsIgnoreCase("tarjeta")) {
+
+                            System.out.println("Elija cantidad de cuotas: 3,6,12");
+                            canCuotas = sc.nextInt();
+
+                            System.out.print("Desea cobertura contra granizo? s/n: ");
+                            String granizo = sc.next();
+                            if (granizo.equalsIgnoreCase("s")) {
+                                cobGranizo = true;
+                                System.out.println("Que cobertura desea? $300 o $450");
+                                montoMaxGra = sc.nextDouble();
+                            } else {
+                                cobGranizo = false;
+                                montoMaxGra = 0;
+                            }
+                            montoTotal = montoParcial + montoMaxGra;
+                            cuotas = montoTotal / canCuotas;
+
+                            Cuotas cuota = new Cuotas(1, cuotas, false, 1, formaPago);
+                            Poliza p = new Poliza(auto, cliente, nPoliza, 2021, 2022, montoTotal, canCuotas, cuota, cobGranizo, montoMaxGra, cobertura);
+                            polizas.add(p);
+                        } else {
+                            canCuotas = 0;
+                            System.out.print("Desea cobertura contra granizo? s/n: ");
+                            String granizo = sc.next();
+                            if (granizo.equalsIgnoreCase("s")) {
+                                cobGranizo = true;
+                                System.out.println("Que cobertura desea? $300 o $450");
+                                montoMaxGra = sc.nextDouble();
+                            } else {
+                                cobGranizo = false;
+                                montoMaxGra = 0;
+                            }
+                            Cuotas cuota = new Cuotas();
+                            montoTotal = montoParcial + montoMaxGra;
+                            Poliza p = new Poliza(auto, cliente, nPoliza, 2021, 2022, montoTotal, canCuotas, cuota, cobGranizo, montoMaxGra, cobertura);
+                            polizas.add(p);
+                        }
+
+//                        Poliza p = new Poliza(auto, cliente, nPoliza, 2021, 2022, montoTotal, canCuotas, cuota, cobGranizo, montoMaxGra, cobertura);
+//                        polizas.add(p);
+                    }
+                }
+            }
+        }
+        return polizas;
+    }
+
+    public void pagarCuota(ArrayList<Poliza> polizas, ArrayList<Cliente> clientes) {
+        
+        
+        System.out.println("Bienvenido al pago de cuotas");
+
+        System.out.println("Ingrese su nombre:");
+        String nombre = sc.next();
+
+        Poliza poliza;
+        String option;
+        Integer cantCuotas;
+
+        Iterator<Cliente> it = clientes.iterator();
+        Iterator<Poliza> itp = polizas.iterator();
+
+        while (it.hasNext()) {
+
+            String nomCliente = it.next().getNombre();
+
+            if (nombre.equalsIgnoreCase(nomCliente)) {
+
+                System.out.println("Bienvenido " + nombre + " ingrese el numero de poliza:");
+                int numPo = sc.nextInt();
+
+                while (itp.hasNext()) {
+                    poliza = itp.next();
+                    int num = poliza.getnPoliza();
+                    if (num == numPo) {
+
+                        if (poliza.getCantCuotas() > 0) {
+
+                            cantCuotas = poliza.getCantCuotas();
+
+                            System.out.println("Ustede tiene " + cantCuotas + " cuotas");
+                            System.out.println("El monto a pagar por cuota es: " + poliza.getCuota().getMontoCuota());
+                            System.out.println("Desea pagarlo?: s/n");
+                            option = sc.next();
+                            if (option.equalsIgnoreCase("s")) {
+                                poliza.setCantCuotas(cantCuotas - 1);
+                                poliza.getCuota().setPagada(true);
+                            }
+                        } else {
+                            System.out.println("Usted no tiene cuotas por pagar");
+                        }
+                    } else {
+                        System.out.println("Numero de poliza inexistente");
+                    }
+                }
+
+            } else {
+                System.out.println("Cliente inexistente");
+            }
+        }
+
+    }
+
+}
