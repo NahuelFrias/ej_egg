@@ -1,0 +1,108 @@
+package app.services;
+
+import app.entidades.Alumno;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Scanner;
+import java.util.Set;
+
+public class Simulador {
+
+    private final Scanner sc = new Scanner(System.in).useDelimiter("\n");
+    ServicesAlumno sp = new ServicesAlumno();
+    ArrayList<Alumno> alumnos = new ArrayList();
+    ArrayList<String> aux = new ArrayList();
+    ArrayList<String> auxi = new ArrayList();
+    ArrayList<Integer> dnis = new ArrayList();
+    Random random = new Random();
+
+    public ArrayList<Alumno> crearAlumnos() {
+
+        int contador = 0;
+        String nombre;
+        String apellido;
+        Integer dni;
+
+        aux = sp.llenarNombres();
+        auxi = sp.llenarApellidos();
+        dnis = sp.llenarDni();
+
+        while (contador < 10) {
+
+            nombre = aux.get(random.nextInt(aux.size()));
+            apellido = auxi.get(random.nextInt(auxi.size()));
+            dni = dnis.get(random.nextInt(dnis.size()));
+
+            Alumno a = new Alumno();
+            a.setNombre(nombre);
+            a.setApellido(apellido);
+            a.setDni(dni);
+
+            dnis.remove(dni);
+
+            alumnos.add(a);
+            contador++;
+
+        }
+        alumnos.forEach((alumno) -> {
+            System.out.println(alumno);
+        });
+
+        return alumnos;
+    }
+
+    public void votacion(ArrayList<Alumno> alumnos) {
+
+        Set<String> alumVot;
+
+        String alumAux;
+        Alumno alumAuxi;
+        int votos;
+        int contador = 0;
+
+        for (Alumno alumno : alumnos) {
+            alumVot = votos(alumnos, alumno);
+            alumno.setAlumnosVotos(alumVot);
+        }
+
+        for (Alumno alumno : alumnos) {
+            System.out.println(alumno.getNombre() + " " + alumno.getApellido() + " voto a:\n"
+                    + alumno.getAlumnosVotos());
+        }
+
+        ordenamientoFacilitadores(alumnos);
+    }
+
+    public Set<String> votos(ArrayList<Alumno> alumnos, Alumno a) {
+
+        Set<String> alumVot = new HashSet();
+
+        String alumAux;
+        Alumno alumAuxi;
+        int votos;
+
+        while (alumVot.size() < 3) {
+            alumAuxi = alumnos.get(random.nextInt(alumnos.size()));
+            if (!a.equals(alumAuxi)) {
+                alumAuxi.setCantVotos(alumAuxi.getCantVotos() + 1);
+                alumAux = alumAuxi.getNombre() + " " + alumAuxi.getApellido();
+                alumVot.add(alumAux);
+            }
+        }
+        return alumVot;
+    }
+
+    public void ordenamientoFacilitadores(ArrayList<Alumno> alumnos) {
+
+        Collections.sort(alumnos, Collections.reverseOrder());
+
+        int contador = 0;
+
+        for (Alumno alumno : alumnos) {
+            contador++;
+            System.out.println("Facilitadores: " + contador + "° " + alumno.getNombre() + " " + alumno.getApellido() + ". Votos: " + alumno.getCantVotos());
+        }
+    }
+}
