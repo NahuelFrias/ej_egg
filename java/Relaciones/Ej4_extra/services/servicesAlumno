@@ -1,0 +1,66 @@
+package app.services;
+
+import app.entidades.Alumno;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class ServicesAlumno {
+
+    private final Scanner sc = new Scanner(System.in).useDelimiter("\n");
+    ArrayList<String> nombres = new ArrayList();
+    ArrayList<String> apellidos = new ArrayList();
+    ArrayList<Alumno> clientes = new ArrayList();
+
+    public ArrayList<String> llenarNombres() {
+
+        nombres.add("Nahuel");
+        nombres.add("Cata");
+        nombres.add("Rosa");
+        nombres.add("Teresa");
+        nombres.add("Juan");
+        nombres.add("Alberto");
+        nombres.add("Leo");
+        nombres.add("Silvia");
+        nombres.add("Facundo");
+        nombres.add("Coki");
+        
+        return nombres;
+    }
+
+    public ArrayList<String> llenarApellidos() {
+        
+        apellidos.add("Frias");
+        apellidos.add("Murua");
+        apellidos.add("Perez");
+        apellidos.add("Miras");
+        apellidos.add("Pinnola");
+        apellidos.add("Lopez");
+        apellidos.add("Messi");
+        apellidos.add("Schumagger");
+        apellidos.add("Bolt");
+        apellidos.add("Perruno");
+        
+        return apellidos;
+    }
+
+    public ArrayList<Integer> llenarDni() {
+
+        ArrayList<Integer> dnis = new ArrayList();
+
+        int contador = 0;
+
+        while (contador < 10) {
+
+            int dni = (int) Math.floor(Math.random() * (46000000 - 30000000 + 1) + 30000000);
+            dnis.add(dni);
+            contador++;
+
+        }
+        return dnis;
+
+    }
+
+    public void crearAlumno() {
+
+    }
+}
