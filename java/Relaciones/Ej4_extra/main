@@ -1,0 +1,22 @@
+package app;
+
+import app.entidades.Alumno;
+
+import app.services.Simulador;
+import app.services.ServicesAlumno;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class App {
+
+    public static void main(String[] args) {
+
+        ServicesAlumno sp = new ServicesAlumno();
+        Simulador s = new Simulador();
+        Scanner sc = new Scanner(System.in).useDelimiter("\n");
+
+        ArrayList<Alumno> a;
+        a = s.crearAlumnos();
+        s.votacion(a);
+    }
+}
