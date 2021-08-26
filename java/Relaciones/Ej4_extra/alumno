@@ -1,0 +1,74 @@
+package app.entidades;
+
+import java.util.Set;
+
+public class Alumno implements Comparable<Alumno> {
+
+    private String nombre;
+    private String apellido;
+    private Integer dni;
+    private Integer cantVotos = 0;
+    private Set<String> alumnosVotos;
+
+    public Alumno() {
+    }
+
+    public Alumno(String nombre, String apellido, Integer dni, Integer cantVotos, Set<String> alumnosVotos) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.cantVotos = cantVotos;
+        this.alumnosVotos = alumnosVotos;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Integer getDni() {
+        return dni;
+    }
+
+    public void setDni(Integer dni) {
+        this.dni = dni;
+    }
+
+    public Integer getCantVotos() {
+        return cantVotos;
+    }
+
+    public void setCantVotos(Integer cantVotos) {
+        this.cantVotos = cantVotos;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public Set<String> getAlumnosVotos() {
+        return alumnosVotos;
+    }
+
+    public void setAlumnosVotos(Set<String> alumnosVotos) {
+        this.alumnosVotos = alumnosVotos;
+    }
+
+    @Override
+    public String toString() {
+        return "Alumno{" + "nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", cantVotos=" + cantVotos + ", alumnosVotos=" + alumnosVotos + '}';
+    }
+
+    @Override
+    public int compareTo(Alumno o) {
+        return (this.cantVotos).compareTo(o.getCantVotos());
+    }
+
+}
