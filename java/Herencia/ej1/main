@@ -1,0 +1,34 @@
+package app;
+
+import SuperClases.Animal;
+import app.entidades.Caballo;
+import app.entidades.Gato;
+import app.entidades.Perro;
+
+import java.util.Scanner;
+
+public class App {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in).useDelimiter("\n");
+
+        Animal perro = new Perro("Coki", "Callejero", 10, "Omnivoro");
+        perro.alimentacion(perro.getNombre(), perro.getRaza());
+
+        Perro perro1 = new Perro("Toto", "Callejero", 2, "Carnivoro");
+
+        perro1.alimentacion(perro1.getNombre(), perro1.getRaza());
+
+        Animal gato = new Gato("Bigotes", "Persian", 5, "Croquetas para gato");
+        gato.alimentacion(gato.getNombre(), gato.getRaza());
+
+        Animal caballo = new Caballo("Spirit", "Caballito de mar", 7, "Vegano");
+        caballo.alimentacion(caballo.getNombre(), caballo.getRaza());
+
+        System.out.println(perro);
+        System.out.println(caballo);
+        System.out.println(gato);
+
+    }
+}
