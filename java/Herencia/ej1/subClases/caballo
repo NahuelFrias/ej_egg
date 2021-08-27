@@ -1,0 +1,18 @@
+package app.entidades;
+
+import SuperClases.Animal;
+
+public class Caballo extends Animal {
+
+    public Caballo() {
+    }
+
+    public Caballo(String nombre, String raza, Integer edad, String alimento) {
+        super(nombre, raza, edad, alimento);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+}
