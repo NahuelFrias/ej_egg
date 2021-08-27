@@ -1,0 +1,63 @@
+package SuperClases;
+
+public class Animal {
+
+    protected String nombre;
+    protected String raza;
+    protected Integer edad;
+    protected String alimento;
+
+    public Animal() {
+    }
+
+    public Animal(String nombre, String raza, Integer edad, String alimento) {
+        this.nombre = nombre;
+        this.raza = raza;
+        this.edad = edad;
+        this.alimento = alimento;
+    }
+
+    public void alimentacion(String nombre, String raza) {
+
+        System.out.println("El " + nombre + ", es un " + raza + " y su alimentacion es: " + alimento);
+
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getRaza() {
+        return raza;
+    }
+
+    public void setRaza(String raza) {
+        this.raza = raza;
+    }
+
+    public Integer getEdad() {
+        return edad;
+    }
+
+    public void setEdad(Integer edad) {
+        this.edad = edad;
+    }
+
+    public String getAlimento() {
+        return alimento;
+    }
+
+    public void setAlimento(String alimento) {
+        this.alimento = alimento;
+    }
+
+    @Override
+    public String toString() {
+        return "Animal{" + "nombre=" + nombre + ", raza=" + raza + ", edad en años del animal=" + edad + ", alimento=" + alimento + '}';
+    }
+
+}
