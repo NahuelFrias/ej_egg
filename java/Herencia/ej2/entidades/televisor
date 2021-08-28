@@ -1,0 +1,80 @@
+package app.entidades;
+
+import SuperClases.Electrodomestico;
+import java.util.Scanner;
+
+public class Televisor extends Electrodomestico {
+
+    private Integer resolucion;
+    private boolean tdt;
+
+    Scanner sc = new Scanner(System.in).useDelimiter("\n");
+
+    public Televisor() {
+    }
+
+    public Televisor(Integer resolucion, boolean tdt, String color, String consumo, Double precio, Double peso) {
+        super(color, consumo, precio, peso);
+        this.resolucion = resolucion;
+        this.tdt = tdt;
+    }
+
+    public Integer getResolucion() {
+        return resolucion;
+    }
+
+    public void setResolucion(Integer resolucion) {
+        this.resolucion = resolucion;
+    }
+
+    public boolean isTdt() {
+        return tdt;
+    }
+
+    public void setTdt(boolean tdt) {
+        this.tdt = tdt;
+    }
+
+    public void crearTelevisor() {
+
+        boolean t;
+
+        System.out.println("Bienvenido a crear Televisor");
+
+        System.out.println("Ingrese la resolución en pulgadas:");
+        int res = sc.nextInt();
+        System.out.println("El televisor tiene sintonizador TDT?: s/n");
+        String option = sc.next();
+
+        t = option.equalsIgnoreCase("s");
+
+        Electrodomestico e = super.crearElectrodomestico();
+        String col = e.getColor();
+        String cons = e.getConsumo();
+        Double pre = e.getPrecio();
+        Double pes = e.getPeso();
+
+        Double precioFin = precioFin(pre, res, t);
+
+        Televisor tel = new Televisor(res, t, col, cons, precioFin, pes);
+
+        System.out.println(tel);
+    }
+
+    public Double precioFin(Double precio, int resolucion, boolean t) {
+
+        if (resolucion >= 40) {
+            precio += precio * 0.3;
+        }
+        if (t) {
+            precio += 500;
+        }
+        return precio;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Tipo: Televisor{" + "resolucion=" + resolucion + ", tdt=" + tdt + '}';
+    }
+
+}
