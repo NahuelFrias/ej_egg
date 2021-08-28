@@ -1,0 +1,154 @@
+package SuperClases;
+
+import Enum.Color;
+import java.util.Scanner;
+
+public class Electrodomestico {
+
+    protected String color;
+    protected String consumo;
+    protected Double precio;
+    protected Double peso;
+
+    Scanner sc = new Scanner(System.in).useDelimiter("\n");
+
+    public Electrodomestico() {
+    }
+
+    public Electrodomestico(String color, String consumo, Double precio, Double peso) {
+        this.color = color;
+        this.consumo = consumo;
+        this.precio = precio;
+        this.peso = peso;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getConsumo() {
+        return consumo;
+    }
+
+    public void setConsumo(String consumo) {
+        this.consumo = consumo;
+    }
+
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
+
+    public Double getPeso() {
+        return peso;
+    }
+
+    public void setPeso(Double peso) {
+        this.peso = peso;
+    }
+
+    public Double comprobarConsumo(String cons) {
+
+        switch (cons) {
+            case "A":
+                precio = 1000d + 1000d;
+                break;
+            case "B":
+                precio = 1000d + 800d;
+                break;
+            case "C":
+                precio = 1000d + 600d;
+                break;
+            case "D":
+                precio = 1000d + 500d;
+                break;
+            case "E":
+                precio = 1000d + 300d;
+                break;
+            default:
+                precio = 1000d + 100d;
+                break;
+        }
+        return precio;
+    }
+
+    public String comprobarColor(String colo) {
+
+        int contador = 0;
+
+        for (Color col : Color.values()) {
+            if (colo.equalsIgnoreCase(col.getColor())) {
+                System.out.println("El color es correcto");
+                color = colo;
+                break;
+            } else {
+                contador++;
+                if (contador == 5) {
+                    System.out.println("Color incorrecto.Se asignara BLANCO");
+                    color = colo;
+                }
+            }
+        }
+        return color;
+    }
+
+    public Double comprobarPeso(double peso) {
+
+        double precioPeso;
+
+        if (peso >= 1 && peso <= 19) {
+            precioPeso = 100;
+        } else if (peso >= 20 && peso <= 49) {
+            precioPeso = 500;
+        } else if (peso >= 50 && peso <= 79) {
+            precioPeso = 800;
+        } else {
+            precioPeso = 1000;
+        }
+
+        return precioPeso;
+    }
+
+    public Double precioFinal(Double precio, Double precioPeso) {
+
+        Double precioFinal;
+        precioFinal = precio + precioPeso;
+
+        return precioFinal;
+
+    }
+
+    public Electrodomestico crearElectrodomestico() {
+
+        System.out.print("Ingrese el color: ");
+        String colo = comprobarColor(sc.next());
+        //consumo
+        System.out.print("Ingrese el consumo: ");
+        String consu = sc.next();
+        Double pre = comprobarConsumo(consu.toUpperCase().substring(0, 0));
+        //peso
+        System.out.print("Ingrese el peso: ");
+        Double pes = sc.nextDouble();
+        Double precioPeso = comprobarPeso(pes);
+
+        Double precioFin = precioFinal(pre, precioPeso);
+
+        Electrodomestico e = new Electrodomestico(colo, consu, precioFin, pes);
+
+        return e;
+
+    }
+
+    @Override
+    public String toString() {
+        return "Electrodomestico{" + "color=" + color + ", consumo=" + consumo + ", precio=" + precio + ", peso=" + peso + '}';
+    }
+
+}
