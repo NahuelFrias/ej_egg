@@ -1,0 +1,10 @@
+package Interfaces;
+
+public interface calculoFormas {
+    
+    final Double PI = 3.14;
+    
+    public void calcularArea();
+    public void calcularPerimetro();
+    
+}
