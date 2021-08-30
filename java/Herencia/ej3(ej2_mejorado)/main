@@ -1,0 +1,59 @@
+package app;
+
+import SuperClases.Electrodomestico;
+import app.entidades.Lavadora;
+import app.entidades.Televisor;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class App {
+
+    public static void menu() {
+
+        ArrayList<Electrodomestico> electrodomesticos = new ArrayList();
+        Scanner sc = new Scanner(System.in).useDelimiter("\n");
+        int opcion;
+        
+        System.out.println("BIENVENIDO!");
+
+        do {
+            System.out.println("\nQue desea hacer?\n"
+                    + "1.Comprar Televisor\n"
+                    + "2.Comprar Lavadora\n"
+                    + "3.Salir y ver lista de electrodomesticos");
+            opcion = sc.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    Televisor t = new Televisor();
+                    Televisor tel = t.crearTelevisor();
+                    electrodomesticos.add(tel);
+                    break;
+                case 2:
+                    Lavadora l = new Lavadora();
+                    Lavadora lav = l.crearLavadora();
+                    electrodomesticos.add(lav);
+                    break;
+                default:
+                    System.out.println("Adios!");
+                    break;
+            }
+        } while (opcion == 1 || opcion == 2);
+
+        double sumaPrecio = 0;
+
+        System.out.println("\nLista de electrodomesticos comprados:");
+
+        for (Electrodomestico electrodomestico : electrodomesticos) {
+
+            System.out.println(electrodomestico);
+            System.out.println("Precio del electrodomestico: $" + electrodomestico.getPrecio());
+            sumaPrecio += electrodomestico.getPrecio();
+        }
+        System.out.println("\nEl precio total de los electrodomesticos es: $" + sumaPrecio);
+    }
+
+    public static void main(String[] args) {
+        menu();
+    }
+}
