@@ -1,0 +1,17 @@
+package app;
+
+import app.entidades.Circulo;
+import app.entidades.Cuadrado;
+
+public class App {
+
+    public static void main(String[] args) {
+        System.out.println("Bienvenido!");
+        
+        Circulo c = new Circulo();
+        c.crearCirculo();
+        
+        Cuadrado cua = new Cuadrado();
+        cua.crearCuadrado();
+    }
+}
