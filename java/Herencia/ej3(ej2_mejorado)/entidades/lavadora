@@ -1,0 +1,58 @@
+package app.entidades;
+
+import SuperClases.Electrodomestico;
+import java.util.Scanner;
+
+public class Lavadora extends Electrodomestico {
+
+    private Double carga;
+
+    Scanner sc = new Scanner(System.in).useDelimiter("\n");
+
+    public Lavadora() {
+    }
+
+    public Lavadora(Double carga, String color, String consumo, Double precio, Double peso) {
+        super(color, consumo, precio, peso);
+        this.carga = carga;
+    }
+
+    public Double getCarga() {
+        return carga;
+    }
+
+    public void setCarga(Double carga) {
+        this.carga = carga;
+    }
+
+    public Lavadora crearLavadora() {
+
+        System.out.println("\nCREAR LAVADORA");
+
+        System.out.println("Ingrese la carga en kilos:");
+        Double car = sc.nextDouble();
+
+        Electrodomestico e = super.crearElectrodomestico();
+
+        Double precioFin = precioFin(e.getPrecio(), car);
+
+        Lavadora l = new Lavadora(car, e.getColor(), e.getConsumo(), precioFin, e.getPeso());
+
+        return l;
+    }
+
+    public Double precioFin(Double precio, Double carga) {
+
+        if (carga > 30) {
+            System.out.println("Se suma $500 por tener carga mayor a 30kg.");
+            precio += 500;
+        }
+        return precio;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Tipo: Lavadora{" + "carga=" + carga + '}';
+    }
+
+}
