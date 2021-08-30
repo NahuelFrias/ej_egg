@@ -1,10 +1,42 @@
-package Interfaces;
+package app.entidades;
 
-public interface calculoFormas {
+import Interfaces.calculoFormas;
+import java.util.Scanner;
+
+public class Circulo implements calculoFormas {
     
-    final Double PI = 3.14;
+    private Double radio;
+    Scanner sc = new Scanner(System.in).useDelimiter("\n");
+
+    public Circulo() {
+    }
+
+    public Circulo(Double radio) {
+        this.radio = radio;
+    }
     
-    public void calcularArea();
-    public void calcularPerimetro();
-    
+    public void crearCirculo(){
+        System.out.println("\nIngrese el radio del circulo:");
+        double r = sc.nextDouble();
+        Circulo c = new Circulo(r);
+        c.calcularArea();
+        c.calcularPerimetro();
+    }
+
+    @Override
+    public void calcularArea() {
+
+        double area = PI * Math.pow(radio, 2);
+        
+        System.out.println("Area del circulo: "+area);
+    }
+
+    @Override
+    public void calcularPerimetro() {
+        
+        double perimetro = PI*(radio*2);
+        
+        System.out.println("Perimetro del circulo es: "+perimetro);
+    }
+
 }
