@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class Cuadrado implements calculoFormas {
+
+    private Double base;
+    private Double altura;
+
+    Scanner sc = new Scanner(System.in).useDelimiter("\n");
+
+    public Cuadrado() {
+    }
+
+    public Cuadrado(Double base, Double altura) {
+        this.base = base;
+        this.altura = altura;
+    }
+
+    public void crearCuadrado() {
+        System.out.println("\nIngrese la base del cuadrado:");
+        double b = sc.nextDouble();
+        System.out.println("Ingrese la altura del cuadrado:");
+        double a = sc.nextDouble();
+        
+        Cuadrado cua = new Cuadrado(b,a);
+        
+        cua.calcularArea();
+        cua.calcularPerimetro();
+    }
+
+    @Override
+    public void calcularArea() {
+        double area = base * altura;
+        System.out.println("Area del rectangulo: " + area);
+    }
+
+    @Override
+    public void calcularPerimetro() {
+        double perimetro = (base + altura) * 2;
+        System.out.println("Perimetro del rectangulo: "+perimetro);
+    }
+
+}
