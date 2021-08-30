@@ -1,0 +1,36 @@
+package Enum;
+
+public enum Color {
+    BLANCO("Blanco"), NEGRO("Negro"), ROJO("Rojo"), AZUL("Azul"), GRIS("Gris");
+
+    private final String color;
+
+    private Color(String color) {
+        this.color = color;
+    }
+
+    public static Color getBLANCO() {
+        return BLANCO;
+    }
+
+    public static Color getNEGRO() {
+        return NEGRO;
+    }
+
+    public static Color getROJO() {
+        return ROJO;
+    }
+
+    public static Color getAZUL() {
+        return AZUL;
+    }
+
+    public static Color getGRIS() {
+        return GRIS;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+}
