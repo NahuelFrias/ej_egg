@@ -1,0 +1,80 @@
+package app.services;
+
+import SuperClases.Barco;
+import app.entidades.Alquiler;
+import app.entidades.BarcoAMotor;
+import app.entidades.Velero;
+import app.entidades.Yate;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
+public class ServicesAlquiler {
+
+    private final Scanner sc = new Scanner(System.in).useDelimiter("\n");
+    ServicesBarco sp = new ServicesBarco();
+
+    public void crearAlquiler() {
+        System.out.println("Ingrese su nombre:");
+        String nom = sc.next();
+        System.out.println("Ingrese dni:");
+        int dni = sc.nextInt();
+        System.out.println("Ingrese fecha de alquiler (dia-mes-año):");
+        int dia = sc.nextInt();
+        int mes = sc.nextInt();
+        int anio = sc.nextInt();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date fAlquiler = new Date();
+        fAlquiler.setDate(dia);
+        fAlquiler.setMonth(mes);
+        fAlquiler.setYear(anio);
+
+        System.out.println("Ingrese fecha de devolucion (dia-mes-año):");
+        int d = sc.nextInt();
+        int m = sc.nextInt();
+        int a = sc.nextInt();
+        Date fDevolucion = new Date();
+        fDevolucion.setDate(d);
+        fDevolucion.setMonth(m);
+        fDevolucion.setYear(a);
+
+        Alquiler alquiler = new Alquiler(nom, dni, fAlquiler, fDevolucion, sp.tipoDeBarco());
+        calcularAlquiler(alquiler, alquiler.getBarco());
+    }
+
+    public void calcularAlquiler(Alquiler a, Barco b) {
+
+        int sumaDias;
+        int mEslora;
+        int modulo;
+        int sumaTotal;
+
+        int day = a.getfAlquiler().getDate();
+        int day2 = a.getfDevolucion().getDate();
+        sumaDias = day2 - day;
+
+        mEslora = b.getEslora();
+        modulo = mEslora * 10;
+
+        sumaTotal = sumaDias + modulo;
+
+        if (b instanceof Velero) {
+            int mas = ((Velero) b).getMastiles();
+            System.out.println(mas);
+            sumaTotal += mas;
+        }else if (b instanceof BarcoAMotor) {
+            int cv = ((BarcoAMotor) b).getPotenciaCV();
+            sumaTotal += cv;
+        } else if (b instanceof Yate) {
+            int cv = ((Yate) b).getPotenciaCV();
+            int cam = ((Yate) b).getCamarotes();
+            sumaTotal += cv+cam;
+        }
+        
+        System.out.println("Su alquiler total es de: "+sumaTotal);
+        System.out.println(a);
+        System.out.println(b);
+
+    }
+
+}
