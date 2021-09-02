@@ -1,0 +1,28 @@
+package app;
+
+import app.services.ServicesAlquiler;
+import java.text.ParseException;
+
+public class App {
+
+    public static void main(String[] args) throws ParseException {
+
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//
+//        Date fechaInicial = dateFormat.parse("2016-02-14");
+//        Date fechaFinal = dateFormat.parse("2016-02-17");
+//
+//        int dias = (int) ((fechaFinal.getTime() - fechaInicial.getTime()) / 86400000);
+//
+//        System.out.println("Hay " + dias + " dias de diferencia");
+////        Date fechaAConvertir = new Date();
+////        
+////        LocalDate fechaConvertida = fechaAConvertir.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+////        long diasEntre = fecha1.until(fecha2, ChronoUnit.DAYS);
+        System.out.println("Bienvenido!");
+        
+        ServicesAlquiler sa = new ServicesAlquiler();
+        sa.crearAlquiler();
+
+    }
+}
