@@ -1,0 +1,40 @@
+package app.entidades;
+
+import SuperClases.Barco;
+
+public final class Yate extends Barco {
+
+    private Integer potenciaCV;
+    private Integer camarotes;
+
+    public Yate() {
+    }
+
+    public Yate(Integer potenciaCV, Integer camarotes, Integer matricula, Integer eslora, Integer anioFabricacion) {
+        super(matricula, eslora, anioFabricacion);
+        this.potenciaCV = potenciaCV;
+        this.camarotes = camarotes;
+    }
+
+    public Integer getPotenciaCV() {
+        return potenciaCV;
+    }
+
+    public void setPotenciaCV(Integer potenciaCV) {
+        this.potenciaCV = potenciaCV;
+    }
+
+    public Integer getCamarotes() {
+        return camarotes;
+    }
+
+    public void setCamarotes(Integer camarotes) {
+        this.camarotes = camarotes;
+    }
+
+    @Override
+    public String toString() {
+        return "Yate{" + "potenciaCV=" + potenciaCV + ", camarotes=" + camarotes + '}';
+    }
+
+}
