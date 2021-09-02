@@ -1,0 +1,30 @@
+package app.entidades;
+
+import SuperClases.Barco;
+
+public final class BarcoAMotor extends Barco {
+
+    private Integer potenciaCV;
+
+    public BarcoAMotor() {
+    }
+
+    public BarcoAMotor(Integer potenciaCV, Integer matricula, Integer eslora, Integer anioFabricacion) {
+        super(matricula, eslora, anioFabricacion);
+        this.potenciaCV = potenciaCV;
+    }
+
+    public Integer getPotenciaCV() {
+        return potenciaCV;
+    }
+
+    public void setPotenciaCV(Integer potenciaCV) {
+        this.potenciaCV = potenciaCV;
+    }
+
+    @Override
+    public String toString() {
+        return "BarcoAMotor{" + "potenciaCV=" + potenciaCV + '}';
+    }
+
+}
