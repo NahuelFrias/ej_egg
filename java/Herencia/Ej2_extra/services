@@ -1,0 +1,71 @@
+package app.services;
+
+import app.entidades.EdificioDeOficinas;
+import app.entidades.Polideportivo;
+import java.util.Scanner;
+
+public class Services {
+
+    private final Scanner sc = new Scanner(System.in).useDelimiter("\n");
+
+    public void crearEdificio() {
+
+        System.out.println("Que tipo de edificio desea crear:\n"
+                + "1.Edificio de oficinas\n"
+                + "2.Polideportivo");
+        int option = sc.nextInt();
+
+        switch (option) {
+            case 1:
+                crearEdificioDeOficinas();
+                break;
+            default:
+                throw new AssertionError();
+        }
+    }
+
+    public EdificioDeOficinas crearEdificioDeOficinas() {
+
+        int of;
+
+        System.out.println("Ingrese el ancho");
+        double an = sc.nextInt();
+        System.out.println("Ingrese el alto");
+        double al = sc.nextInt();
+        System.out.println("Ingrese el largo");
+        double la = sc.nextInt();
+        do {
+            System.out.println("Ingrese la cantidad de oficinas por piso (hasta 4):");
+            of = sc.nextInt();
+        } while (of > 4);
+
+        System.out.println("Ingrese la cantidad de personas por oficina:");
+        int pe = sc.nextInt();
+        System.out.println("Ingrese la cantidad de pisos del edificio:");
+        int pi = sc.nextInt();
+
+        EdificioDeOficinas e = new EdificioDeOficinas(of, pe, pi, an, al, la);
+        return e;
+    }
+
+    public Polideportivo crearPolideportivo() {
+
+        String tipo;
+
+        System.out.println("Ingrese el nombre del polideportivo:");
+        String nombre = sc.next();
+        System.out.println("Ingrese el ancho");
+        double an = sc.nextInt();
+        System.out.println("Ingrese el alto");
+        double al = sc.nextInt();
+        System.out.println("Ingrese el largo");
+        double la = sc.nextInt();
+        do {
+            System.out.println("Ingrese una 't' para poli techado o una 'a' para poli abierto");
+            tipo = sc.next();
+        } while (!tipo.equalsIgnoreCase("t") && !tipo.equalsIgnoreCase("a"));
+
+        Polideportivo p = new Polideportivo(nombre, tipo, an, al, la);
+        return p;
+    }
+}
