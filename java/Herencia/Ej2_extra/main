@@ -1,0 +1,72 @@
+package app;
+
+import SuperClases.Edificio;
+import app.entidades.EdificioDeOficinas;
+import app.entidades.Polideportivo;
+import app.services.Services;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class App {
+
+    private static final Scanner sc = new Scanner(System.in).useDelimiter("\n");
+
+    public static void menu() {
+
+        ArrayList<Edificio> edificios = new ArrayList();
+        Services s = new Services();
+        int option;
+
+        do {
+            System.out.println("Que tipo de edificio desea crear:\n"
+                    + "1.Edificio de oficinas\n"
+                    + "2.Polideportivo\n"
+                    + "3.Salir");
+            option = sc.nextInt();
+
+            switch (option) {
+                case 1:
+                    EdificioDeOficinas e = s.crearEdificioDeOficinas();
+                    edificios.add(e);
+                    break;
+                case 2:
+                    Polideportivo p = s.crearPolideportivo();
+                    edificios.add(p);
+            }
+        } while (option == 1 || option == 2);
+        variar(edificios);
+    }
+
+    public static void variar(ArrayList<Edificio> edificios) {
+
+        int techo = 0;
+        int abierto = 0;
+
+        for (Edificio edificio : edificios) {
+            if (edificio instanceof EdificioDeOficinas) {
+                System.out.println(edificio);
+                edificio.calcularSuperficie(edificio);
+                edificio.calcularVolumen(edificio);
+                ((EdificioDeOficinas) edificio).cantPersonas((EdificioDeOficinas) edificio);
+            } else if (edificio instanceof Polideportivo) {
+                System.out.println(edificio);
+                edificio.calcularSuperficie(edificio);
+                edificio.calcularVolumen(edificio);
+                String tipo = ((Polideportivo) edificio).getTipoInstalacion();
+                if (tipo.equalsIgnoreCase("t")) {
+                    techo++;
+                } else if (tipo.equalsIgnoreCase("a")) {
+                    abierto++;
+                }
+            }
+        }
+        System.out.println("Los polideportivos con techo cerrado son: " + techo);
+        System.out.println("Los polideportivos con techo abierto son: " + abierto);
+
+    }
+
+    public static void main(String[] args) throws ParseException {
+        menu();
+    }
+}
