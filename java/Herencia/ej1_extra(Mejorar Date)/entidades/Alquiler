@@ -1,0 +1,70 @@
+package app.entidades;
+
+import SuperClases.Barco;
+import java.util.Date;
+
+public class Alquiler {
+
+    private String nombre;
+    private Integer dni;
+    private Date fAlquiler;
+    private Date fDevolucion;
+    private Barco barco;
+
+    public Alquiler() {
+    }
+
+    public Alquiler(String nombre, Integer dni, Date fAlquiler, Date fDevolucion, Barco barco) {
+        this.nombre = nombre;
+        this.dni = dni;
+        this.fAlquiler = fAlquiler;
+        this.fDevolucion = fDevolucion;
+        this.barco = barco;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Integer getDni() {
+        return dni;
+    }
+
+    public void setDni(Integer dni) {
+        this.dni = dni;
+    }
+
+    public Date getfAlquiler() {
+        return fAlquiler;
+    }
+
+    public void setfAlquiler(Date fAlquiler) {
+        this.fAlquiler = fAlquiler;
+    }
+
+    public Date getfDevolucion() {
+        return fDevolucion;
+    }
+
+    public void setfDevolucion(Date fDevolucion) {
+        this.fDevolucion = fDevolucion;
+    }
+
+    public Barco getBarco() {
+        return barco;
+    }
+
+    public void setBarco(Barco barco) {
+        this.barco = barco;
+    }
+
+    @Override
+    public String toString() {
+        return "Alquiler{" + "nombre=" + nombre + ", dni=" + dni + ", fAlquiler=" + fAlquiler + ", fDevolucion=" + fDevolucion + ", barco=" + barco + '}';
+    }
+
+}
