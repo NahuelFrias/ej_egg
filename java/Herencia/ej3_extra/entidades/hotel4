@@ -1,0 +1,122 @@
+package app.entidades;
+//extiende de hotel
+
+import SuperClases.Hotel;
+
+public class Hotel4 extends Hotel {
+
+    protected String gimnasio;
+    protected String nombreRestaurante;
+    protected Integer capacidadRestaurante;
+
+    public Hotel4() {
+    }
+
+    public Hotel4(String gimnasio, String nombreRestaurante, Integer capacidadRestaurante, Integer cantHabitaciones, Integer nCamas, Integer nPisos, Double precioHabitaciones, Integer cantEstrellas, String nombre, String direccion, String localidad, String gerente) {
+        super(cantHabitaciones, nCamas, nPisos, precioHabitaciones, cantEstrellas, nombre, direccion, localidad, gerente);
+        this.gimnasio = gimnasio;
+        this.nombreRestaurante = nombreRestaurante;
+        this.capacidadRestaurante = capacidadRestaurante;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Hotel4{" + "gimnasio=" + gimnasio + ", nombreRestaurante=" + nombreRestaurante + ", capacidadRestaurante=" + capacidadRestaurante + '}';
+    }
+
+    public String getGimnasio() {
+        return gimnasio;
+    }
+
+    public void setGimnasio(String gimnasio) {
+        this.gimnasio = gimnasio;
+    }
+
+    public String getNombreRestaurante() {
+        return nombreRestaurante;
+    }
+
+    public void setNombreRestaurante(String nombreRestaurante) {
+        this.nombreRestaurante = nombreRestaurante;
+    }
+
+    public Integer getCapacidadRestaurante() {
+        return capacidadRestaurante;
+    }
+
+    public void setCapacidadRestaurante(Integer capacidadRestaurante) {
+        this.capacidadRestaurante = capacidadRestaurante;
+    }
+
+    public Integer getCantHabitaciones() {
+        return cantHabitaciones;
+    }
+
+    public void setCantHabitaciones(Integer cantHabitaciones) {
+        this.cantHabitaciones = cantHabitaciones;
+    }
+
+    public Integer getnCamas() {
+        return nCamas;
+    }
+
+    public void setnCamas(Integer nCamas) {
+        this.nCamas = nCamas;
+    }
+
+    public Integer getnPisos() {
+        return nPisos;
+    }
+
+    public void setnPisos(Integer nPisos) {
+        this.nPisos = nPisos;
+    }
+
+    public Double getPrecioHabitaciones() {
+        return precioHabitaciones;
+    }
+
+    public void setPrecioHabitaciones(Double precioHabitaciones) {
+        this.precioHabitaciones = precioHabitaciones;
+    }
+
+    public Integer getCantEstrellas() {
+        return cantEstrellas;
+    }
+
+    public void setCantEstrellas(Integer cantEstrellas) {
+        this.cantEstrellas = cantEstrellas;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getLocalidad() {
+        return localidad;
+    }
+
+    public void setLocalidad(String localidad) {
+        this.localidad = localidad;
+    }
+
+    public String getGerente() {
+        return gerente;
+    }
+
+    public void setGerente(String gerente) {
+        this.gerente = gerente;
+    }
+}
