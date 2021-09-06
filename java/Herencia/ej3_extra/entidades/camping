@@ -1,0 +1,97 @@
+package app.entidades;
+
+import SuperClases.ExtraHotelero;
+
+public final class Camping extends ExtraHotelero {
+
+    private Integer capCarpas;
+    private Integer cantBanios;
+    private boolean restaurante;
+
+    public Camping() {
+    }
+
+    public Camping(Integer capCarpas, Integer cantBanios, boolean restaurante, boolean privado, Double metrosCuadrados, String nombre, String direccion, String localidad, String gerente) {
+        super(privado, metrosCuadrados, nombre, direccion, localidad, gerente);
+        this.capCarpas = capCarpas;
+        this.cantBanios = cantBanios;
+        this.restaurante = restaurante;
+    }
+
+    public Integer getCapCarpas() {
+        return capCarpas;
+    }
+
+    public void setCapCarpas(Integer capCarpas) {
+        this.capCarpas = capCarpas;
+    }
+
+    public Integer getCantBanios() {
+        return cantBanios;
+    }
+
+    public void setCantBanios(Integer cantBanios) {
+        this.cantBanios = cantBanios;
+    }
+
+    public boolean isRestaurante() {
+        return restaurante;
+    }
+
+    public void setRestaurante(boolean restaurante) {
+        this.restaurante = restaurante;
+    }
+
+    public boolean isPrivado() {
+        return privado;
+    }
+
+    public void setPrivado(boolean privado) {
+        this.privado = privado;
+    }
+
+    public Double getMetrosCuadrados() {
+        return metrosCuadrados;
+    }
+
+    public void setMetrosCuadrados(Double metrosCuadrados) {
+        this.metrosCuadrados = metrosCuadrados;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getLocalidad() {
+        return localidad;
+    }
+
+    public void setLocalidad(String localidad) {
+        this.localidad = localidad;
+    }
+
+    public String getGerente() {
+        return gerente;
+    }
+
+    public void setGerente(String gerente) {
+        this.gerente = gerente;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Camping{" + "capCarpas=" + capCarpas + ", cantBanios=" + cantBanios + ", restaurante=" + restaurante + '}';
+    }
+}
