@@ -1,0 +1,33 @@
+//hereda de empleado
+package app.entidades;
+
+import SuperClases.Empleado;
+
+public final class PersonalServicio extends Empleado {
+
+    private String seccion;
+
+    public PersonalServicio() {
+    }
+
+    public PersonalServicio(String seccion, Integer anioIncorporacion, Integer nDespacho, String nombre, String apellido, Integer dni, String estCivil) {
+        super(anioIncorporacion, nDespacho, nombre, apellido, dni, estCivil);
+        this.seccion = seccion;
+    }
+
+    public String getSeccion() {
+        return seccion;
+    }
+
+    public void setSeccion(String seccion) {
+        this.seccion = seccion;
+    }
+    
+    
+
+    @Override
+    public String toString() {
+        return super.toString() + "PersonalServicio{" + "seccion=" + seccion + '}';
+    }
+
+}
