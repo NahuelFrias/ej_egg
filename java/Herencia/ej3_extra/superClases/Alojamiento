@@ -1,0 +1,24 @@
+package SuperClases;
+
+public abstract class Alojamientos {
+
+    protected String nombre;
+    protected String direccion;
+    protected String localidad;
+    protected String gerente;
+
+    public Alojamientos()  {
+    }
+
+    public Alojamientos(String nombre, String direccion, String localidad, String gerente) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.localidad = localidad;
+        this.gerente = gerente;
+    }
+
+    @Override
+    public String toString() {
+        return "Alojamientos{" + "nombre=" + nombre + ", direccion=" + direccion + ", localidad=" + localidad + ", gerente=" + gerente + '}';
+    }
+}
