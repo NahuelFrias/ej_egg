@@ -1,0 +1,216 @@
+package app.services;
+
+import SuperClases.Alojamientos;
+import SuperClases.ExtraHotelero;
+import SuperClases.Hotel;
+import app.entidades.Camping;
+import app.entidades.Hotel4;
+import app.entidades.Hotel5;
+import app.entidades.Residencia;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Services {
+
+    private final Scanner sc = new Scanner(System.in).useDelimiter("\n");
+    ArrayList<Hotel> hoteles = new ArrayList();
+    ArrayList<Alojamientos> a = new ArrayList();
+
+    public ArrayList<Alojamientos> crearAlojamiento() {
+
+        int option;
+
+        do {
+            System.out.println("Que tipo de alojamiento desea crear?:\n"
+                    + "1.Hotel\n"
+                    + "2.Alojamiento extra hotelero\n");
+            option = sc.nextInt();
+        } while (option != 1 && option != 2);
+
+        System.out.println("Ingrese el nombre del alojamiento:");
+        String nomAl = sc.next();
+        System.out.println("Ingrese la direccion:");
+        String dir = sc.next();
+        System.out.println("Ingrese la localidad:");
+        String loc = sc.next();
+        System.out.println("Ingrese el nombre del gerente:");
+        String ger = sc.next();
+
+        switch (option) {
+            case 1:
+                Hotel h = crearHotel4(nomAl, dir, loc, ger);
+                hoteles.add(h);
+                a.add(h);
+                break;
+            case 2:
+                ExtraHotelero x = crearExtra(nomAl, dir, loc, ger);
+                a.add(x);
+                break;
+        }
+        return a;
+    }
+
+    public Hotel crearHotel4(String nomAl, String dir, String loc, String ger) {
+
+        int estrellas;
+        int capacidad;
+        int lim = 0;
+        double precio;
+
+        System.out.println();
+
+        System.out.println("Ingrese la cantidad de pisos del hotel:");
+        int pis = sc.nextInt();
+        System.out.println("Ingrese la cantidad de habitaciones por piso:");
+        int hab = sc.nextInt();
+        System.out.println("Ingrese la cantidad de camas por habitacion:");
+        int cam = sc.nextInt();
+
+        String tipo;
+        do {
+            System.out.println("Ingrese el tipo de gimnasio (A o B):");
+            tipo = sc.next();
+        } while (!tipo.equalsIgnoreCase("a") && !tipo.equalsIgnoreCase("b"));
+        System.out.println("Ingrese el nombre del restaurante:");
+        String nom = sc.next();
+        System.out.println("Ingrese la capacidad del restaurante:");
+        int cap = sc.nextInt();
+
+        do {
+            System.out.println("Ingrese la cantidad de estrellas (4 o 5):");
+            estrellas = sc.nextInt();
+        } while (estrellas > 5 || estrellas < 4);
+
+        if (estrellas == 5) {
+            Hotel5 h5 = crearHotel5(nomAl, dir, loc, ger, hab, cam, pis, tipo, nom, cap, estrellas);
+            return h5;
+        } else {
+            capacidad = pis * hab * cam;
+            precio = precioHabitacion(capacidad, cap, tipo, lim);
+            Hotel4 h4 = new Hotel4(tipo, nom, cap, hab, cam, pis, precio, estrellas, nomAl, dir, loc, ger);
+            return h4;
+        }
+    }
+
+    public Hotel5 crearHotel5(String nomAl, String dir, String loc, String ger, int hab, int cam, int pis, String tipo, String nom, int cap, int estrellas) {
+
+        int capacidad;
+        double precio;
+
+        System.out.println("Ingrese la cantidad de salones:");
+        int sal = sc.nextInt();
+        System.out.println("Ingrese la cantidad de suits:");
+        int suit = sc.nextInt();
+        System.out.println("Ingrese la cantidad de limosinas");
+        int lim = sc.nextInt();
+
+        capacidad = pis * hab * cam;
+        precio = precioHabitacion(capacidad, cap, tipo, lim);
+
+        return new Hotel5(sal, suit, lim, tipo, nom, cap, hab, cam, pis, precio, estrellas, nomAl, dir, loc, ger);
+    }
+
+    public double precioHabitacion(int capacidad, int cap, String tipo, int limosinas) {
+
+        double precio = 50;
+        int capRe, valGim, valLim;
+
+        if (cap < 30) {
+            capRe = 10;
+        } else if (cap >= 30 && cap <= 50) {
+            capRe = 30;
+        } else {
+            capRe = 50;
+        }
+
+        if (tipo.equalsIgnoreCase("a")) {
+            valGim = 50;
+        } else {
+            valGim = 30;
+        }
+
+        valLim = limosinas * 15;
+
+        precio += capacidad + capRe + valGim + limosinas;
+
+        return precio;
+    }
+
+    public ExtraHotelero crearExtra(String nomAl, String dir, String loc, String ger) {
+
+        int option;
+        String var;
+        boolean aux;
+
+        do {
+            System.out.println("Que tipo de alojamiento desea crear?:\n"
+                    + "1.Camping\n"
+                    + "2.Residencia");
+            option = sc.nextInt();
+        } while (option != 1 && option != 2);
+
+        System.out.println("Ingresa los metros cuadrados:");
+        double metCua = sc.nextDouble();
+
+        do {
+            System.out.println("El alojamiento es privado?: s/n");
+            var = sc.next();
+        } while (!var.equalsIgnoreCase("s") && !var.equalsIgnoreCase("n"));
+
+        aux = var.equalsIgnoreCase("s");
+
+        if (option == 1) {
+            Camping c = crearCamping(aux, metCua, nomAl, dir, loc, ger);
+            return c;
+        } else {
+            Residencia r = crearResidencia(aux, metCua, nomAl, dir, loc, ger);
+            return r;
+        }
+    }
+
+    public Camping crearCamping(boolean privado, double metrosCuadrado, String nomAl, String dir, String loc, String ger) {
+
+        String option;
+        boolean rest;
+
+        System.out.println("Ingrese la cantidad de carpas:");
+        int car = sc.nextInt();
+        System.out.println("Ingrese la cantidad de baños:");
+        int ban = sc.nextInt();
+        System.out.println("Tiene restaurante?: s/n");
+        option = sc.next();
+        rest = option.equalsIgnoreCase("s");
+
+        return new Camping(car, ban, rest, privado, metrosCuadrado, nomAl, dir, loc, ger);
+
+    }
+
+    public Residencia crearResidencia(boolean privado, double metrosCuadrado, String nomAl, String dir, String loc, String ger) {
+
+        String option, opcion;
+        boolean var;
+        boolean aux;
+
+        System.out.println("Ingrese la cantidad de habitaciones:");
+        int hab = sc.nextInt();
+        do {
+            System.out.println("Hace descuentos a greamios?: s/n");
+            option = sc.next();
+        } while (!option.equalsIgnoreCase("s") && !option.equalsIgnoreCase("n"));
+        var = option.equalsIgnoreCase("s");
+
+        do {
+            System.out.println("Tiene campo deportivo: s/n");
+            opcion = sc.next();
+        } while (!opcion.equalsIgnoreCase("s") && !opcion.equalsIgnoreCase("n"));
+        aux = opcion.equalsIgnoreCase("s");
+
+        return new Residencia(hab, var, aux, privado, metrosCuadrado, nomAl, dir, loc, ger);
+
+    }
+
+    public ArrayList<Hotel> getHoteles() {
+        return hoteles;
+    }
+
+}
