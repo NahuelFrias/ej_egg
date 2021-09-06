@@ -1,0 +1,60 @@
+package app;
+
+import app.services.ServicesPersonas;
+import java.text.ParseException;
+import java.util.Scanner;
+
+public class App {
+
+    private static final Scanner sc = new Scanner(System.in).useDelimiter("\n");
+
+    public static void menu() {
+
+        ServicesPersonas s = new ServicesPersonas();
+        int option;
+
+        do {
+            System.out.println("Que desea hacer?:\n"
+                    + "1.Crear empleado o estudiante\n"
+                    + "2.Cambio de estado civil\n"
+                    + "3.Reasignacion de despacho(Personal Servicio)\n"
+                    + "4.Matriculacion a un nuevo curso(Estudiante)\n"
+                    + "5.Cambio de departamento(Profesor)\n"
+                    + "6.Traslado de seccion(Personal Servicio)\n"
+                    + "7.Imprimir informacion\n"
+                    + "8.Salir");
+            option = sc.nextInt();
+
+            switch (option) {
+                case 1:
+                    s.datosPersona();
+                    break;
+                case 2:
+                    s.cambiarCivil();
+                    break;
+                case 3:
+                    s.cambiarDespacho();
+                    break;
+                case 4:
+                    s.cambiarCurso();
+                    break;
+                case 5:
+                    s.cambiarDepartamento();
+                    break;
+                case 6:
+                    s.cambiarSeccion();
+                    break;
+                case 7:
+                    s.imprimir();
+                    break;
+                default:
+                    System.out.println("Adios!");
+                    break;
+            }
+        } while (option < 8);
+    }
+
+    public static void main(String[] args) throws ParseException {
+        menu();
+    }
+}
