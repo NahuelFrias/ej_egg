@@ -1,0 +1,240 @@
+package app.services;
+
+import SuperClases.Persona;
+import SuperClases.Empleado;
+import app.entidades.Estudiante;
+import app.entidades.Profesor;
+import app.entidades.PersonalServicio;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class ServicesPersonas {
+
+    private final Scanner sc = new Scanner(System.in).useDelimiter("\n");
+    ArrayList<Persona> lista = new ArrayList();
+
+    public void datosPersona() {
+
+        int option;
+
+        do {
+            System.out.println("Que desea crear?:\n"
+                    + "1.Profesor o Empleado\n"
+                    + "2.Estudiante");
+            option = sc.nextInt();
+        } while (option > 2);
+
+        System.out.println("Ingrese el nombre:");
+        String nom = sc.next();
+        System.out.println("Ingrese el apellido:");
+        String ape = sc.next();
+        System.out.println("Ingrese dni:");
+        int dni = sc.nextInt();
+        System.out.println("Ingrese estado civil:");
+        String est = sc.next();
+
+        if (option == 1) {
+            datosEmpleado(nom, ape, dni, est);
+        } else {
+            crearEstudiante(nom, ape, dni, est);
+        }
+    }
+
+    public void datosEmpleado(String nom, String ape, int dni, String est) {
+
+        int opcion;
+        do {
+            System.out.println("Que tipo de empleado desea crear:\n"
+                    + "1.Profesor\n"
+                    + "2.Empleado de Servicio");
+            opcion = sc.nextInt();
+        } while (opcion > 2);
+
+        System.out.println("Ingrese el año de incorporacion:");
+        int anio = sc.nextInt();
+        System.out.println("Ingrese el n° de despacho:");
+        int desp = sc.nextInt();
+
+        if (opcion == 1) {
+            crearProfesor(nom, ape, dni, est, anio, desp);
+        } else {
+            crearPersonal(nom, ape, dni, est, anio, desp);
+        }
+    }
+
+    public void crearEstudiante(String nom, String ape, int dni, String est) {
+
+        System.out.println("Ingrese el curso al que pertenece:");
+        String cur = sc.next();
+
+        Estudiante e = new Estudiante(cur, nom, ape, dni, est);
+        lista.add(e);
+
+    }
+
+    public void crearProfesor(String nom, String ape, int dni, String est, int anio, int desp) {
+
+        System.out.println("Ingrese el departamento al que pertenece:");
+        String dep = sc.next();
+
+        Profesor p = new Profesor(dep, anio, desp, nom, ape, dni, est);
+        lista.add(p);
+    }
+
+    public void crearPersonal(String nom, String ape, int dni, String est, int anio, int desp) {
+
+        System.out.println("Ingrese la seccion a la que pertenece:");
+        String sec = sc.next();
+
+        PersonalServicio ps = new PersonalServicio(sec, anio, desp, nom, ape, dni, est);
+        lista.add(ps);
+    }
+
+    public void cambiarCivil() {
+
+        int aux;
+        String ec;
+
+        int dni = ingresaDni();
+
+        for (Persona persona : lista) {
+            aux = persona.getDni();
+            if (dni == aux) {
+                System.out.println("Ingrese el nuevo estado civil:");
+                ec = sc.next();
+                persona.setEstCivil(ec);
+                System.out.println("Estado civil actualizado!");
+                break;
+            }
+        }
+    }
+
+    public void cambiarDespacho() {
+
+        int aux;
+        int contador = 0;
+        int desp;
+        int dni = ingresaDni();
+
+        for (Persona persona : lista) {
+            aux = persona.getDni();
+            if (dni == aux) {
+                if (persona instanceof Empleado) {
+                    System.out.println("Ingrese el nuevo numero de despacho:");
+                    desp = sc.nextInt();
+                    ((Empleado) persona).setnDespacho(desp);
+                    System.out.println("Numero de Despacho actualizado!");
+                    break;
+                } else {
+                    System.out.println("La persona ingresada no es empleado!");
+                }
+            } else {
+                contador++;
+            }
+        }
+        if (contador == lista.size()) {
+            System.out.println("Dni inexistente!");
+        }
+    }
+
+    public void cambiarCurso() {
+
+        int aux;
+        int contador = 0;
+        String c;
+        int dni = ingresaDni();
+
+        for (Persona persona : lista) {
+            aux = persona.getDni();
+            if (dni == aux) {
+                if (persona instanceof Estudiante) {
+                    System.out.println("Ingrese el nuevo curso a asignar:");
+                    c = sc.next();
+                    ((Estudiante) persona).setCurso(c);
+                    System.out.println("Curso actualizado!");
+                    break;
+                } else {
+                    System.out.println("La persona ingresada no es estudiante!");
+                }
+            } else {
+                contador++;
+            }
+        }
+        if (contador == lista.size()) {
+            System.out.println("Dni inexistente!");
+        }
+    }
+
+    public void cambiarDepartamento() {
+
+        int aux;
+        int contador = 0;
+        String d;
+        int dni = ingresaDni();
+
+        for (Persona persona : lista) {
+            aux = persona.getDni();
+            if (dni == aux) {
+                if (persona instanceof Profesor) {
+                    System.out.println("Ingrese el nuevo departamento");
+                    d = sc.next();
+                    ((Profesor) persona).setDepto(d);
+                    System.out.println("Departamento actualizado!");
+                    break;
+                } else {
+                    System.out.println("La persona ingresada no es profesor!");
+                }
+            } else {
+                contador++;
+            }
+        }
+        if (contador == lista.size()) {
+            System.out.println("Dni inexistente!");
+        }
+    }
+
+    public void cambiarSeccion() {
+
+        int aux;
+        int contador = 0;
+        String s;
+        int dni = ingresaDni();
+
+        for (Persona persona : lista) {
+            aux = persona.getDni();
+            if (dni == aux) {
+                if (persona instanceof PersonalServicio) {
+                    System.out.println("Ingrese la nueva seccion:");
+                    s = sc.next();
+                    ((PersonalServicio) persona).setSeccion(s);
+                    System.out.println("Seccion actualizada!");
+                    break;
+                } else {
+                    System.out.println("La persona ingresada no es empleado!");
+                }
+            } else {
+                contador++;
+            }
+        }
+        if (contador == lista.size()) {
+            System.out.println("Dni inexistente!");
+        }
+    }
+
+    private int ingresaDni() {
+        System.out.println("Ingrese el DNI de la persona:");
+
+        for (Persona persona : lista) {
+            System.out.println(persona);
+        }
+
+        int dni = sc.nextInt();
+        return dni;
+    }
+
+    public void imprimir() {
+        lista.forEach((persona) -> {
+            System.out.println(persona);
+        });
+    }
+}
