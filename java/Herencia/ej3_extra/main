@@ -1,0 +1,102 @@
+package app;
+
+import SuperClases.Alojamientos;
+import SuperClases.Hotel;
+import app.entidades.Camping;
+import app.entidades.Residencia;
+import app.services.Services;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class App {
+
+    private static final Scanner sc = new Scanner(System.in).useDelimiter("\n");
+
+    public static void menu() {
+
+        ArrayList<Alojamientos> alojamientos = new ArrayList();
+        Services s = new Services();
+        int option;
+
+        do {
+            System.out.println("Que desea hacer?:\n"
+                    + "1.Crear alojamiento\n"
+                    + "2.Ver todos los alojamientos\n"
+                    + "3.Ver alojamientos de mas a menos caro\n"
+                    + "4.Ver los campings con restaurantes\n"
+                    + "5.Ver residencias con descuentos\n"
+                    + "6.Salir");
+            option = sc.nextInt();
+
+            switch (option) {
+                case 1:
+                    alojamientos.addAll(s.crearAlojamiento());
+                    break;
+                case 2:
+                    mostrar(alojamientos);
+                    break;
+                case 3:
+                    masCaro(s.getHoteles());
+                    break;
+                case 4:
+                    verCamping(alojamientos);
+                    break;
+                case 5:
+                    verResidencia(alojamientos);
+                    break;
+                default:
+                    System.out.println("Adios!");
+                    break;
+            }
+        } while (option < 6);
+    }
+
+    public static void mostrar(ArrayList<Alojamientos> a) {
+
+        for (Alojamientos alojamientos : a) {
+            System.out.println(alojamientos);
+        }
+    }
+
+    private static void masCaro(ArrayList<Hotel> hoteles) {
+
+        Collections.sort(hoteles, Collections.reverseOrder());
+        System.out.println("Los hoteles ordenados de mayor a menor precio son:");
+
+        for (Hotel h : hoteles) {
+            System.out.println(h.getNombre() + "$" + h.getPrecioHabitaciones());
+        }
+    }
+
+    private static void verCamping(ArrayList<Alojamientos> alojamientos) {
+
+        System.out.println("Los campings con restaurantes son:");
+
+        for (Alojamientos a : alojamientos) {
+            if (a instanceof Camping) {
+                if (((Camping) a).isRestaurante()) {
+                    System.out.println(a);
+                }
+            }
+        }
+    }
+
+    private static void verResidencia(ArrayList<Alojamientos> alojamientos) {
+
+        System.out.println("Las residencias con descuentos son:");
+
+        for (Alojamientos a : alojamientos) {
+            if (a instanceof Residencia) {
+                if (((Residencia) a).isDescGremios()) {
+                    System.out.println(a);
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) throws ParseException {
+        menu();
+    }
+}
