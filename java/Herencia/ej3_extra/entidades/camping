@@ -1,4 +1,5 @@
 package app.entidades;
+//extiende de extraHotelero
 
 import SuperClases.ExtraHotelero;
 
