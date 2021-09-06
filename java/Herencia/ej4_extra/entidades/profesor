@@ -1,0 +1,31 @@
+//extiende de empleado
+package app.entidades;
+
+import SuperClases.Empleado;
+
+public final class Profesor extends Empleado {
+
+    private String depto;
+
+    public Profesor() {
+    }
+
+    public Profesor(String depto, Integer anioIncorporacion, Integer nDespacho, String nombre, String apellido, Integer dni, String estCivil) {
+        super(anioIncorporacion, nDespacho, nombre, apellido, dni, estCivil);
+        this.depto = depto;
+    }
+
+    public String getDepto() {
+        return depto;
+    }
+
+    public void setDepto(String depto) {
+        this.depto = depto;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Profesor{" + "depto=" + depto + '}';
+    }
+
+}
