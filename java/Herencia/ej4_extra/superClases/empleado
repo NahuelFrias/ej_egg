@@ -1,0 +1,38 @@
+//hereda de persona
+package SuperClases;
+
+public abstract class Empleado extends Persona {
+
+    protected Integer anioIncorporacion;
+    protected Integer nDespacho;
+
+    public Empleado() {
+    }
+
+    public Empleado(Integer anioIncorporacion, Integer nDespacho, String nombre, String apellido, Integer dni, String estCivil) {
+        super(nombre, apellido, dni, estCivil);
+        this.anioIncorporacion = anioIncorporacion;
+        this.nDespacho = nDespacho;
+    }
+
+    public Integer getAnioIncorporacion() {
+        return anioIncorporacion;
+    }
+
+    public void setAnioIncorporacion(Integer anioIncorporacion) {
+        this.anioIncorporacion = anioIncorporacion;
+    }
+
+    public Integer getnDespacho() {
+        return nDespacho;
+    }
+
+    public void setnDespacho(Integer nDespacho) {
+        this.nDespacho = nDespacho;
+    }
+    
+    @Override
+    public String toString() {
+        return super.toString()+"Empleado{" + "anioIncorporacion=" + anioIncorporacion + ", nDespacho=" + nDespacho + '}';
+    }
+}
