@@ -1,0 +1,98 @@
+package app.entidades;
+//extiende de alojamiento
+
+import SuperClases.ExtraHotelero;
+
+public final class Residencia extends ExtraHotelero {
+
+    private Integer cantHabitaciones;
+    private boolean descGremios;
+    private boolean campoDeportivo;
+
+    public Residencia() {
+    }
+
+    public Residencia(Integer cantHabitaciones, boolean descGremios, boolean campoDeportivo, boolean privado, Double metrosCuadrados, String nombre, String direccion, String localidad, String gerente) {
+        super(privado, metrosCuadrados, nombre, direccion, localidad, gerente);
+        this.cantHabitaciones = cantHabitaciones;
+        this.descGremios = descGremios;
+        this.campoDeportivo = campoDeportivo;
+    }
+
+    public Integer getCantHabitaciones() {
+        return cantHabitaciones;
+    }
+
+    public void setCantHabitaciones(Integer cantHabitaciones) {
+        this.cantHabitaciones = cantHabitaciones;
+    }
+
+    public boolean isDescGremios() {
+        return descGremios;
+    }
+
+    public void setDescGremios(boolean descGremios) {
+        this.descGremios = descGremios;
+    }
+
+    public boolean isCampoDeportivo() {
+        return campoDeportivo;
+    }
+
+    public void setCampoDeportivo(boolean campoDeportivo) {
+        this.campoDeportivo = campoDeportivo;
+    }
+
+    public boolean isPrivado() {
+        return privado;
+    }
+
+    public void setPrivado(boolean privado) {
+        this.privado = privado;
+    }
+
+    public Double getMetrosCuadrados() {
+        return metrosCuadrados;
+    }
+
+    public void setMetrosCuadrados(Double metrosCuadrados) {
+        this.metrosCuadrados = metrosCuadrados;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getLocalidad() {
+        return localidad;
+    }
+
+    public void setLocalidad(String localidad) {
+        this.localidad = localidad;
+    }
+
+    public String getGerente() {
+        return gerente;
+    }
+
+    public void setGerente(String gerente) {
+        this.gerente = gerente;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Residencia{" + "cantHabitaciones=" + cantHabitaciones + ", descGremios=" + descGremios + ", campoDeportivo=" + campoDeportivo + '}';
+    }
+}
