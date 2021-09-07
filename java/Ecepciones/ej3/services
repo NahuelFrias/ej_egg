@@ -1,0 +1,33 @@
+package app.services;
+
+import static java.lang.Integer.parseInt;
+import java.util.Scanner;
+
+public class Services {
+
+    private final Scanner sc = new Scanner(System.in).useDelimiter("\n");
+
+    public void convertidor(String a, String b) throws NumberFormatException {
+
+        int num1, num2;
+        double div;
+        num1 = Integer.parseInt(a);
+        num2 = parseInt(b);
+        try {
+            div = dividir(num1, num2);
+            System.out.println("El resultado de la division es: " + div);
+        } catch (ArithmeticException e) {
+            System.out.println("EROR: division por cero");
+        }
+
+    }
+
+    public double dividir(int a, int b) throws ArithmeticException {
+
+        double res;
+        res = a / b;
+
+        return res;
+
+    }
+}
