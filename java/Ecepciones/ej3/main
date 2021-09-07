@@ -1,0 +1,31 @@
+package app;
+
+import app.services.Services;
+import java.util.Scanner;
+
+public class App {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in).useDelimiter("\n");
+        Services s = new Services();
+
+        String a = null;
+        String b = null;
+
+        try {
+            System.out.println("Ingrese dos numeros:");
+            a = sc.nextLine();
+            b = sc.nextLine();
+
+        } catch (Exception e) {
+            System.out.println("Dato mal ingresado");
+        }
+        try {
+            s.convertidor(a, b);
+        } catch (NumberFormatException e) {
+            System.out.println("Dato ingresado mal");
+        }
+
+    }
+}
