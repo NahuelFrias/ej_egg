@@ -1,0 +1,51 @@
+package app.services;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class Services {
+
+    private final Scanner sc = new Scanner(System.in).useDelimiter("\n");
+
+    private int generarNumero() {
+
+        int num;
+        num = (int) (Math.random() * 10) + 1;
+
+        return num;
+    }
+
+    public void adivinar() {
+
+        int num = generarNumero();
+        int aux ;
+        int contador = 1;
+
+        System.out.println("Bienvenido!");
+
+        try {
+            do {
+                aux = ingresar();
+                if (num != aux) {
+                    contador++;
+                    System.out.println("Intente nuevamente");
+                }
+            } while (num != aux);
+            System.out.println("Felicidades, ha adivinado!\n"
+                    + "Intentos: " + contador);
+        } catch (InputMismatchException e) {
+            contador++;
+            System.out.println("Dato mal ingresado");
+        }
+    }
+
+    private int ingresar() {
+
+        int aux;
+
+        System.out.println("Ingrese un numero:");
+        aux = sc.nextInt();
+
+        return aux;
+    }
+}
