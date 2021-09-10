@@ -1,0 +1,96 @@
+package app;
+
+import java.util.ArrayList;
+
+public class App {
+
+    public static Boolean parCieloPiso(int numEnt, double numReal, long numLargo) {
+
+        boolean var = false;
+        int contador = 0;
+        int aux;
+        double res;
+
+        if (numEnt % 2 == 0) {
+            contador++;
+        }
+
+        aux = (int) numReal;
+        res = numReal - aux;
+
+        if (res < 0.5) {
+            contador++;
+        }
+
+        if (numLargo >= 0) {
+            contador++;
+        }
+
+        if (contador == 3) {
+            var = true;
+        }
+
+        return var;
+    }
+
+    public static String geringoso(String palabra) {
+
+        ArrayList<String> cadena = new ArrayList();
+        ArrayList<String> cadenaAux = new ArrayList();
+        String cadenaGerin = "";
+
+        for (int i = 0; i < palabra.length(); i++) {
+            cadena.add(palabra.substring(i, i + 1).toLowerCase());
+        }
+
+        cadena.forEach((aux) -> {
+            if (aux.equalsIgnoreCase("o")) {
+                aux = (aux.replaceFirst("o", "opo"));
+                cadenaAux.add(aux);
+            } else if (aux.equalsIgnoreCase("a")) {
+                aux = (aux.replaceFirst("a", "apa"));
+                cadenaAux.add(aux);
+            } else if (aux.equalsIgnoreCase("e")) {
+                aux = (aux.replaceFirst("e", "epe"));
+                cadenaAux.add(aux);
+            } else if (aux.equalsIgnoreCase("i")) {
+                aux = (aux.replaceFirst("i", "ipi"));
+                cadenaAux.add(aux);
+            } else if (aux.equalsIgnoreCase("u")) {
+                aux = (aux.replaceFirst("u", "upu"));
+                cadenaAux.add(aux);
+            } else {
+                cadenaAux.add(aux);
+            }
+        });
+
+        for (String var : cadenaAux) {
+            cadenaGerin = cadenaGerin + var;
+        }
+
+        return cadenaGerin;
+    }
+
+    public static String inversa(String palabra) {
+
+        String invertida = "";
+        String min = palabra.toLowerCase();
+
+        char[] minusculas = min.toCharArray();
+
+        for (int i = minusculas.length - 1; i != -1; i--) {
+            invertida = invertida + minusculas[i];
+        }
+
+        return invertida;
+    }
+
+    public static void main(String[] args) {
+
+        System.out.println(inversa("Hola"));
+
+        System.out.println(geringoso("Leonardo Nahuel"));
+
+        System.out.println(parCieloPiso(4, 3.1, 4444));
+    }
+}
