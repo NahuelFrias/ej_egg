@@ -1,0 +1,91 @@
+package tienda;
+
+import java.util.Collection;
+import java.util.Scanner;
+import tienda.entidades.Producto;
+import tienda.services.FabricanteServices;
+import tienda.services.ProductoServices;
+
+public class Tienda {
+
+    Scanner sc = new Scanner(System.in).useDelimiter("\n");
+    ProductoServices ps = new ProductoServices();
+    FabricanteServices fs = new FabricanteServices();
+
+    public void menu() throws Exception {
+
+        int option;
+        do {
+
+            System.out.println("Bienvenido!");
+            System.out.println("Que desea hacer?:\n"
+                    + "1.Listar el nombre de todos los productos\n"
+                    + "2.Listar el nombre y precio de todos los productos\n"
+                    + "3.Listar productos que su precio este entre 120 y 202\n"
+                    + "4.Listar los portatiles\n"
+                    + "5.Listar el nombre y el precio del producto mas barato\n"
+                    + "6.Ingresar un producto\n"
+                    + "7.Ingresar un fabricante\n"
+                    + "8.Editar un producto\n"
+                    + "9.Salir");
+            option = sc.nextInt();
+            switch (option) {
+                case 1:
+                    Collection<Producto> p1 = ps.listarProducto();
+                    for (Producto productos : p1) {
+                        System.out.println(productos.getNombre());
+                    }
+                    break;
+                case 2:
+                    Collection<Producto> p2 = ps.listarProductoYPrecio();
+                    for (Producto productos : p2) {
+                        System.out.println(productos.getNombre() + ", precio=" + productos.getPrecio());
+                    }
+                    break;
+                case 3:
+                    Collection<Producto> p3 = ps.listarEntrePrecios();
+                    for (Producto productos : p3) {
+                        System.out.println(productos.getNombre() + " precio=" + productos.getPrecio());
+                    }
+                    break;
+                case 4:
+                    Collection<Producto> p4 = ps.listarPortatil();
+                    for (Producto producto : p4) {
+                        System.out.println(producto.getNombre() + " precio=" + producto.getPrecio());
+                    }
+                    break;
+                case 5:
+                    ps.productoMasBarato();
+                    break;
+                case 6:
+                    System.out.println("Ingresa el nombre, precio y codigo de fabricante del producto:");
+                    String nom = sc.next();
+                    double pre = sc.nextDouble();
+                    int c = sc.nextInt();
+                    ps.crearProducto(nom, pre, option);
+                    break;
+                case 7:
+                    System.out.println("Ingrese el nombre del fabricante:");
+                    String nomFabri = sc.next();
+                    fs.crearFabricante(nomFabri);
+                    break;
+                case 8:
+                    System.out.println("Ingrese el nombre del producto a modificar:");
+                    String nombre = sc.next();
+                    System.out.println("Ingrese el nombre nuevo y precio nuevo:");
+                    String nomNuevo = sc.next();
+                    double precioNuevo = sc.nextDouble();
+                    ps.modificarProducto(nombre, precioNuevo, nomNuevo);
+                    break;
+                case 9:
+                    System.out.println("Adios!");
+                    break;
+            }
+        } while (option != 9);
+    }
+
+    public static void main(String[] args) throws Exception {
+        Tienda t = new Tienda();
+        t.menu();
+    }
+}
