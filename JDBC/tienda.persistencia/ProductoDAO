@@ -1,0 +1,192 @@
+package tienda.persistencia;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import tienda.entidades.Producto;
+
+public final class ProductoDAO extends DAO {
+
+    public void guardarProducto(Producto producto) throws Exception {
+
+        try {
+            if (producto == null) {
+                throw new Exception("Debe ingresar el producto");
+            }
+
+            String sql = "INSERT INTO producto (codigo, nombre, precio, codigo_fabricante)"
+                    + "VALUES ( '" + producto.getCodigo() + "' , '" + producto.getNombre() + "' , '" + producto.getPrecio() + "' , '" + producto.getCodigo_fabricante() + "' );";
+
+            insertarModificarEliminar(sql);
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            desconectarBase();
+        }
+    }
+
+    public void modificarProducto(Producto producto) throws Exception {
+        try {
+            if (producto == null) {
+                throw new Exception("Debe indicar el producto que desea modificar");
+            }
+
+            String sql = "UPDATE producto SET "
+                    + " nombre = '" + producto.getNombre() + "',  precio =  '" + producto.getPrecio()
+                    + " ' WHERE codigo = '" + producto.getCodigo() + " ' ";
+
+            insertarModificarEliminar(sql);
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            desconectarBase();
+        }
+    }
+
+    public Producto buscarProductoPorNombre(String nombre) throws Exception {
+        try {
+
+            String sql = "SELECT * FROM producto "
+                    + " WHERE nombre = '" + nombre + "'";
+
+            consultarBase(sql);
+
+            Producto producto = null;
+            while (resultado.next()) {
+                producto = new Producto();
+                producto.setCodigo(resultado.getInt(1));
+                producto.setNombre(resultado.getString(2));
+                
+            }
+            desconectarBase();
+            return producto;
+        } catch (Exception e) {
+            desconectarBase();
+            throw e;
+        }
+    }
+
+    public Collection<Producto> buscarNombresProductos() throws Exception {
+
+        try {
+            String sql = "SELECT nombre FROM producto";
+            consultarBase(sql);
+
+            Producto producto;
+            Collection<Producto> productos = new ArrayList();
+
+            while (resultado.next()) {
+                producto = new Producto();
+                //lo puedo matchear con la ubicacion de la columna que me devulve
+                //o con el nombre de la columna, en este caso "nombre"
+                producto.setNombre(resultado.getString("nombre"));
+                productos.add(producto);
+            }
+
+            desconectarBase();
+            return productos;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            desconectarBase();
+            throw new Exception("Error de sistema");
+        }
+    }
+
+    public Collection<Producto> buscarNombresYPrecios() throws Exception {
+
+        try {
+            String sql = "SELECT nombre, precio FROM producto";
+            consultarBase(sql);
+
+            Producto producto;
+            Collection<Producto> productos = new ArrayList();
+
+            while (resultado.next()) {
+                producto = new Producto();
+                producto.setNombre(resultado.getString(1));
+                producto.setPrecio(resultado.getDouble(2));
+                productos.add(producto);
+            }
+
+            desconectarBase();
+            return productos;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            desconectarBase();
+            throw new Exception("Error de sistema");
+        }
+    }
+
+    public Collection<Producto> buscarEntrePrecios() throws Exception {
+
+        try {
+            String sql = "SELECT nombre, precio FROM producto WHERE precio > 120 AND precio <202";
+            consultarBase(sql);
+
+            Producto producto;
+            Collection<Producto> productos = new ArrayList();
+
+            while (resultado.next()) {
+                producto = new Producto();
+                producto.setNombre(resultado.getString(1));
+                producto.setPrecio(resultado.getDouble(2));
+                productos.add(producto);
+            }
+
+            desconectarBase();
+            return productos;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            desconectarBase();
+            throw new Exception("Error de sistema");
+        }
+    }
+
+    public Collection<Producto> buscarPortatil() throws Exception {
+
+        try {
+            String sql = "SELECT nombre FROM producto WHERE nombre LIKE  'portatil%'";
+            consultarBase(sql);
+
+            Producto producto;
+            Collection<Producto> productos = new ArrayList();
+
+            while (resultado.next()) {
+                producto = new Producto();
+                producto.setNombre(resultado.getString(1));
+                productos.add(producto);
+            }
+
+            desconectarBase();
+            return productos;
+
+        } catch (Exception e) {
+            desconectarBase();
+            throw new Exception("Error de sistema");
+        }
+    }
+
+    public Producto buscarProductoMasBarato() throws Exception {
+        try {
+
+            String sql = "SELECT nombre, precio FROM producto WHERE precio = (SELECT MIN(precio) FROM producto)";
+
+            consultarBase(sql);
+
+            Producto producto = null;
+            while (resultado.next()) {
+                producto = new Producto();
+                producto.setNombre(resultado.getString(1));
+                producto.setPrecio(resultado.getDouble(2));
+
+            }
+            desconectarBase();
+            return producto;
+        } catch (Exception e) {
+            desconectarBase();
+            throw e;
+        }
+    }
+}
