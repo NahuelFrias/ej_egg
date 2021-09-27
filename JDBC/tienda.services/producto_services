@@ -1,0 +1,231 @@
+package tienda.services;
+
+import java.util.Collection;
+import tienda.entidades.Producto;
+import tienda.persistencia.ProductoDAO;
+
+public class ProductoServices {
+
+    private ProductoDAO dao;
+
+    public ProductoServices() {
+        this.dao = new ProductoDAO();
+    }
+
+    public void crearProducto(String nombre, double precio, int codigo_fabricante) throws Exception {
+
+        try {
+            if (nombre == null || nombre.trim().isEmpty()) {
+                throw new Exception("El nombre es incorrecto");
+            }
+            if (precio < 0) {
+                throw new Exception("El precio es incorrecto");
+            }
+            if (codigo_fabricante < 0) {
+                throw new Exception("El codigo es incorrecto");
+            }
+
+            Producto producto = new Producto();
+            producto.setNombre(nombre);
+            producto.setPrecio(precio);
+            producto.setCodigo_fabricante(codigo_fabricante);
+
+            dao.guardarProducto(producto);
+
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public void modificarProducto(String nombre, double precioNuevo, String nombreNuevo) throws Exception {
+
+        try {
+            if (nombre == null || nombre.trim().isEmpty()) {
+                throw new Exception("Debe indicar un nombre");
+            }
+            if (precioNuevo < 0) {
+                throw new Exception("Debe indicar un precio valido");
+            }
+            if (nombreNuevo == null || nombreNuevo.trim().isEmpty()) {
+                throw new Exception("Debe indicar un nombre nuevo valido");
+            }
+
+            Producto producto = buscarProductoPorNombre(nombre);
+
+            if (!producto.getNombre().equalsIgnoreCase(nombre)) {
+                throw new Exception("El producto buscado con el nombre " + nombre + " no existe");
+            }
+
+            producto.setPrecio(precioNuevo);
+            producto.setNombre(nombreNuevo);
+            dao.modificarProducto(producto);
+
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public Producto buscarProductoPorNombre(String nombre) throws Exception {
+
+        try {
+            //Validamos
+            if (nombre == null || nombre.trim().isEmpty()) {
+                throw new Exception("Debe indicar el nombre");
+            }
+
+            Producto producto = dao.buscarProductoPorNombre(nombre);
+
+            return producto;
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    /*
+    Listamos e imprimimos productos por precio
+     */
+    public Collection<Producto> listarProducto() throws Exception {
+
+        try {
+
+            Collection<Producto> productos = dao.buscarNombresProductos();
+
+            return productos;
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public void imprimirProducto() throws Exception {
+
+        try {
+            //Listamos los productos
+            Collection<Producto> productos = listarProducto();
+
+            //Imprimimos
+            if (productos.isEmpty()) {
+                throw new Exception("No existen productos para imprimir");
+            } else {
+                for (Producto p : productos) {
+                    System.out.println(p);
+                }
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    /* 
+    Listamos e imprimimos productos y precios
+     */
+    public Collection<Producto> listarProductoYPrecio() throws Exception {
+
+        try {
+
+            Collection<Producto> productos = dao.buscarNombresYPrecios();
+
+            return productos;
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public void imprimirProductoYPrecio() throws Exception {
+
+        try {
+            //Listamos los productos
+            Collection<Producto> productos = listarProductoYPrecio();
+
+            //Imprimimos
+            if (productos.isEmpty()) {
+                throw new Exception("No existen productos para imprimir");
+            } else {
+                for (Producto p : productos) {
+                    System.out.println(p);
+                }
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    /*
+    Listamos e imprimimos productos
+    entre precios 120 y 202
+    */
+    
+    public Collection<Producto> listarEntrePrecios() throws Exception {
+
+        try {
+
+            Collection<Producto> productos = dao.buscarEntrePrecios();
+
+            return productos;
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public void imprimirProductoEntrePrecios() throws Exception {
+
+        try {
+            //Listamos los productos
+            Collection<Producto> productos = listarEntrePrecios();
+
+            //Imprimimos
+            if (productos.isEmpty()) {
+                throw new Exception("No existen productos para imprimir");
+            } else {
+                for (Producto p : productos) {
+                    System.out.println(p);
+                }
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
+    /*
+    Buscar protatil
+    */
+    
+   public Collection<Producto> listarPortatil() throws Exception {
+
+        try {
+
+            Collection<Producto> productos = dao.buscarPortatil();
+
+            return productos;
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public void imprimirPortatil() throws Exception {
+
+        try {
+            //Listamos los productos
+            Collection<Producto> productos = listarPortatil();
+
+            //Imprimimos
+            if (productos.isEmpty()) {
+                throw new Exception("No existen productos para imprimir");
+            } else {
+                for (Producto p : productos) {
+                    System.out.println(p);
+                }
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
+    public void productoMasBarato() throws Exception{
+        try {
+            Producto producto = dao.buscarProductoMasBarato();
+            System.out.println(producto.getNombre() + " precio=" + producto.getPrecio());
+        } catch (Exception e) {
+            throw new Exception ("No se encontro el producto");
+        }
+    }
+}
