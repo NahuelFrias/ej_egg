@@ -1,0 +1,99 @@
+package tienda.persistencia;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public abstract class DAO {
+
+    protected Connection conexion = null;
+    protected ResultSet resultado = null;
+    protected Statement sentencia = null;
+
+    private final String USER = "root";
+    private final String PASSWORD = "root";
+    private final String DATABASE = "tienda";
+    //tuve que agregar ".cj."
+    private final String DRIVER = "com.mysql.cj.jdbc.Driver";
+
+    protected void conectarBase() throws ClassNotFoundException, SQLException {
+
+        try {
+            Class.forName(DRIVER);
+            //variable local de este metodo
+            String urlBaseDeDatos = "jdbc:mysql://localhost:3306/" + DATABASE + "?useSSL=false";
+            conexion = DriverManager.getConnection(urlBaseDeDatos, USER, PASSWORD);
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw ex;
+        }
+    }
+
+    protected void desconectarBase() throws Exception {
+        //desconectamos la base de datos
+        try {
+            //si hay resultado
+            if (resultado != null) {
+                resultado.close(); //de esta manera lo cierro
+                //para asì no tener residuos de consultas previas
+            }
+            //si se hace la sentencia
+            if (sentencia != null) {
+                sentencia.close(); //cierro
+            }
+            // si hay conexion lo cierro
+            if (conexion != null) {
+                conexion.close();
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        }
+    }
+
+    protected void insertarModificarEliminar(String sql) throws Exception {
+        try {
+            //vuelvo a conectar la base de datos cuando necesito hacer alguna query
+            conectarBase();
+            // me preparo para crear la sentencia
+            sentencia = conexion.createStatement();
+            //ejecuto la query
+            sentencia.executeUpdate(sql);
+
+        } catch (SQLException | ClassNotFoundException e) {
+            // conexion.rollback();
+            //rollback omite todo lo que hicimos si algo no salio
+            //suponemos en la consulta 500
+            //asi omite las 499 anteriores
+            /*
+                Descomentar la linea anterior si desean tener en cuenta el rollback.
+                Correr el siguiente script en Workbench
+            
+                SET autocommit=1;
+                COMMIT;
+            
+                **Sin rollback igual anda
+             */
+            throw e;
+        } finally {
+            desconectarBase();
+        }
+    }
+
+    protected void consultarBase(String sql) throws Exception {
+        /*
+        NO TIENE DESCONECTAR BASE ??
+         */
+        try {
+            conectarBase();
+            //preparo la sentencia donde albergo la sql
+            sentencia = conexion.createStatement();
+            // guardo el resultado en la variable de tipo ResulSet
+            resultado = sentencia.executeQuery(sql);
+            
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw ex;
+        }
+    }
+}
