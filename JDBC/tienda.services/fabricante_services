@@ -1,0 +1,32 @@
+package tienda.services;
+
+import tienda.entidades.Fabricante;
+import tienda.persistencia.FabricanteDAO;
+
+public class FabricanteServices {
+    
+    private FabricanteDAO dao;
+
+    public FabricanteServices() {
+        this.dao = new FabricanteDAO();
+    }
+    
+    public void crearFabricante(String nombre) throws Exception {
+
+        try {
+            if (nombre == null || nombre.trim().isEmpty()) {
+                throw new Exception("El nombre es incorrecto");
+            }
+            
+
+            Fabricante fabricante = new Fabricante();
+            fabricante.setNombre(nombre);
+
+            dao.guardarFabricante(fabricante);
+
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
+}
