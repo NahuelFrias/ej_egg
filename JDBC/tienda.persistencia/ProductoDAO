@@ -31,8 +31,8 @@ public final class ProductoDAO extends DAO {
             }
 
             String sql = "UPDATE producto SET "
-                    + " nombre = '" + producto.getNombre() + "',  precio =  '" + producto.getPrecio()
-                    + " ' WHERE codigo = '" + producto.getCodigo() + " ' ";
+                    + " nombre = '" + producto.getNombre() + "',  precio =  " + producto.getPrecio()
+                    + "  WHERE codigo = " + producto.getCodigo();
 
             insertarModificarEliminar(sql);
         } catch (Exception e) {
