@@ -1,0 +1,191 @@
+package libreria.servicios;
+
+import java.util.Collection;
+import libreria.entidades.Autor;
+import libreria.entidades.Editorial;
+import libreria.entidades.Libro;
+import libreria.persistencia.LibroDAO;
+
+public class LibroServices {
+
+    private final LibroDAO daoLibro;
+    private final AutorServices servicesAutor;
+    private final EditorialServices servicesEditorial;
+
+    public LibroServices(LibroDAO daoLibro, AutorServices servicesAutor, EditorialServices servicesEditorial) {
+        this.daoLibro = daoLibro;
+        this.servicesAutor = servicesAutor;
+        this.servicesEditorial = servicesEditorial;
+    }
+
+    public LibroServices() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void crearLibro(Integer isbn, String titulo, Integer anio, Integer ejemplares, Integer ejemplaresPrestados,
+            Integer ejemplaresRestantes, boolean alta, Integer idAutor, String nombreAutor, boolean altaAutor,
+            Integer idEditorial, String nombreEditorial, boolean altaEditorial) throws Exception {
+
+        try {
+            //Validamos
+            if (isbn == null) {
+                throw new Exception("Debe indicar el isbn");
+            }
+            if (titulo == null || titulo.trim().isEmpty()) {
+                throw new Exception("Debe indicar el titulo");
+            }
+            if (anio == null) {
+                throw new Exception("Debe indicar el año");
+            }
+            if (ejemplares == null) {
+                throw new Exception("Debe indicar la cantidad de ejemplares");
+            }
+            if (ejemplaresPrestados == null) {
+                throw new Exception("Debe indicar la cantidad de ejemplares prestados");
+            }
+            if (ejemplaresRestantes == null) {
+                throw new Exception("Debe indicar la cantidad de ejemplares restantes");
+            }
+            if (isbn < 4) {
+                throw new Exception("El isbn no puede ser mayor a 4 numeros");
+            }
+            if (idAutor == null) {
+                throw new Exception("Debe indicar el id Autor");
+            }
+            if (idEditorial == null) {
+                throw new Exception("Debe indicar id Editorial");
+            }
+            if (nombreAutor == null || titulo.trim().isEmpty()) {
+                throw new Exception("Debe indicar el Autor");
+            }
+            if (nombreEditorial == null || titulo.trim().isEmpty()) {
+                throw new Exception("Debe indicar la Editorial");
+            }
+
+            //Creamos el libro
+            Libro libro = new Libro();
+
+            Autor autor = servicesAutor.crearAutor(idAutor, nombreAutor, altaAutor);
+            Editorial editorial = servicesEditorial.crearEditorial(idEditorial, nombreEditorial, altaEditorial);
+
+            libro.setIsbn(isbn);
+            libro.setAnio(anio);
+            libro.setAlta(alta);
+            libro.setEjemplares(ejemplares);
+            libro.setEjemplaresPrestados(ejemplaresPrestados);
+            libro.setEjemplaresRestantes(ejemplaresRestantes);
+            libro.setTitulo(titulo);
+            libro.setAutor(autor);
+            libro.setEditorial(editorial);
+
+            daoLibro.guardarLibro(libro);
+
+        } catch (Exception e) {
+            System.out.println("No se creo el libro" + e.getMessage());
+        }
+    }
+
+    public void modificarTituloLibro(String titulo, String tituloNuevo) {
+        try {
+            Libro libro = buscarLibroPorTitulo(titulo);
+            libro.setTitulo(tituloNuevo);
+            daoLibro.modificarLibro(libro);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void eliminarLibro(String titulo) throws Exception {
+
+        try {
+            //Validamos 
+            if (titulo == null || titulo.trim().isEmpty()) {
+                throw new Exception("Debe indicar el titulo");
+            }
+            daoLibro.eliminarLibroTitulo(titulo);
+            System.out.println("LIBRO ELIMINADO CON EXITO");
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public Libro buscarLibroPorIsbn(Integer isbn) throws Exception {
+
+        try {
+            //Validamos
+            if (isbn == null) {
+                throw new Exception("Debe indicar el isbn del libro");
+            }
+            Libro libro = daoLibro.buscarLibroPorIsbn(isbn);
+            return libro;
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public Libro buscarLibroPorTitulo(String titulo) throws Exception {
+
+        try {
+            //Validamos
+            if (titulo == null | titulo.trim().isEmpty()) {
+                throw new Exception("Debe indicar el titulo del libro");
+            }
+            Libro libro = daoLibro.buscarLibroPorTitulo(titulo);
+            return libro;
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public Libro buscarLibroPorEditorial(String nombreEditorial) throws Exception {
+
+        try {
+            if (nombreEditorial == null | nombreEditorial.trim().isEmpty()) {
+                throw new Exception("Debe indicar la editorial del libro");
+            }
+            Libro libro = daoLibro.buscarLibroPorEditorial(nombreEditorial);
+            return libro;
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
+    public Libro buscarLibroPorAutor(String nombreAutor) throws Exception {
+
+        try {
+            if (nombreAutor == null | nombreAutor.trim().isEmpty()) {
+                throw new Exception("Debe indicar la editorial del libro");
+            }
+            Libro libro = daoLibro.buscarLibroPorAutor(nombreAutor);
+            return libro;
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public Collection<Libro> listaLibros() throws Exception {
+
+        try {
+            Collection<Libro> libros = daoLibro.listarLibros();
+            return libros;
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public void imprimirLibros() throws Exception {
+        try {
+            Collection<Libro> libros = listaLibros();
+
+            if (libros.isEmpty()) {
+                throw new Exception("No existen libros para imprimir");
+            } else {
+                libros.forEach(u -> {
+                    System.out.println(u);
+                });
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
