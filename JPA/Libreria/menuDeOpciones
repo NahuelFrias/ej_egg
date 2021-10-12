@@ -1,0 +1,150 @@
+package libreria;
+
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.util.Scanner;
+import libreria.servicios.AutorServices;
+import libreria.servicios.EditorialServices;
+import libreria.servicios.LibroServices;
+
+public class MenuOpciones {
+
+    /*Recordar que este menu es a modo de orden para ir probando los metodos, no tiene importancia
+    en si, ya que muy pronto los datos seran recibidos desde los formularios de las paginas web*/
+    private final Scanner sc;
+    private final AutorServices autorServices;
+    private final EditorialServices editorialServices;
+    private final LibroServices libroServices;
+
+    public MenuOpciones() {
+        this.sc = new Scanner(System.in);
+        this.autorServices = new AutorServices();
+        this.editorialServices = new EditorialServices();
+        this.libroServices = new LibroServices();
+    }
+
+    public void menu() throws Exception {
+
+        String resp;
+        do {
+            System.out.println("Seleccione la opción:");
+            System.out.println("=====================================");
+            System.out.println(" 1- Crear Libro");//OK
+            System.out.println(" 2- Modificar nombre de Libro");//OK
+            System.out.println(" 3- Eliminar Libro");//OK
+            System.out.println(" 4- Listar Libros");//OK
+            System.out.println(" 5 - Modificar Autor");//OK
+            System.out.println(" 6 - Eliminar Autor");//OK
+            System.out.println(" 7 - Buscar Autor por nombre");//OK
+            System.out.println(" 8 - Modificar Editorial");
+            System.out.println(" 9 - Eliminar Editorial");
+            System.out.println(" 10 - Buscar Editorial por nombre");
+            System.out.println(" 11 - Buscar un libro por nombre de autor");
+            System.out.println(" 12 - Buscar un libro por Editorial");
+            System.out.println(" 0- Salir");
+
+            int opcion = sc.nextInt();
+            switch (opcion) {
+                case 1:
+
+                    Integer isbn = (int) (Math.random() * 9999) + 1;
+                    System.out.println("Titulo:");
+                    String titulo = sc.next();
+                    System.out.println("Año:");
+                    int anio = sc.nextInt();
+                    System.out.println("Ejemplares:");
+                    int ejem = sc.nextInt();
+                    System.out.println("Ejemplares prestados:");
+                    int ejemPres = sc.nextInt();
+                    System.out.println("ID Autor:");
+                    int idAutor = sc.nextInt();
+                    System.out.println("Nombre Autor:");
+                    String nombreAutor = sc.next();
+                    System.out.println("ID Editorial:");
+                    int idEditorial = sc.nextInt();
+                    System.out.println("Nombre Editorial:");
+                    String nombreEditorial = sc.next();
+
+                    libroServices.crearLibro(isbn, titulo, anio, ejem, ejemPres, (ejem - ejemPres), true,
+                            idAutor, nombreAutor, true, idEditorial, nombreEditorial, true);
+                    break;
+                case 2:
+                    System.out.println("Ingrese el nombre del libro:");
+                    String tituloViejo = sc.next();
+                    System.out.println("Ingrese el nombre nuevo del libro:");
+                    String tituloNuevo = sc.next();
+                    libroServices.modificarTituloLibro(tituloViejo, tituloNuevo);
+                    break;
+                case 3:
+                    System.out.println("Ingrese el titulo a eliminar:");
+                    String libroEliminar = sc.next();
+                    libroServices.eliminarLibro(libroEliminar);
+                    break;
+                case 4:
+                    libroServices.imprimirLibros();
+                    break;
+                case 5:
+                    System.out.println("Ingrese el Autor a modificar:");
+                    String autorViejo = sc.next();
+                    System.out.println("Ingrese el nuevo Autor:");
+                    String autorNuevo = sc.next();
+                    autorServices.modificarNombreAutor(autorViejo, autorNuevo);
+                    break;
+                case 6:
+                    System.out.println("Ingrese el Autor a eliminar:");
+                    String autorEliminar = sc.next();
+                    autorServices.eliminarAutor(autorEliminar);
+                    break;
+                case 7:
+                    System.out.println("Ingrese el nombre del Autor:");
+                    String nomAutor = sc.next();
+                    autorServices.buscarAutorPorNombre(nomAutor);
+                    break;
+                case 8:
+                    System.out.println("Ingrese la Editorial a modificar:");
+                    String nomEd = sc.next();
+                    System.out.println("Ingrese la Editorial nueva:");
+                    String nomNuevo = sc.next();
+                    editorialServices.modificarNombreEditorial(nomEd, nomNuevo);
+                    break;
+                case 9:
+                    System.out.println("Ingrese la editorial a eliminar:");
+                    String edElim = sc.next();
+                    editorialServices.eliminarEditorial(edElim);
+                    break;
+                case 10:
+                    System.out.println("Ingrese el nombre de la Editorial");
+                    String nomEditorial = sc.next();
+                    editorialServices.buscarEditorialPorNombre(nomEditorial);
+                case 11:
+                    System.out.println("Ingrese el nombre del Autor:");
+                    String nombreAu  = sc.next();
+                    libroServices.buscarLibroPorAutor(nombreAu);
+                case 12:
+                    System.out.println("Ingrese el nombre de la editorial:");
+                    String nomEdi = sc.next();
+                    libroServices.buscarLibroPorEditorial(nomEdi);
+                case 0:
+                    System.exit(0);
+                    break;
+            }
+
+            System.out.println("Desea realizar una nueva consulta o gestion ???:SI/NO");
+            resp = sc.next();
+            resp = resp.toUpperCase();
+            limpiarPantalla();
+        } while ("SI".equals(resp));
+    }
+    
+    public void limpiarPantalla() throws AWTException {
+        //Dejo esre metodo para ir borrando la consola.. y que no sea un desorden.
+        Robot pressbot = new Robot();
+        pressbot.setAutoDelay(30); // Tiempo de espera antes de borrar
+        pressbot.keyPress(17); // Orden para apretar CTRL key
+        pressbot.keyPress(76);// Orden para apretar L key
+        pressbot.keyRelease(17); // Orden para soltar CTRL key
+        pressbot.keyRelease(76); // Orden para soltar L key
+
+    }
+
+}
