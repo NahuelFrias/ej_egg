@@ -1,0 +1,48 @@
+package libreria.persistencia;
+
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import libreria.entidades.Editorial;
+
+public class EditorialDAO {
+
+    private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("LibreriaPU");
+    private final EntityManager em = emf.createEntityManager();
+
+    public void guardarEditorial(Editorial editorial) throws Exception {
+        em.getTransaction().begin();
+        em.persist(editorial);
+        em.getTransaction().commit();
+    }
+
+    public void modificarEditorial(Editorial editorial) throws Exception {
+        em.getTransaction().begin();
+        em.merge(editorial);
+        em.getTransaction().commit();
+    }
+
+    public void eliminarEditorial(String nombre) throws Exception {
+        Editorial editorial = buscarEditorialPorNombre(nombre);
+        em.getTransaction().begin();
+        em.remove(editorial);
+        em.getTransaction().commit();
+    }
+
+    public Editorial buscarEditorialPorId(Integer id) throws Exception {
+        Editorial editorial = em.find(Editorial.class, id); // Esto que envio es la llave primaria
+        return editorial;
+    }
+
+    public Editorial buscarEditorialPorNombre(String nombre) throws Exception {
+        Editorial editorial = em.find(Editorial.class, nombre);
+        return editorial;
+    }
+
+    public List<Editorial> listarEditoriales() throws Exception {
+        List<Editorial> editoriales = em.createQuery("SELECT e.nombre FROM Editorial e")
+                .getResultList();
+        return editoriales;
+    }
+}
